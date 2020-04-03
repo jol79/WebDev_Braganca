@@ -1,4 +1,4 @@
-##Project Idea
+## Project Idea
 
 Programming is a practical craft. Learning language we usually focus on understanding how functions, operators, loops, string formatting etc operate. Then we make a first attempt to apply gained knowledge in practice, possibly forgetting what we have learned so far and losing a thread of how to combine the work of all tools, putting away effective and elegant solutions. But, why not save some time and diversify the process, by focusing on what programming requires - on practice.
 
