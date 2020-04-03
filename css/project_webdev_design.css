@@ -1,0 +1,77 @@
+/*##############Design for project WEB DEVELOPMENT: ###################*/
+.centered_login {
+    /* Left_block */
+
+
+    position: absolute;
+
+    background: #3786BE;
+    border-radius: 5px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -145px;
+    top: 50%;
+    margin-top: -180px;
+
+    font-family: Roboto;
+    /*text-align: center;*/
+
+    /*color : #4a4a4a;*/
+}
+
+.centered_registration {
+    /* Left_block */
+
+
+    position: absolute;
+
+    background: #3786BE;
+    border-radius: 5px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -190px;
+    top: 50%;
+    margin-top: -180px;
+
+    font-family: Roboto;
+    /*text-align: center;*/
+
+    /*color : #4a4a4a;*/
+}
+
+.registration_text{
+    /*top reg_text*/
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #212121;
+}
+
+.registration_text{
+    /*top reg_text*/
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #212121;
+}
+
+.registration_box{
+    background: #EAE9E9;
+    border-radius: 15px;
+}
+
+.width_param{
+    width: 160px;
+}
