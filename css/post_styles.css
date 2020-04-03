@@ -1,0 +1,50 @@
+.profile_avatar{
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user_info{
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.text_border_bottom{
+    width: 20%;
+    border-bottom: 1px solid #666666;
+}
+
+.divider {
+    height: 1px;
+    width: 20%;
+    display:block;
+    margin: auto auto;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+/*.post_content{*/
+/*    padding-left: 10%;*/
+/*    padding-right: 10%;*/
+/*}*/
+
+.code_snippet_pre {
+    border: 1px solid #ddd;
+
+    color: #666;
+    font-family: monospace;
+    font-size: 15px;
+    display: block;
+    word-wrap: break-word;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.code_snippet_row{
+    margin-right: auto;
+    margin-left: auto;
+}
