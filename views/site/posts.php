@@ -193,17 +193,9 @@
         <input type="button" onClick="document.getElementById('middle').scrollIntoView();" />
     </div>
 
-    
 
-    
-    
-
-
-
-
-  <script src ='js/test.js'></script>
-  <script src='js/bootstrap.bundle.min.js'></script>
-  <script src='js/jquery.min.js'></script>
-  <script src='js/bootstrap.min.js'></script>
+    <script src='../../web/js/bootstrap.bundle.min.js'></script>
+    <script src='../../web/js/jquery.min.js'></script>
+    <script src='../../web/js/bootstrap.min.js'></script>
 </body>
 </html>
