@@ -20,9 +20,11 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/navbar.css',
+        '//fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap'
     ];
     public $js = [
+
     ];
     public $depends = [
         'yii\web\YiiAsset',

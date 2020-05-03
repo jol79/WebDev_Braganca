@@ -129,4 +129,8 @@ class SiteController extends Controller
     public function actionPosts(){
         return $this->render('posts');
     }
+
+    public function actionNews(){
+        return $this->render('news');
+    }
 }
