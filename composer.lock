@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a9938639f741213494572d75d71ef67",
+    "content-hash": "6d30627b82a29cc8a432ea3d1913f61b",
     "packages": [
         {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -309,6 +309,69 @@
             "time": "2019-10-28T03:44:26+00:00"
         },
         {
+            "name": "fortawesome/font-awesome",
+            "version": "5.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/4e6402443679e0a9d12c7401ac8783ef4646657f",
+                "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-4.0",
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Chase",
+                    "homepage": "http://twitter.com/supercodepoet"
+                },
+                {
+                    "name": "Dave Gandy",
+                    "homepage": "http://twitter.com/davegandy"
+                },
+                {
+                    "name": "Rob Madole",
+                    "homepage": "http://twitter.com/robmadole"
+                },
+                {
+                    "name": "Jory Raphael",
+                    "homepage": "http://twitter.com/sensibleworld"
+                },
+                {
+                    "name": "Geremia Taglialatela",
+                    "homepage": "http://twitter.com/gtagliala"
+                },
+                {
+                    "name": "Brian Talbot",
+                    "homepage": "http://twitter.com/talbs"
+                },
+                {
+                    "name": "Mike Wilkerson",
+                    "homepage": "http://twitter.com/mw77"
+                }
+            ],
+            "description": "The iconic font, CSS, and SVG framework",
+            "homepage": "https://fontawesome.com",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon",
+                "svg"
+            ],
+            "time": "2020-03-23T18:53:09+00:00"
+        },
+        {
             "name": "npm-asset/bootstrap",
             "version": "4.4.1",
             "dist": {
@@ -319,6 +382,63 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "rmrevin/yii2-fontawesome",
+            "version": "3.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+                "reference": "08277670fb96ae271a3d8484103ec0361bf41ac0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/08277670fb96ae271a3d8484103ec0361bf41ac0",
+                "reference": "08277670fb96ae271a3d8484103ec0361bf41ac0",
+                "shasum": ""
+            },
+            "require": {
+                "fortawesome/font-awesome": "^5.9.0",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "^2.0.0"
+            },
+            "require-dev": {
+                "doctrine/instantiator": "1.0.*",
+                "phpdocumentor/reflection-docblock": "~3.1.0",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "rmrevin\\yii\\fontawesome\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Revin Roman",
+                    "email": "roman@rmrevin.com",
+                    "homepage": "https://rmrevin.com/"
+                }
+            ],
+            "description": "Asset Bundle for Yii2 with Font Awesome",
+            "keywords": [
+                "asset",
+                "awesome",
+                "bundle",
+                "font",
+                "yii"
+            ],
+            "time": "2019-07-07T10:11:42+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -619,16 +739,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.34",
+            "version": "2.0.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "ef2585379bc387433e150a62451a89a4b1e130d7"
+                "reference": "d42809e4969cdc0adb97197ba32774b3e4cd9e8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ef2585379bc387433e150a62451a89a4b1e130d7",
-                "reference": "ef2585379bc387433e150a62451a89a4b1e130d7",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d42809e4969cdc0adb97197ba32774b3e4cd9e8e",
+                "reference": "d42809e4969cdc0adb97197ba32774b3e4cd9e8e",
                 "shasum": ""
             },
             "require": {
@@ -715,7 +835,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2020-03-26T20:42:29+00:00"
+            "time": "2020-05-02T11:11:31+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap4",
@@ -1834,23 +1954,20 @@
         },
         {
             "name": "phpdocumentor/reflection-common",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "63a995caa1ca9e5590304cd845c15ad6d482a62a"
+                "reference": "6568f4687e5b41b054365f9ae03fcb1ed5f2069b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/63a995caa1ca9e5590304cd845c15ad6d482a62a",
-                "reference": "63a995caa1ca9e5590304cd845c15ad6d482a62a",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/6568f4687e5b41b054365f9ae03fcb1ed5f2069b",
+                "reference": "6568f4687e5b41b054365f9ae03fcb1ed5f2069b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6"
             },
             "type": "library",
             "extra": {
@@ -1882,7 +1999,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2018-08-07T13:53:10+00:00"
+            "time": "2020-04-27T09:25:28+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -3278,7 +3395,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -3354,7 +3471,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3407,7 +3524,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v4.4.7",
+            "version": "v4.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -3468,7 +3585,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3596,7 +3713,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -3819,16 +3936,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "ad5e9c83ade5bbb3a96a3f30588a0622708caefd"
+                "reference": "482fb4e710e5af3e0e78015f19aa716ad953392f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/ad5e9c83ade5bbb3a96a3f30588a0622708caefd",
-                "reference": "ad5e9c83ade5bbb3a96a3f30588a0622708caefd",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/482fb4e710e5af3e0e78015f19aa716ad953392f",
+                "reference": "482fb4e710e5af3e0e78015f19aa716ad953392f",
                 "shasum": ""
             },
             "require": {
@@ -3874,7 +3991,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-30T11:42:42+00:00"
+            "time": "2020-04-28T17:58:55+00:00"
         },
         {
             "name": "theseer/tokenizer",

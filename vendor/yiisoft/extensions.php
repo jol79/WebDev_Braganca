@@ -48,4 +48,13 @@ return array (
       '@yii/bootstrap4' => $vendorDir . '/yiisoft/yii2-bootstrap4/src',
     ),
   ),
+  'rmrevin/yii2-fontawesome' => 
+  array (
+    'name' => 'rmrevin/yii2-fontawesome',
+    'version' => '3.4.0.0',
+    'alias' => 
+    array (
+      '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
+    ),
+  ),
 );

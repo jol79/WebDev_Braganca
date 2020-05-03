@@ -1,0 +1,48 @@
+nav{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    background-color: #F9F9F9;
+    color: black;
+}
+
+.navbar{
+    padding: 0px;
+}
+
+.nav-item{
+    margin-right: 13px;
+    /*font-weight: bolder;*/
+}
+
+.nav.navbar-nav.navbar-right li a {
+    color: black;
+}
+
+.navbar-right{
+    margin-left: 10px;
+}
+
+.languages {
+    min-width: 30px !important;
+    height: 190px !important;
+    border-top: none;
+    background-color: #F9F9F9;
+}
+
+.languages .dropdown-item{
+    width: 46px;
+    height: 47px;
+    padding: 8px 8px 8px 8px;
+}
+/* to do how to change width and height of a collapsed dropdown menu */
+
+@media (max-width: 990px) {
+    .dropdown-menu{
+        background-color: #F9F9F9;
+        border: none;
+    }
+
+    #navbarDropdown.langs{
+        padding: 8px 8px 8px 8px;
+    }
+}
