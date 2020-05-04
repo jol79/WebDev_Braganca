@@ -1,7 +1,8 @@
 <?php
-$this->title = 'Login';
+$this->title = 'Posts';
+\app\assets\PostsAsset::register($this);
 ?>
-<div class="row">
+<div class="row search-field">
     <div class="input-group mx-auto mb-2">
         <input type="text" class="form-control" placeholder="Search for a related">
         <div class="input-group-append">

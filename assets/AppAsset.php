@@ -22,13 +22,12 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/navbar.css',
         '//fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap',
-        '//cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css',
-        'css/posts.css',
-        'rmrevin\yii\fontawesome\NpmFreeAssetBundle'
+        'rmrevin\yii\fontawesome\NpmFreeAssetBundle',
+        'css/site.css'
 
     ];
     public $js = [
-        '//cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'
+
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -22,6 +22,5 @@ class PostsAsset extends AssetBundle
     ];
 
     public $depends = [
-
     ];
 }
