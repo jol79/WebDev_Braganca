@@ -1,0 +1,824 @@
+.nav_barColor{
+    background-color: transparent;
+}
+
+.breadcrumb_param{
+    background-color: #FAFAFA;
+
+    border-radius: 12px;
+    /*height: 37px;*/
+}
+
+.common_fontFamily{
+    font-family: Raleway;
+}
+
+/*
+ block choice params:
+ */
+.block_choice11{
+    margin-top: 30px;
+
+    margin-right: -140px;
+}
+
+.block_choice12{
+    margin-top: 30px;
+
+    margin-left: -140px;
+}
+
+.block_choice21{
+    margin-top: -35px;
+
+    margin-right: -140px;
+}
+
+.block_choice22{
+    margin-top: -35px;
+
+    margin-left: -140px;
+}
+/*
+ end of block choice params:
+ */
+
+
+/* Params for comments block: */
+.img_comment{
+    /*position: absolute;*/
+    width: 84px;
+    height: 81px;
+
+    margin-top: 32.5px;
+    margin-left: -60px;
+
+
+    border-radius: 41px;
+}
+
+.text_comment{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+
+    padding-top: 20px;
+    padding-right: 140px;
+
+    /*margin-right: 90px;*/
+
+    color: #3B3B3B;
+}
+/*
+    End of comments block
+*/
+
+
+/* Required for full background image */
+
+html,
+body,
+header,
+.view {
+    height: 100%;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 1000px;
+    }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 600px;
+    }
+}
+
+.btn .fa {
+    margin-left: 3px;
+}
+
+.top-nav-collapse {
+    background-color: transparent;
+    /*background-color: #424f95 !important;*/
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+
+.btn-white {
+    color: black !important;
+}
+
+h6 {
+    line-height: 1.7;
+}
+
+/*.rgba-gradient {*/
+/*    background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);*/
+/*    background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);*/
+/*    !*background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.7)));*!*/
+/*    background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);*/
+/*    !*background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);*!*/
+/*}*/
+
+
+/* CSS for comments block: */
+.com_block{
+    width: 200px;
+    height: 150px;
+
+
+    background: #FAFAFA;
+    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+}
+.com_block_bottom{
+    width: 200px;
+    height: 100px;
+
+
+    background: #FAFAFA;
+    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+}
+
+
+/* Parameters for text in the boxes that are used for navigation user on the Home page */
+.text_in_blocks{
+    /* Placing params: */
+    margin-bottom: 180px;
+
+    /* font params: */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 33px;
+
+    color: #FEFEFE;
+}
+
+/* Parameters for buttons in the blocks elements for user action navigation: */
+.button_params{
+    position: relative;
+    width: 185px;
+    height: 34px;
+
+    margin-left: 135px;
+    margin-bottom: 40px;
+
+    background: #2D8BBD;
+    border-radius: 25px;
+}
+
+/* Params for text in the block 11;12 (navigation for user */
+.text_block11{
+    margin-left: 110px;
+    margin-bottom: 100px;
+    /*padding-top: 180px;*/
+}
+/* Params for text in the blocks 21;22 (navigation for user) */
+.text_block22{
+    margin-left: 90px;
+    margin-bottom: 90px;
+    /*margin-top: 180px;*/
+}
+
+/* Parameter to delete the border for cards (that are using for navigate between 4 options) */
+._border{
+    border: none;
+}
+
+
+/*.l_colMargin{*/
+/*    margin-right: -5px;*/
+/*}*/
+/*.r_colMargin{*/
+/*    margin-left: -5px;*/
+/*}*/
+
+.mt_blocksElements{
+    margin-top: 30px;
+}
+
+
+/* Params for copyright info on the bottom of the home page */
+.cop_imgPlacing{
+    margin-top: 150px;
+    padding-left: 315px;
+}
+
+/* Placing button over the img: */
+.img-wrapper {
+    position: relative;
+}
+
+/* Pamars for the 2nd image (above comments blocks */
+.img-responsive {
+    width: 100%;
+    height: auto;
+
+    margin-left: 105px;
+}
+
+/* Params for placing button above the image */
+.img-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+
+    margin-left: -110px;
+    margin-top: 290px;
+}
+
+.img-overlay:before {
+    content: ' ';
+    display: block;
+    /* adjust 'height' to position overlay content vertically */
+    height: 50%;
+}
+
+.btn-custom{
+    background: #EFF2F7;
+    border-radius: 8.5px;
+
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    /*line-height: 18px;*/
+    /* identical to box height */
+
+    /*text-align: center;*/
+
+    color: #2D8BBD;
+}
+.btn-responsive {
+    /* matches 'btn-md' */
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+
+/* Making responsive points: */
+
+
+ /*Extra small devices (landscape phones, 576px and up)*/
+@media (max-width: 575.99px) {
+    .text_in_blocks{
+        /* Placing params: */
+        margin-bottom: 10px;
+
+        /* font params: */
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 25px;
+
+        color: #FEFEFE;
+    }
+    .text_block11{
+        margin-left: 40px;
+    }
+    .text_block22{
+        margin-left: 30px;
+    }
+    .button_params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 70px;
+        margin-bottom: 80px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+    .no_border{
+        border: none;
+        width: 300px;
+        height: 300px;
+
+        margin-left: 70px;
+    }
+    .mt_blocksElements{
+        margin-top: 0px;
+        margin-bottom: -40px;
+    }
+
+    /* Adapting the 2nd image: */
+    .img-responsive {
+        width: 100%;
+        height: auto;
+
+        margin-left: -210px;
+    }
+    .btn-custom{
+        background: #EFF2F7;
+        border-radius: 8.5px;
+
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 10px;
+        /*line-height: 18px;*/
+        /* identical to box height */
+
+        /*text-align: center;*/
+
+        color: #2D8BBD;
+    }
+    .img-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+
+
+        margin-left: 365px;
+        margin-top: 290px;
+    }
+
+    /* Adapting comments blocks */
+    .com_block{
+        width: 200px;
+        height: 100px;
+
+        margin-top: 25px;
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+    .com_block_bottom{
+        width: 200px;
+        height: 100px;
+
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+
+    /* Params for comments block: */
+    .img_comment{
+        /*position: absolute;*/
+        width: 84px;
+        height: 81px;
+
+        margin-top: 7.5px;
+        margin-left: -10px;
+
+
+        border-radius: 41px;
+    }
+
+    .text_comment{
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 12px;
+        line-height: 12px;
+
+        padding-top: 6px;
+        padding-right: 140px;
+
+        /*margin-right: 90px;*/
+
+        color: #3B3B3B;
+    }
+
+    /* Params for copyright info on the bottom of the home page */
+    .cop_imgPlacing{
+        margin-top: 150px;
+        padding-left: 6px;
+    }
+}
+
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px){
+    /* Adapting size for text in block elements: */
+    .text_in_blocks{
+        /* Placing params: */
+        margin-bottom: 10px;
+
+        /* font params: */
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 25px;
+
+        color: #FEFEFE;
+    }
+    .text_block11{
+        margin-left: 40px;
+    }
+    .text_block22{
+        margin-left: 30px;
+    }
+    .button_params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 70px;
+        margin-bottom: 80px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+    .no_border{
+        border: none;
+        width: 300px;
+        height: 300px;
+
+        margin-left: 70px;
+    }
+    .mt_blocksElements{
+        margin-top: 0px;
+        margin-bottom: -40px;
+    }
+
+    /* Adapting the 2nd image: */
+    .img-responsive {
+        width: 100%;
+        height: auto;
+
+        margin-left: -165px;
+    }
+    .btn-custom{
+        background: #EFF2F7;
+        border-radius: 8.5px;
+
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 10px;
+        /*line-height: 18px;*/
+        /* identical to box height */
+
+        /*text-align: center;*/
+
+        color: #2D8BBD;
+    }
+    .img-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+
+
+        margin-left: 365px;
+        margin-top: 290px;
+    }
+
+    /* Adapting comments blocks */
+    .com_block{
+        width: 200px;
+        height: 100px;
+
+        margin-top: 25px;
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+    .com_block_bottom{
+        width: 200px;
+        height: 100px;
+
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+
+    /* Params for comments block: */
+    .img_comment{
+        /*position: absolute;*/
+        width: 84px;
+        height: 81px;
+
+        margin-top: 7.5px;
+        margin-left: -10px;
+
+
+        border-radius: 41px;
+    }
+
+    .text_comment{
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 12px;
+        line-height: 12px;
+
+        padding-top: 6px;
+        padding-right: 140px;
+
+        /*margin-right: 90px;*/
+
+        color: #3B3B3B;
+    }
+    /*
+        End of comments block
+    */
+
+    /* Params for copyright info on the bottom of the home page */
+    .cop_imgPlacing{
+        margin-top: 150px;
+        padding-left: 25px;
+    }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* matches 'btn-xs' */
+    .btn-responsive {
+        padding: 1px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+
+    /* Adapting the 2nd image: */
+    .img-responsive {
+        width: 100%;
+        height: auto;
+
+        margin-left: -100px;
+    }
+    .btn-custom{
+        background: #EFF2F7;
+        border-radius: 8.5px;
+
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 10px;
+        /*line-height: 18px;*/
+        /* identical to box height */
+
+        /*text-align: center;*/
+
+        color: #2D8BBD;
+    }
+    /* Params for placing button: */
+    .img-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+
+
+        margin-left: 200px;
+        margin-top: 290px;
+    }
+
+    /* Adapting size for text in block elements: */
+    .text_in_blocks{
+        /* Placing params: */
+        margin-bottom: 10px;
+
+        /* font params: */
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 25px;
+
+        color: #FEFEFE;
+    }
+    .text_block11{
+        margin-left: 40px;
+    }
+    .text_block22{
+        margin-left: 25px;
+    }
+    .button_params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 70px;
+        margin-bottom: 50px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+    /* Adapting comments blocks */
+    .com_block{
+        width: 200px;
+        height: 100px;
+
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+    .com_block_bottom{
+        width: 200px;
+        height: 100px;
+
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+
+    /* Params for comments block: */
+    .img_comment{
+        /*position: absolute;*/
+        width: 84px;
+        height: 81px;
+
+        margin-top: 9.5px;
+        margin-left: -10px;
+
+
+        border-radius: 41px;
+    }
+
+    .text_comment{
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 15px;
+
+        padding-top: 10px;
+        padding-right: 140px;
+
+        /*margin-right: 90px;*/
+
+        color: #3B3B3B;
+    }
+    /*
+        End of comments block
+    */
+
+    /* Params for copyright info on the bottom of the home page */
+    .cop_imgPlacing{
+        margin-top: 150px;
+        padding-left: 115px;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar:not(.top-nav-collapse) {
+        /*background: #424f95 !important;*/
+        background-color: transparent;
+    }
+
+    /* Params for copyright info on the bottom of the home page */
+    .cop_imgPlacing{
+        margin-top: 150px;
+        padding-left: 225px;
+    }
+
+    /* Adapting size for text in block elements: */
+    .text_in_blocks{
+        /* Placing params: */
+        margin-bottom: 40px;
+
+        /* font params: */
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 25px;
+
+        color: #FEFEFE;
+    }
+    .text_block11{
+        margin-left: 110px;
+    }
+    .text_block22{
+        margin-left: 90px;
+    }
+    .button_params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 130px;
+        margin-bottom: 70px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+    /* Adapting the 2nd image: */
+    .img-responsive {
+        width: 100%;
+        height: auto;
+
+        margin-left: 19px;
+    }
+    /* Params for placing button: */
+    .img-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+
+
+        margin-left: -20px;
+        margin-top: 290px;
+    }
+    .btn-custom{
+        background: #EFF2F7;
+        border-radius: 8.5px;
+
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 15px;
+        /*line-height: 18px;*/
+        /* identical to box height */
+
+        /*text-align: center;*/
+
+        color: #2D8BBD;
+    }
+    /* Placing button over the img: */
+    .img-wrapper {
+        position: relative;
+    }
+
+    /* Adapting comments blocks */
+    .com_block{
+        width: 200px;
+        height: 100px;
+
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+    .com_block_bottom{
+        width: 200px;
+        height: 100px;
+
+
+        background: #FAFAFA;
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+    }
+
+    /* Params for comments block: */
+    .img_comment{
+        /*position: absolute;*/
+        width: 84px;
+        height: 81px;
+
+        margin-top: 10px;
+        margin-left: -60px;
+
+
+        border-radius: 41px;
+    }
+
+    .text_comment{
+        font-family: Raleway;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 21px;
+
+        padding-top: 9px;
+        padding-right: 140px;
+
+        /*margin-right: 90px;*/
+
+        color: #3B3B3B;
+    }
+    /*
+        End of comments block
+    */
+}
