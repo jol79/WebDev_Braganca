@@ -67,18 +67,13 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-<!--        --><?//= Alert::widget() ?>
+    </div>
+    <div class="container-fluid">
         <?= $content ?>
     </div>
 </div>
 
-<!--<footer class="footer">-->
-<!--    <div class="container">-->
-<!--        <p class="pull-left">&copy; Code Samples --><?//= date('Y') ?><!--</p>-->
-<!---->
-<!--        <p class="pull-right">--><?//= Yii::powered() ?><!--</p>-->
-<!--    </div>-->
-<!--</footer>-->
+
 
 <?php $this->endBody() ?>
 </body>

@@ -231,6 +231,13 @@ h6 {
     margin-left: 105px;
 }
 
+/* Params for comments in carousel: */
+.comments_responsive{
+    width: 30px;
+    height: auto;
+
+}
+
 /* Params for placing button above the image */
 .img-overlay {
     position: absolute;
@@ -275,9 +282,115 @@ h6 {
     border-radius: 6px;
 }
 
+
+/* text over the pictures in carousel of comments: */
+.text-block {
+    position: absolute;
+    bottom: 60px;
+    left: 390px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* using custom font: */
+.relaway{
+    font-family: 'Raleway', cursive;
+}
+
+/* color for dots in the comment
+   carousel
+ */
+.black-dots{
+    color: #3B3B3B;
+}
+
+/* border radius for image in carousel comments: */
+.border-radius{
+    border-radius: 50%;
+}
+
+/* Params for photos (1st and 2nd, copyright block: */
+.center-fit {
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+}
+.imgbox {
+    display: grid;
+    height: 100%;
+}
+
+/* test: */
+.cos{
+    font-family: 'Raleway', cursive;
+    font-size: 42px;
+    line-height: 49px;
+    text-align: center;
+}
+
+/* Creating parallax effect for second photo: */
+.parallax_second {
+    /* The image used */
+    background: url(../img/second_photo.png) center center;
+
+    /* Set a specific height */
+    min-height: 400px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* Creating parallax effect for the first photo: */
+.parallax_first {
+    /* The image used */
+    background: url(../img/first_photo.png) center center;
+
+    /* Set a specific height */
+    min-height: 400px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pos_firsttextinPhoto{
+    position: absolute;
+    margin-top: 180px;
+    margin-left: 550px;
+    text-align: center;
+
+    font-family: 'Raleway', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 49px;
+    color: #FEFEFE;
+}
+.pos_secondtextinPhoto{
+    position: absolute;
+    margin-top: 180px;
+    margin-left: 715px;
+    text-align: center;
+
+    font-family: 'Raleway', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 49px;
+    color: #FEFEFE;
+}
+
+
+
 /* Making responsive points: */
-
-
  /*Extra small devices (landscape phones, 576px and up)*/
 @media (max-width: 575.99px) {
     .text_in_blocks{
@@ -821,4 +934,49 @@ h6 {
     /*
         End of comments block
     */
+
+    /* Creating parallax effect for the first photo: */
+    .parallax_first {
+        /* The image used */
+        background: url(../img/first_photo.png) center center;
+
+        /* Set a specific height */
+        min-height: 400px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .pos_firsttextinPhoto{
+        position: absolute;
+        margin-top: 180px;
+        margin-left: 550px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 49px;
+        color: #FEFEFE;
+    }
+    .pos_secondtextinPhoto{
+        position: absolute;
+        margin-top: 180px;
+        margin-left: 715px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 49px;
+        color: #FEFEFE;
+    }
 }
+
+
+
