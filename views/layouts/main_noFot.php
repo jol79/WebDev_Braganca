@@ -32,6 +32,7 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => Html::img('@web/img/logo.png', ['alt'=>Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
+//        'brandUrl' => ['/site/home'],
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-light',
         ],
@@ -46,18 +47,12 @@ AppAsset::register($this);
             ['label' => 'News', 'url' => ['/site/news']],
             ['label' => 'About', 'url' => ['site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+            ['label' => 'User', 'url' => ['/user']],
+            Yii::$app->user->isGuest ?
+                ['label' => 'Login', 'url' => ['/user/login']] : // or ['/user/login-email']
+                ['label' => 'Logout (' . Yii::$app->user->displayName . ')',
+                    'url' => ['/user/logout'],
+                    'linkOptions' => ['data-method' => 'post']],
         ],
     ]);
     NavBar::end();
