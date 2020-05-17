@@ -1,0 +1,293 @@
+/*##############Design for project WEB DEVELOPMENT: ###################*/
+.centered_login {
+
+    position: absolute;
+
+    background: #EEEEEE;
+    border-radius: 12px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -130.05px; /* -145 -> default value*/
+    top: 50%;
+    margin-top: -180px; /* -180 -> default value */
+
+    font-family: Raleway, serif;
+    font-weight: 200;
+
+    width: 300px;
+
+    /*text-align: center;*/
+
+    /*color : #4a4a4a;*/
+}
+
+.centered_registration {
+
+    position: absolute;
+
+        background: #EEEEEE;
+        border-radius: 12px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -166.85px; /* -145 -> default value*/
+    top: 50%;
+    margin-top: -240px; /* -180 -> default value */
+
+    font-family: Raleway, serif;
+    font-weight: 200;
+
+    /*text-align: center;*/
+
+    /*color : #4a4a4a;*/
+}
+
+.centeredSign in_resetPasswd {
+
+    position: absolute;
+
+    background: #EEEEEE;
+    border-radius: 12px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -166.75px; /* -145 -> default value*/
+    top: 50%;
+    margin-top: -180px; /* -180 -> default value */
+
+    font-family: Raleway, serif;
+    font-weight: 200;
+
+    /*text-align: center;*/
+
+    /*color : #4a4a4a;*/
+}
+
+.registration_text{
+    /*top reg_text*/
+
+    font-family: Raleway, serif;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: 200;
+
+    color: #212121;
+}
+
+.resetPassword_text{
+    /*top resetPasswd_text*/
+
+    font-family: Raleway, serif;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    font-weight: 200;
+
+    color: #212121;
+}
+
+.registration_box{
+    background: #EAE9E9;
+    border-radius: 15px;
+}
+
+/*.width_param{*/
+/*    width: 160px;*/
+/*}*/
+
+.Arial_font{
+    font-family: Raleway, serif;
+    font-weight: 200;
+}
+
+/* Params for input fields in sign in menu */
+.border_radius_24{
+    border-radius: 24px;
+    height: 32px;
+    width: 260px;
+
+    margin-left: -20px;
+
+    /* adding padding for text inside the input forms */
+    padding-left: 20px;
+
+    line-height: 1.5;
+    background-color: #fff !important;
+    border: 1px solid #dbdbdb;
+    box-shadow: inset 0 1px 2px rgba(10,10,10,.1) !important;
+}
+
+/* Adding divider: */
+.h-divider{
+    margin-top:5px;
+    margin-bottom:10px;
+    height:1px;
+    width:100%;
+    border-top:1px solid #d0d0d0;
+}
+
+/* Communicator to reset password when user trying to Sign In */
+.com_toResetPassw{
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+/* "Login" button on the Sign In page: */
+.custom_LoginButton{
+
+    font-family: Raleway, serif;
+    font-size: 14px;
+    font-weight: 900;
+
+    width: 100%;
+    padding: 6px;
+
+    border-radius: 24px;
+}
+
+/* "Send" button on the ResetPassword page: */
+.custom_SendButton{
+
+    font-family: Raleway, serif;
+    font-size: 14px;
+    font-weight: 900;
+
+    width: 100%;
+    padding: 6px;
+
+    margin-bottom: 18px;
+
+    border-radius: 24px;
+}
+
+/* "Create an account" button on the Sign In page: */
+.custom_Create_account_Button{
+    width: 100%;
+    padding: 5px;
+
+    font-family: Raleway, serif;
+    font-weight: 200;
+    font-size: 12px;
+
+    color: #007BFF;
+
+    background-color: #FFFFFF;
+
+    border-radius: 12px;
+}
+
+/* "Sign In" href on Registration page */
+.custom_SignIn_regMenu{
+    width: 100%;
+    padding: 5px;
+
+    font-family: Raleway, serif;
+    font-weight: 200;
+    font-size: 12px;
+
+    color: #007BFF;
+}
+
+.btn .fa {
+    margin-left: 3px;
+}
+
+.top-nav-collapse {
+    background-color: #424f95 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+.btn-white {
+    color: black !important;
+}
+
+
+h6 {
+    line-height: 1.7;
+}
+
+.rgba-gradient {
+    background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    /*background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.7)));*/
+    background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    /*background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);*/
+}
+
+
+
+/* Required for full background image */
+
+html,
+body,
+header,
+.view {
+    height: 100%;
+}
+
+
+/* adaptive point for small and extra small devices: */
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 1000px;
+    }
+}
+
+
+/* adaptive point for medium devices: */
+@media (min-width: 800px) and (max-width: 850px) {
+    html,
+    body,
+    header,
+    .view {
+        height: 600px;
+    }
+}
+
+
+/*  adaptive point for large devices: */
+@media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #424f95 !important;
+    }
+
+}
+
+
+/* adaptive point for extra large devices: */
+@media (min-width: 992px){
+    .centered_login {
+
+        position: absolute;
+
+        background: #EEEEEE;
+        border-radius: 12px;
+
+        position: absolute;
+        left: 50%;
+        margin-left: -130.05px; /* -145 -> default value*/
+        top: 50%;
+        margin-top: -180px; /* -180 -> default value */
+
+        font-family: Raleway, serif;
+        font-weight: 200;
+
+        width: 300px;
+
+        /*text-align: center;*/
+
+        /*color : #4a4a4a;*/
+    }
+}
+
+
