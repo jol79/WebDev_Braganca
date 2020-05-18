@@ -288,6 +288,8 @@ header,
 
         /*color : #4a4a4a;*/
     }
+
+    .input_position{
+        margin-left: -180px;
+    }
 }
-
-

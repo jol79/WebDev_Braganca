@@ -28,13 +28,13 @@ $this->title = Yii::t('user', 'Sign in');
             <!-- Divider near the "Sign In" label -->
             <div class = "h-divider"></div>
 
-            <!-- input forms / remember-checkbox -->
+            <!-- input forms -->
             <?php $form = ActiveForm::begin([
                 'id' => 'login-form',
                 'options' => ['class' => 'form-group'],
                 'fieldConfig' => [
                     'template' => "
-<div class=\"col-lg-3\" style=\"width: 250px\">
+<div class=\"col-lg-3 input_position\" style=\"width: 250px\">
     {input}
 </div>
 <div class=\"col-lg-7\">{error}</div>",
@@ -43,7 +43,7 @@ $this->title = Yii::t('user', 'Sign in');
 
             ]); ?>
 
-            <?= $form->field($model, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'placeholder' => 'Email']) ?>
+            <?= $form->field($model, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => '', 'placeholder' => 'Email']) ?>
             <?= $form->field($model, 'password')->passwordInput(['maxlength' => 64, 'class' => 'border_radius_24', 'placeholder' => 'Password']) ?>
 
 
