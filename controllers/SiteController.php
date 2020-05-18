@@ -121,8 +121,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
-    {
+    public function actionAbout(){
         return $this->render('about');
     }
 
@@ -133,4 +132,25 @@ class SiteController extends Controller
     public function actionNews(){
         return $this->render('news');
     }
+
+    /* Creating function to get data from db: */
+//    public function search($params){
+//        $query =
+//    }
+
+    public function actionHome(){
+        $this->layout = 'main_noFot.php';
+
+        // make query to get data for comments:
+//        $comments_data = ...
+
+        //
+
+        return $this->render('home');
+    }
+
+    public function actionPost(){
+        return $this->render('post');
+    }
+
 }
