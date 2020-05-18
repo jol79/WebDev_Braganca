@@ -58,7 +58,7 @@
 }
 
 .text_comment{
-    font-family: Raleway;
+    font-family: Raleway, serif;
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -160,6 +160,7 @@ h6 {
     margin-bottom: 180px;
 
     /* font params: */
+    font-family: Raleway, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 28px;
@@ -391,7 +392,7 @@ h6 {
 
 
 /* Making responsive points: */
- /*Extra small devices (landscape phones, 576px and up)*/
+ /* XXS-size devices */
 @media (max-width: 575.99px) {
     .text_in_blocks{
         /* Placing params: */
@@ -445,7 +446,7 @@ h6 {
         background: #EFF2F7;
         border-radius: 8.5px;
 
-        font-family: Raleway;
+        font-family: 'Raleway', serif;
         font-style: normal;
         font-weight: 300;
         font-size: 10px;
@@ -504,7 +505,7 @@ h6 {
     }
 
     .text_comment{
-        font-family: Raleway;
+        font-family: 'Raleway', serif;
         font-style: normal;
         font-weight: 100;
         font-size: 12px;
@@ -523,10 +524,66 @@ h6 {
         margin-top: 150px;
         padding-left: 6px;
     }
+
+
+    /* Creating parallax effect for the first photo: */
+    .parallax_first {
+        background: url(../img/parallax_PNGs/XXS_first_parallex.png) center center;
+        /* The image used */
+
+        /* Set a specific height */
+        min-height: 100px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    /* Creating parallax effect for second photo: */
+    .parallax_second {
+        /* The image used */
+        background: url(../img/parallax_PNGs/XXS_second_parallex.png) center center;
+
+        /* Set a specific height */
+        min-height: 100px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .pos_firsttextinPhoto{
+        position: absolute;
+        margin-top: 20px;
+        margin-left: 5px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 25px;
+        color: #FEFEFE;
+    }
+    .pos_secondtextinPhoto{
+        position: absolute;
+        margin-top: 20px;
+        margin-left: 120px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 49px;
+        color: #FEFEFE;
+    }
+
 }
 
-
-/*Small devices (landscape phones, 576px and up)*/
+/* S-size devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 767.98px){
     /* Adapting size for text in block elements: */
     .text_in_blocks{
@@ -640,7 +697,7 @@ h6 {
     }
 
     .text_comment{
-        font-family: Raleway;
+        font-family: 'Raleway', serif;
         font-style: normal;
         font-weight: 100;
         font-size: 12px;
@@ -661,6 +718,62 @@ h6 {
     .cop_imgPlacing{
         margin-top: 150px;
         padding-left: 25px;
+    }
+
+
+    /* Creating parallax effect for the first photo: */
+    .parallax_first {
+        /* The image used */
+        background: url(../img/parallax_PNGs/S_first_parallex.png) center center;
+
+        /* Set a specific height */
+        min-height: 120px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    /* Creating parallax effect for second photo: */
+    .parallax_second {
+        /* The image used */
+        background: url(../img/parallax_PNGs/S_second_parallex.png) center center;
+
+        /* Set a specific height */
+        min-height: 120px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .pos_firsttextinPhoto{
+        position: absolute;
+        margin-top: 45px;
+        margin-left: 100px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 28px;
+        color: #FEFEFE;
+    }
+    .pos_secondtextinPhoto{
+        position: absolute;
+        margin-top: 35px;
+        margin-left: 195px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 49px;
+        color: #FEFEFE;
     }
 }
 
@@ -685,7 +798,7 @@ h6 {
         background: #EFF2F7;
         border-radius: 8.5px;
 
-        font-family: Raleway;
+        font-family: 'Raleway', serif;
         font-style: normal;
         font-weight: 300;
         font-size: 10px;
@@ -724,18 +837,19 @@ h6 {
         color: #FEFEFE;
     }
     .text_block11{
-        margin-left: 40px;
+        margin-left: 65px;
     }
     .text_block22{
-        margin-left: 25px;
+        margin-left: 40px;
     }
     .button_params{
         position: relative;
         width: 120px;
         height: 34px;
 
-        margin-left: 70px;
+        margin-left: 85px;
         margin-bottom: 50px;
+        margin-right: 15px;
 
         background: #2D8BBD;
         border-radius: 25px;
@@ -775,7 +889,7 @@ h6 {
     }
 
     .text_comment{
-        font-family: Raleway;
+        font-family: 'Raleway', serif;
         font-style: normal;
         font-weight: 300;
         font-size: 13px;
@@ -797,6 +911,61 @@ h6 {
         margin-top: 150px;
         padding-left: 115px;
     }
+
+    /* Creating parallax effect for the first photo: */
+    .parallax_first {
+        /* The image used */
+        background: url(../img/parallax_PNGs/MandL_first_parallax.png) center center;
+
+        /* Set a specific height */
+        min-height: 150px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .parallax_second {
+        /* The image used */
+        background: url(../img/parallax_PNGs/S_second_parallex.png) center center;
+
+        /* Set a specific height */
+        min-height: 150px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .pos_firsttextinPhoto{
+        position: absolute;
+        margin-top: 50px;
+        margin-left: 150px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 49px;
+        color: #FEFEFE;
+    }
+    .pos_secondtextinPhoto{
+        position: absolute;
+        margin-top: 50px;
+        margin-left: 290px;
+        text-align: center;
+
+        font-family: 'Raleway', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 49px;
+        color: #FEFEFE;
+    }
+
 }
 
 
@@ -827,18 +996,19 @@ h6 {
         color: #FEFEFE;
     }
     .text_block11{
-        margin-left: 110px;
+        margin-left: 115px;
     }
     .text_block22{
-        margin-left: 90px;
+        margin-left: 100px;
     }
     .button_params{
         position: relative;
         width: 120px;
         height: 34px;
 
-        margin-left: 130px;
+        margin-left: 140px;
         margin-bottom: 70px;
+        margin-top: 20px;
 
         background: #2D8BBD;
         border-radius: 25px;
@@ -868,7 +1038,7 @@ h6 {
         background: #EFF2F7;
         border-radius: 8.5px;
 
-        font-family: Raleway;
+        font-family: Raleway, serif;
         font-style: normal;
         font-weight: 300;
         font-size: 15px;
@@ -918,7 +1088,7 @@ h6 {
     }
 
     .text_comment{
-        font-family: Raleway;
+        font-family: Raleway, serif;
         font-style: normal;
         font-weight: 300;
         font-size: 16px;
@@ -941,7 +1111,7 @@ h6 {
         background: url(../img/first_photo.png) center center;
 
         /* Set a specific height */
-        min-height: 400px;
+        min-height: 250px;
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -949,11 +1119,24 @@ h6 {
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .parallax_second {
+        /* The image used */
+        background: url(../img/parallax_PNGs/S_second_parallex.png) center center;
 
+        /* Set a specific height */
+        min-height: 250px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    /* Text position over the first parallax effect */
     .pos_firsttextinPhoto{
         position: absolute;
-        margin-top: 180px;
-        margin-left: 550px;
+        margin-top: 90px;
+        margin-left: 100px;
         text-align: center;
 
         font-family: 'Raleway', cursive;
@@ -963,10 +1146,11 @@ h6 {
         line-height: 49px;
         color: #FEFEFE;
     }
+    /* Text position over the second parallax effect */
     .pos_secondtextinPhoto{
         position: absolute;
-        margin-top: 180px;
-        margin-left: 715px;
+        margin-top: 90px;
+        margin-left: 300px;
         text-align: center;
 
         font-family: 'Raleway', cursive;
@@ -975,6 +1159,30 @@ h6 {
         font-size: 28px;
         line-height: 49px;
         color: #FEFEFE;
+    }
+}
+
+@media (min-width: 1200px){
+    /* Text position for blocks 11/12 */
+    .text_block11{
+        margin-left: 130px;
+    }
+    /* Text position for blocks 21/22 */
+    .text_block22{
+        margin-left: 100px;
+    }
+    /* Button position over the blocks 11-22 */
+    .button_params{
+        position: relative;
+        width: 180px;
+        height: 34px;
+
+        margin-left: 155px;
+        margin-bottom: 100px;
+        margin-top: -20px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
     }
 }
 

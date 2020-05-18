@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card-img-overlay text-white d-flex justify-content-center align-items-end">
                     <div class="container">
                         <div class="row">
-                            <text class="text-center text_in_blocks text_block11">Your programming</br> experience is</br> important</text>
+                            <text class="text-center text_in_blocks text_block11" style="">Your programming</br> experience is</br> important</text>
                         </div>
                         <div class="row">
                             <button type="button" class="btn btn-primary button_params" data-toggle="button" style="border-radius: 25px">
