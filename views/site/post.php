@@ -2,18 +2,20 @@
 
 use app\assets\PostAsset;
 use yii\bootstrap4\Html;
+use yii\helpers\Url;
 
 PostAsset::register($this);
 
 $green_box_img  = Html::img('@web/img/green_box.png', ['class' => 'float-left like_image']);
 $red_box_img  = Html::img('@web/img/red_box.png', ['class' => 'float-left like_image']);
-$user_avatar = Html::img('@web/img/flori.jpg', ['class' => 'comment_avatar mx-auto d-block']);
+$user_avatar = Html::img('@web/avatars/user1.jpg', ['class' => 'comment_avatar mx-auto d-block']);
+$profile_link = Url::toRoute(["profile/view", "id" => 1]);
 ?>
 
 
 <div class="container mt-4">
     <div class="row">
-        <img src="/FINAL-PROJECT/img/flori.jpg" class="profile_avatar"/>
+        <img src="/FINAL-PROJECT/avatars/user1.jpg" class="profile_avatar"/>
     </div>
 
     <div class="row">
@@ -50,14 +52,7 @@ $user_avatar = Html::img('@web/img/flori.jpg', ['class' => 'comment_avatar mx-au
     </div>
     <div class="row code_snippet_row">
         <div class="col-12">
-            <pre class="code_snippet_pre">
-                <p>
-#example code snippet
-import os
-print("Hello world!")
-print(os.getcwd())
-                </p>
-            </pre>
+            <script src="https://gist.github.com/232zero/71165d1e00c687ef40a312588b3b517e.js"></script>
 
         </div>
     </div>
@@ -67,14 +62,16 @@ print(os.getcwd())
             <h1 class="text-center">Comments</h1>
         </div>
     </div>
+<!--  We'll use list view to show comments so we'll have everyone's id beforehand  -->
+
     <div class="row">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-1 ml-4 pr-0">
-                    <a href="#"><?= $user_avatar ?></a>
+                    <a href="<?=$profile_link?>"><?= $user_avatar ?></a>
                 </div>
                 <div class="col pl-0">
-                    <p class="text-left"><a href="#">username</a></p>
+                    <p class="text-left"><a href="<?=$profile_link?>">username</a></p>
                 </div>
                 <div class="col mr-5">
                     <p class="text-right comment_date_text">10/04/2020</p>
@@ -102,10 +99,10 @@ print(os.getcwd())
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-1 ml-4 pr-0">
-                    <a href="#"><?= $user_avatar ?></a>
+                    <a href="<?=$profile_link?>"><?= $user_avatar ?></a>
                 </div>
                 <div class="col pl-0">
-                    <p class="text-left"><a href="#">username</a></p>
+                    <p class="text-left"><a href="<?=$profile_link?>">username</a></p>
                 </div>
                 <div class="col mr-5">
                     <p class="text-right comment_date_text">10/04/2020</p>
@@ -133,10 +130,10 @@ print(os.getcwd())
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-1 ml-4 pr-0">
-                    <a href="#"><?= $user_avatar ?></a>
+                    <a href="<?=$profile_link?>"><?= $user_avatar ?></a>
                 </div>
                 <div class="col pl-0">
-                    <p class="text-left"><a href="#">username</a></p>
+                    <p class="text-left"><a href="<?=$profile_link?>">username</a></p>
                 </div>
                 <div class="col mr-5">
                     <p class="text-right comment_date_text">10/04/2020</p>
