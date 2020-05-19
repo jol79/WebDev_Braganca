@@ -34,6 +34,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
     </div>
+
     <!-- Replacing content in different layout: -->
     <div class="container-fluid">
         <?= $content ?>

@@ -10,7 +10,6 @@ use yii\widgets\ActiveForm;
  */
 
 $this->title = Yii::t('user', 'Sign in');
-//$this->params['breadcrumbs'][] = $this->title;
 \app\assets\LoginAsset::register($this);
 ?>
 
@@ -21,7 +20,7 @@ $this->title = Yii::t('user', 'Sign in');
         <div align="center">
         <div class="col-lg">
             <!-- Information page name -->
-            <div class="text-center registration_text">
+            <div class="text-center login_text">
                 <label class = "mt-4 Arial_font"><?= Html::encode($this->title) ?></label>
             </div>
 

@@ -26,24 +26,26 @@
 
     position: absolute;
 
-        background: #EEEEEE;
-        border-radius: 12px;
+    background: #EEEEEE;
+    border-radius: 12px;
 
     position: absolute;
     left: 50%;
-    margin-left: -166.85px; /* -145 -> default value*/
+    margin-left: -130.05px; /* -145 -> default value*/
     top: 50%;
-    margin-top: -240px; /* -180 -> default value */
+    margin-top: -180px; /* -180 -> default value */
 
     font-family: Raleway, serif;
     font-weight: 200;
 
+
+    width: 300px;
     /*text-align: center;*/
 
     /*color : #4a4a4a;*/
 }
 
-.centeredSign in_resetPasswd {
+.centeredSignin_resetPasswd {
 
     position: absolute;
 
@@ -64,6 +66,7 @@
     /*color : #4a4a4a;*/
 }
 
+/* Params for Login page label text: */
 .registration_text{
     /*top reg_text*/
 
@@ -73,6 +76,23 @@
     line-height: 28px;
     text-align: center;
     font-weight: 200;
+
+    margin-left: 100px;
+
+    color: #212121;
+}
+
+/* Params for Login page label text: */
+.login_text{
+    /*top reg_text*/
+
+    font-family: Raleway, serif;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: 200;
+
 
     color: #212121;
 }
@@ -208,6 +228,10 @@
     color: black !important;
 }
 
+/* Params for register button: */
+.btn-reg{
+    margin-left: 90px;
+}
 
 h6 {
     line-height: 1.7;
