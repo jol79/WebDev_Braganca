@@ -2,26 +2,25 @@
 
 namespace app\models;
 
-
-
-use yii\db\ActiveRecord;
+use amnah\yii2\user\models\User;
+use Yii;
 
 /**
  * This is the model class for table "post".
  *
  * @property int $post_id
  * @property string $date
+ * @property string|null $topic
+ * @property string|null $description
  * @property int|null $rating
- * @property string $code
  * @property string|null $status
  * @property int $user_id
  * @property int $category_id
- * @property string|null $topic
  *
  * @property Category $category
  * @property User $user
  */
-class Post extends ActiveRecord
+class Post extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -37,12 +36,13 @@ class Post extends ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'code', 'user_id', 'category_id'], 'required'],
+            [['date', 'user_id', 'category_id'], 'required'],
             [['date'], 'safe'],
             [['rating', 'user_id', 'category_id'], 'integer'],
-            [['code'], 'string'],
-            [['status', 'topic'], 'string', 'max' => 45],
-            [['category_id'], 'integer'],
+            [['topic'], 'string', 'max' => 30],
+            [['description'], 'string', 'max' => 200],
+            [['status'], 'string', 'max' => 45],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'category_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -55,12 +55,12 @@ class Post extends ActiveRecord
         return [
             'post_id' => 'Post ID',
             'date' => 'Date',
+            'topic' => 'Topic',
+            'description' => 'Description',
             'rating' => 'Rating',
-            'code' => 'Code',
             'status' => 'Status',
             'user_id' => 'User ID',
             'category_id' => 'Category ID',
-            'topic' => 'Topic',
         ];
     }
 
@@ -85,12 +85,12 @@ class Post extends ActiveRecord
     }
 
     public function getPosts($category){
-        $query = (new \yii\db\Query())
-            ->select(['post.rating', 'post.topic', 'post.code', 'user.username', 'category.category_name'])
-            ->from('post')
-            ->innerJoin('user', 'post.user_id = user.id')
-            ->innerJoin( 'category', 'post.category_id = category.category_id')
-            ->where(['category.category_name' => $category])->all();
-        return $query;
+        $result = Post::find()
+            ->joinWith(['category', 'user'])
+            ->where(['category.category_name' => $category])
+            ->orderBy(['post.rating' => SORT_DESC])
+            ->all();
+        return $result;
     }
+
 }

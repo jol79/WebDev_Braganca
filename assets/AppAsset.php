@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/navbar.css',
-        '//fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap',
+        '//fonts.googleapis.com/css2?family=Raleway&display=swap',
         'rmrevin\yii\fontawesome\NpmFreeAssetBundle',
         'css/site.css'
 

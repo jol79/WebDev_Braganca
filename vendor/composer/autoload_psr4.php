@@ -7,15 +7,18 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer/src'),
+    'yii\\httpclient\\' => array($vendorDir . '/yiisoft/yii2-httpclient/src'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii/src'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug/src'),
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap4\\' => array($vendorDir . '/yiisoft/yii2-bootstrap4/src'),
+    'yii\\authclient\\' => array($vendorDir . '/yiisoft/yii2-authclient/src'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
+    'amnah\\yii2\\user\\' => array($vendorDir . '/amnah/yii2-user'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
     'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),

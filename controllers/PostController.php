@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
@@ -123,5 +124,13 @@ class PostController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionPosts($lang = null){
+        $icons = (new Category()) -> getIcons();
+        if ($lang != null){
+            $lang = (new Post()) -> getPosts($lang);
+        }
+        return $this->render('posts', ['result' => $lang, 'icons' => $icons]);
     }
 }
