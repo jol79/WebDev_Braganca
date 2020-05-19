@@ -124,4 +124,11 @@ class PostController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionPosts($lang = null){
+        if ($lang != null){
+            $result = (new Post()) -> getPosts($lang);
+        }
+        return $this->render('posts', ['result' => $result]);
+    }
 }
