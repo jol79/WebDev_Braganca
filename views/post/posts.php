@@ -4,7 +4,6 @@ $this->title = 'Posts';
 \app\assets\PostsAsset::register($this);
 
 use yii\helpers\Html; ?>
-
 <div class="row search-field">
     <div class="input-group mx-auto mb-2">
         <input type="text" class="form-control" placeholder="Search for a related">
@@ -17,6 +16,19 @@ use yii\helpers\Html; ?>
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <?php
+        //Dynamic generation start of the implementation
+//            for ($k = 0; $k < count($icons); $k++){
+//
+//                if (($k + 1) % 4 == 1){
+//                    echo '<div class="row justify-content-center">';
+//                }
+//                echo Html::a("<i class=\"{$icons[$k]->category_icon_class}\"></i>
+//                    <p>{$icons[$k]->category_name}</p>",
+//                    ['/post/posts', 'lang' => strval($icons[$k]->category_name)],
+//                    ['class' => ['lang']]);
+//            }
+        ?>
         <div class="row">
             <?= Html::a(
                 "<i class=\"devicon-python-plain\"></i>
@@ -97,13 +109,13 @@ if (is_array(($result))) {
         <div class="container">
             <div class="row">
                 <div class="col-1 icon">
-                    {$row->category->category_icon}
+                    <i class="{$row->category->category_icon_class}"></i>
                 </div>
                 <div class="col-12 col-sm-11 col-md-11 col-lg-11">
                     <div class="row">
                         <div class="col-12 col-sm-9 col-md-9 col-lg-">
                             <span class='topic'>
-                                <i class="devicon-java-plain logo-small"></i>
+                                <i class="{$row->category->category_icon_class} logo-small"></i>
                                 <a href="">{$row->topic}</a>
                             </span>
                         </div>

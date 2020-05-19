@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
@@ -126,9 +127,10 @@ class PostController extends Controller
     }
 
     public function actionPosts($lang = null){
+        $icons = (new Category()) -> getIcons();
         if ($lang != null){
-            $result = (new Post()) -> getPosts($lang);
+            $lang = (new Post()) -> getPosts($lang);
         }
-        return $this->render('posts', ['result' => $result]);
+        return $this->render('posts', ['result' => $lang, 'icons' => $icons]);
     }
 }
