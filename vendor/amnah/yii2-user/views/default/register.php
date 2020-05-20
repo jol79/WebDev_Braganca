@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
 
 /**
  * @var yii\web\View $this
@@ -9,6 +10,7 @@ use yii\widgets\ActiveForm;
  * @var amnah\yii2\user\Module $module
  * @var amnah\yii2\user\models\User $user
  * @var amnah\yii2\user\models\User $profile
+ * @var amnah\yii2\user\models\forms\RegisterForm $model
  * @var string $userDisplayName
  */
 
@@ -56,8 +58,9 @@ $this->title = Yii::t('user', 'Register');
                 'enableAjaxValidation' => true,
             ]); ?>
 
+
             <?php if ($module->requireEmail): ?>
-                <?= $form->field($user, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => '', 'placeholder' => 'Email']) ?>
+                <?= $form->field($user, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'placeholder' => 'Email']) ?>
             <?php endif; ?>
 
             <?php if ($module->requireUsername): ?>
@@ -66,7 +69,16 @@ $this->title = Yii::t('user', 'Register');
 
             <?= $form->field($user, 'newPassword')->passwordInput()->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => '', 'placeholder' => 'Password']) ?>
 
-            <?php /* uncomment if you want to add profile fields here
+            <!-- Pasting reCaptcha: -->
+            <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
+                'name' => 'reCaptcha',
+                'siteKey' => '6Ldie-4UAAAAAMRzRn5zNKy3Ih8dfK300bFwZr27',
+                'widgetOptions' => ['class' => 'col-sm-offset-3']
+            ]) ?>
+            
+
+
+        <?php /* uncomment if you want to add profile fields here
             <?= $form->field($profile, 'full_name') ?>
             */ ?>
 
@@ -76,7 +88,7 @@ $this->title = Yii::t('user', 'Register');
 
                     <br/><br/>
                     <div class="row">
-                        <text class="" style="margin-left: 37px; font-family: 'Raleway', serif">
+                        <text class="" style="margin-left: 37px; font-family: 'Raleway', serif; font-size: 16px">
                             already have an account?
                         </text>
 
