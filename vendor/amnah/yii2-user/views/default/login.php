@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('user', 'Sign in');
 \app\assets\LoginAsset::register($this);
+
 ?>
 
 

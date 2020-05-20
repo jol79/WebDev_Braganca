@@ -90,6 +90,7 @@ class DefaultController extends Controller
         return $this->render('login', compact("model"));
     }
 
+
     /**
      * Login/register via email
      */
