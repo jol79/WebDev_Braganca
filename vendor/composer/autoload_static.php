@@ -43,6 +43,15 @@ class ComposerStaticInitc2c990612397b0da0d703de7aa621f0b
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'h' => 
+        array (
+            'himiklab\\yii2\\recaptcha\\tests\\' => 30,
+            'himiklab\\yii2\\recaptcha\\' => 24,
+        ),
+        'd' => 
+        array (
+            'dosamigos\\tinymce\\' => 18,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -156,6 +165,18 @@ class ComposerStaticInitc2c990612397b0da0d703de7aa621f0b
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'himiklab\\yii2\\recaptcha\\tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/himiklab/yii2-recaptcha-widget/tests',
+        ),
+        'himiklab\\yii2\\recaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/himiklab/yii2-recaptcha-widget/src',
+        ),
+        'dosamigos\\tinymce\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-tinymce-widget/src',
         ),
         'cebe\\markdown\\' => 
         array (
