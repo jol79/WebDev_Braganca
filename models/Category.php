@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "category".
@@ -56,9 +56,15 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(Post::className(), ['category_id' => 'category_id']);
     }
 
-    public function getIcons(){
+    public static function getIcons(){
         return Category::find()->select(['category_icon_class', 'category_name'])->all();
     }
 
+    public static function getAllAsArray(){
+        $query = Category::find()->asArray()->all();
+        $structured_data = ArrayHelper::map($query, 'category_id', 'category_name');
+        return $structured_data;
+
+    }
 
 }

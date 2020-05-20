@@ -2,26 +2,28 @@
 
 namespace app\models;
 
-use amnah\yii2\user\models\User;
 use Yii;
+use amnah\yii2\user\models\User;
 
 /**
  * This is the model class for table "post".
  *
  * @property int $post_id
  * @property string $date
- * @property string|null $topic
- * @property string|null $description
+ * @property string $topic
+ * @property string $description
  * @property int|null $rating
  * @property string|null $status
  * @property int $user_id
  * @property int $category_id
  *
+// * @property Comment[] $comments
  * @property Category $category
  * @property User $user
  */
 class Post extends \yii\db\ActiveRecord
 {
+    public $body;
     /**
      * {@inheritdoc}
      */
@@ -36,8 +38,9 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'user_id', 'category_id'], 'required'],
+            [['date', 'topic', 'description', 'user_id', 'category_id'], 'required'],
             [['date'], 'safe'],
+            ['body', 'safe'],
             [['rating', 'user_id', 'category_id'], 'integer'],
             [['topic'], 'string', 'max' => 30],
             [['description'], 'string', 'max' => 200],
@@ -65,6 +68,16 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Comments]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['post_id' => 'post_id']);
+    }
+
+    /**
      * Gets query for [[Category]].
      *
      * @return \yii\db\ActiveQuery
@@ -84,13 +97,22 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function getPosts($category){
+    public static function getPosts($category){
         $result = Post::find()
             ->joinWith(['category', 'user'])
             ->where(['category.category_name' => $category])
             ->orderBy(['post.rating' => SORT_DESC])
             ->all();
         return $result;
+    }
+
+    public static function createPost(){
+        $post = new Post;
+        $post->date = date("Y-m-d");
+        $post->rating = 0;
+        $post->status = 'active';
+        $post->user_id = Yii::$app->user->id;
+        return $post;
     }
 
 }
