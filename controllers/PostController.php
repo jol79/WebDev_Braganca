@@ -6,6 +6,7 @@ use app\models\Category;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,7 +28,19 @@ class PostController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['creation', 'posts', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+
+                ],
+            ]
         ];
+
     }
 
     /**
@@ -127,10 +140,25 @@ class PostController extends Controller
     }
 
     public function actionPosts($lang = null){
-        $icons = (new Category()) -> getIcons();
+        $icons = Category::getIcons();
         if ($lang != null){
-            $lang = (new Post()) -> getPosts($lang);
+            $lang = Post::getPosts($lang);
         }
         return $this->render('posts', ['result' => $lang, 'icons' => $icons]);
+    }
+
+    public function actionCreation(){
+        $model = Post::createPost();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            if ($model->save()){
+                return $this->redirect(['site/post']);
+            }
+            else{
+                Yii::$app->session->addFlash("danger", 'Could not enroll student');
+            }
+        }
+        $dropDown_items = Category::getAllAsArray();
+        return $this->render('creation',
+            ['model' => $model, 'dropDown_items' => $dropDown_items,]);
     }
 }

@@ -48,6 +48,7 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'User', 'url' => ['/user']],
+            ['label' => 'Creation', 'url' => ['/post/creation']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/user/login']] : // or ['/user/login-email']
                 ['label' => 'Logout (' . Yii::$app->user->displayName . ')',
