@@ -28,10 +28,11 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
+            'messageConfig' => [
+                'from' => ['codesamples.noreply@gmail.com' => 'Admin'], // this is needed for sending emails
+                'charset' => 'UTF-8',
+            ]
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,17 +53,16 @@ $config = [
         ],
 
     ],
-    'params' => $params,
     'modules' => [
-
         'user' => [
             'class' => 'amnah\yii2\user\Module',
-            'requireEmail' => false,
-            'requireUsername' => true
 
+            // setting up custom properties:
+            'requireEmail' => true, // mailer confirmation enabled
+            'requireUsername' => true
         ],
     ],
-
+    'params' => $params,
 ];
 
 if (YII_ENV_DEV) {
