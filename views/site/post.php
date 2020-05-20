@@ -159,10 +159,22 @@ $profile_link = Url::toRoute(["profile/view", "id" => 1]);
 
     <div class="row">
         <div class="col-12">
+            <?php
+            $form = ActiveForm::begin();
+            ?>
+
+            <?= $form->field($model, 'name')->textInput() ?>
+
+            <?= $form->field($model, 'program_id')->dropDownList($programs)?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Save', ['class' =>'btn btn-primary']) ?>
+            </div>
+            <?php ActiveForm::end() ?>
             <form>
                 <div class="form-group">
                     <label for="commentTextarea">Leave your comment:</label>
-                    <textarea class="form-control" id="coomentTextarea" rows="3"></textarea>
+                    <textarea class="form-control" id="commentTextarea" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
