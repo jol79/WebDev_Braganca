@@ -18,7 +18,7 @@ class CommentSearch extends Comment
     {
         return [
             [['id', 'user_id', 'post_id', 'upvote', 'downvote'], 'integer'],
-            [['date', 'text'], 'safe'],
+            [['created_at', 'text'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class CommentSearch extends Comment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
+            'created_at' => $this->created_at,
             'user_id' => $this->user_id,
             'post_id' => $this->post_id,
             'upvote' => $this->upvote,

@@ -9,8 +9,8 @@ use Yii;
  * This is the model class for table "comment".
  *
  * @property int $id
- * @property string|null $date
- * @property string|null $text
+ * @property string $created_at
+ * @property string $text
  * @property int $user_id
  * @property int $post_id
  * @property int|null $upvote
@@ -35,10 +35,10 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date'], 'safe'],
-            [['user_id', 'post_id'], 'required'],
+            [['created_at'], 'safe'],
+            [['text', 'user_id'], 'required'],
             [['user_id', 'post_id', 'upvote', 'downvote'], 'integer'],
-            [['text'], 'string', 'max' => 200],
+            [['text'], 'string', 'max' => 512],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'post_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -51,7 +51,7 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'date' => 'Date',
+            'created_at' => 'Created At',
             'text' => 'Text',
             'user_id' => 'User ID',
             'post_id' => 'Post ID',
@@ -79,4 +79,5 @@ class Comment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
 }

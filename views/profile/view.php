@@ -6,7 +6,6 @@ use app\assets\PostAsset;
 use yii\bootstrap4\Html;
 
 PostAsset::register($this);
-
 $username = "user".$user_id;
 ?>
 
