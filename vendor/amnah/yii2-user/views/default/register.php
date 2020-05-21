@@ -60,14 +60,14 @@ $this->title = Yii::t('user', 'Register');
 
 
             <?php if ($module->requireEmail): ?>
-                <?= $form->field($user, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'placeholder' => 'Email']) ?>
+                <?= $form->field($user, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px',  'placeholder' => 'Email']) ?>
             <?php endif; ?>
 
             <?php if ($module->requireUsername): ?>
-                <?= $form->field($user, 'username')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => '', 'placeholder' => 'Username']) ?>
+                <?= $form->field($user, 'username')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px', 'placeholder' => 'Username']) ?>
             <?php endif; ?>
 
-            <?= $form->field($user, 'newPassword')->passwordInput()->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => '', 'placeholder' => 'Password']) ?>
+            <?= $form->field($user, 'newPassword')->passwordInput()->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px', 'placeholder' => 'Password']) ?>
 
             <!-- Pasting reCaptcha: -->
             <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([

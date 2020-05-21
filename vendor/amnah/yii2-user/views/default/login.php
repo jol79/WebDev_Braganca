@@ -43,8 +43,8 @@ $this->title = Yii::t('user', 'Sign in');
 
             ]); ?>
 
-            <?= $form->field($model, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => '', 'placeholder' => 'Email']) ?>
-            <?= $form->field($model, 'password')->passwordInput(['maxlength' => 64, 'class' => 'border_radius_24', 'placeholder' => 'Password']) ?>
+            <?= $form->field($model, 'email')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px', 'placeholder' => 'Email']) ?>
+            <?= $form->field($model, 'password')->passwordInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px',  'placeholder' => 'Password']) ?>
 
 
             <div class="form-group">
