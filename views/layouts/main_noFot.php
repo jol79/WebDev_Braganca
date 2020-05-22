@@ -66,7 +66,12 @@ AppAsset::register($this);
     </div>
     <div class="container-fluid">
         <?= $content ?>
+        <!-- Placing the Copyright Block on the web page: -->
+        <div class="imgbox">
+            <?= Html::img('@web/img/Copyright%20block.jpg', ['class' => 'center-fit', 'alt' => 'block_22']) ?>
+        </div>
     </div>
+
 </div>
 
 
