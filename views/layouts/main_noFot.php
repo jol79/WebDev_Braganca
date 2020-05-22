@@ -32,7 +32,6 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => Html::img('@web/img/logo.png', ['alt'=>Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
-//        'brandUrl' => ['/site/home'],
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-light',
         ],
@@ -43,11 +42,13 @@ AppAsset::register($this);
         'items' => [
 //            ['label' => 'Home', 'url' => ['/site/index'], 'options' => ['class'=>'test']],
             ['label' => 'Home', 'url' =>['/site/home']],
-            ['label' => 'Posts', 'url' => ['/site/posts']],
+            ['label' => 'Posts', 'url' => ['/post/posts']],
+            ['label' => 'Single Post', 'url' => ['/site/post']],
             ['label' => 'News', 'url' => ['/site/news']],
             ['label' => 'About', 'url' => ['site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'User', 'url' => ['/user']],
+            ['label' => 'Creation', 'url' => ['/post/creation']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/user/login']] : // or ['/user/login-email']
                 ['label' => 'Logout (' . Yii::$app->user->displayName . ')',
@@ -66,12 +67,6 @@ AppAsset::register($this);
     <div class="container-fluid">
         <?= $content ?>
     </div>
-    <footer class="footer">
-        <div class="container" style="margin-bottom: -30px">
-            <div align="center">
-            <p class="pull-left">&copy; Code Samples <?= date('Y') ?></p>
-        </div>
-    </footer>
 </div>
 
 
