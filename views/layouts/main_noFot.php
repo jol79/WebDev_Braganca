@@ -66,6 +66,12 @@ AppAsset::register($this);
     <div class="container-fluid">
         <?= $content ?>
     </div>
+    <footer class="footer">
+        <div class="container" style="margin-bottom: -30px">
+            <div align="center">
+            <p class="pull-left">&copy; Code Samples <?= date('Y') ?></p>
+        </div>
+    </footer>
 </div>
 
 

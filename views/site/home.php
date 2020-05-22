@@ -187,10 +187,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </form>
         </div>
     </div>
-    <!-- Placing the Copyright Block on the web page: -->
-    <div class="imgbox">
-        <?= Html::img('@web/img/Copyright%20block.jpg', ['class' => 'center-fit', 'alt' => 'block_22']) ?>
-    </div>
 </div>
 
 
