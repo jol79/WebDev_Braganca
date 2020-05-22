@@ -387,6 +387,9 @@ class DefaultController extends Controller
     {
         /** @var \amnah\yii2\user\models\forms\ResendForm $model */
 
+        // using different layout:
+        $this->layout = 'main_noNavFot.php';
+
         // load post data and send email
         $model = $this->module->model("ResendForm");
         if ($model->load(Yii::$app->request->post()) && $model->sendEmail()) {
@@ -448,6 +451,9 @@ class DefaultController extends Controller
     {
         /** @var \amnah\yii2\user\models\forms\ForgotForm $model */
 
+        // using different layout:
+        $this->layout = 'main_noNavFot.php';
+
         // load post data and send email
         $model = $this->module->model("ForgotForm");
         if ($model->load(Yii::$app->request->post()) && $model->sendForgotEmail()) {
@@ -467,6 +473,8 @@ class DefaultController extends Controller
     {
         /** @var \amnah\yii2\user\models\User $user */
         /** @var \amnah\yii2\user\models\UserToken $userToken */
+
+        $this->layout = 'main_noNavFot.php';
 
         // get user token and check expiration
         $userToken = $this->module->model("UserToken");

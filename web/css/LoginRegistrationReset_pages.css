@@ -45,6 +45,29 @@
     /*color : #4a4a4a;*/
 }
 
+.centered_resend {
+
+    position: absolute;
+
+    background: #EEEEEE;
+    border-radius: 12px;
+
+    position: absolute;
+    left: 50%;
+    margin-left: -130.05px; /* -145 -> default value*/
+    top: 50%;
+    margin-top: -180px; /* -180 -> default value */
+
+    font-family: Raleway, serif;
+    font-weight: 200;
+
+
+    width: 300px;
+    /*text-align: center;*/
+
+    /*color : #4a4a4a;*/
+}
+
 .centeredSignin_resetPasswd {
 
     position: absolute;
