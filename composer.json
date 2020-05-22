@@ -21,7 +21,8 @@
         "rmrevin/yii2-fontawesome": "~3.0",
         "amnah/yii2-user": "^5.0",
         "2amigos/yii2-tinymce-widget" : "*",
-        "himiklab/yii2-recaptcha-widget" : "*"
+        "himiklab/yii2-recaptcha-widget" : "*",
+        "kartik-v/yii2-grid": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
