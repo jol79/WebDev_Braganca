@@ -63,7 +63,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $this->layout = 'main_noFot.php';
+
+
+        /* As default in view we have index, as custom view we will use home page */
+        return $this->render('home');
+
     }
 
     /**
