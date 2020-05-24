@@ -98,11 +98,21 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public static function getPosts($category)
+    public static function getPostsbyCategory($category)
     {
         $result = Post::find()
             ->joinWith(['category', 'user'])
             ->where(['category.category_name' => $category])
+            ->orderBy(['post.rating' => SORT_DESC]);
+        return $result;
+    }
+
+
+
+    public static function getPostsbyUserId($user_id){
+        $result = Post::find()
+            ->joinWith(['category', 'user'])
+            ->where(['post.user_id' => $user_id])
             ->orderBy(['post.rating' => SORT_DESC]);
         return $result;
     }

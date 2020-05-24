@@ -6,6 +6,7 @@ use app\models\Category;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
+use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -130,13 +131,13 @@ class PostController extends Controller
     public function actionPosts($lang = null){
         $icons = Category::getIcons();
         if ($lang != null){
-            $query = Post::getPosts($lang);
-            $pagination = new Pagination(['totalCount' => $query->count(), 'defaultPageSize' => 5]);
-            $models = $query->offset($pagination->offset)->limit($pagination->limit)->all();
-            return $this->render('posts',
-                ['models' => $models, 'pagination' => $pagination ,'icons' => $icons]);
+            $postDataProvider = new ActiveDataProvider([
+                'query' => Post::getPostsbyCategory($lang),
+                'pagination' => ['pageSize' => 5,]
+            ]);
+            return $this->render('posts', ['dataProvider'  => $postDataProvider, 'icons' => $icons]);
         }
-        return $this->render('posts', ['models' => $lang]);
+        return $this->render('posts', ['dataProvider' => $lang]);
     }
 
     public function actionCreation(){
