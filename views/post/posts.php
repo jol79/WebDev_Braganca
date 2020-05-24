@@ -1,8 +1,10 @@
 <?php
-/* @var $lang */ //From sitecontroller (change it)
+/* @var $models */ //From sitecontroller (change it)
+/** @var $pagination */
 $this->title = 'Posts';
 \app\assets\PostsAsset::register($this);
 
+use yii\bootstrap4\LinkPager;
 use yii\helpers\Html; ?>
 <div class="row search-field">
     <div class="input-group mx-auto mb-2">
@@ -99,10 +101,10 @@ use yii\helpers\Html; ?>
 </div>
 <div class="row mt-3">
 <?php
-if (is_array(($result))) {
-    if (!(count($result))) echo "<div class=\"col-md-12 col-lg-12 \">Nothing was Found</div>";
+if (is_array(($models))) {
+    if (!(count($models))) echo "<div class=\"col-md-12 col-lg-12 \">Nothing was Found</div>";
     else {
-        foreach ($result as $row) {
+        foreach ($models as $row) {
             echo <<<_EOF
 <div class="col-lg-12">
     <div class="post mx-auto">
@@ -152,6 +154,11 @@ if (is_array(($result))) {
 _EOF;
         }
     }
+    echo LinkPager::widget([
+        'pagination' => $pagination,
+    ]);
 }
 ?>
+
+
 </div>

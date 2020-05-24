@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -10,8 +11,6 @@ use yii\helpers\ArrayHelper;
  * @property int $category_id
  * @property string $category_name
  * @property string|null $category_icon_class
- *
- * @property Post[] $posts
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -46,16 +45,6 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Posts]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPosts()
-    {
-        return $this->hasMany(Post::className(), ['category_id' => 'category_id']);
-    }
-
     public static function getIcons(){
         return Category::find()->select(['category_icon_class', 'category_name'])->all();
     }
@@ -66,5 +55,4 @@ class Category extends \yii\db\ActiveRecord
         return $structured_data;
 
     }
-
 }

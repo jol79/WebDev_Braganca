@@ -17,7 +17,7 @@ use yii\web\JsExpression;
         ->textarea(['rows' => '6', 'maxlength' => 300, 'placeholder' => 'Your description can attract attention']) ?>
 
     <?= $form->field($model, 'body')->widget(TinyMce::className(), [
-        'options' => ['rows' => 6],
+        'options' => ['rows' => 20],
         'language' => 'en',
         'clientOptions' => [
             'plugins' => [
@@ -40,8 +40,10 @@ use yii\web\JsExpression;
             $dropDown_items, ['prompt' => Yii::t('app', 'Select Language')])?>
 
     <div class="form-group">
-        <?= Html::submitButton('Publish', ['class' => 'btn btn-success']) ?>
-        <?= Html::submitButton('View', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Publish', ['class' => 'btn btn-success',
+            'name' => 'action', 'value' => 'publish']) ?>
+        <?= Html::submitButton('Preview', ['class' => 'btn btn-success',
+            'name' => 'action', 'value' => 'Preview']) ?>
     </div>
 
 

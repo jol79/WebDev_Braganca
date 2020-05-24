@@ -12,18 +12,18 @@ use amnah\yii2\user\models\User;
  * @property string $date
  * @property string $topic
  * @property string $description
+ * @property string $body
  * @property int|null $rating
  * @property string|null $status
  * @property int $user_id
  * @property int $category_id
  *
-// * @property Comment[] $comments
+ * @property Comment[] $comments
  * @property Category $category
  * @property User $user
  */
 class Post extends \yii\db\ActiveRecord
 {
-    public $body;
     /**
      * {@inheritdoc}
      */
@@ -38,11 +38,11 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'topic', 'description', 'user_id', 'category_id'], 'required'],
+            [['date', 'topic', 'description', 'body', 'user_id', 'category_id'], 'required'],
             [['date'], 'safe'],
-            ['body', 'safe'],
+            [['body'], 'string'],
             [['rating', 'user_id', 'category_id'], 'integer'],
-            [['topic'], 'string', 'max' => 60],
+            [['topic'], 'string', 'max' => 50],
             [['description'], 'string', 'max' => 300],
             [['status'], 'string', 'max' => 45],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'category_id']],
@@ -60,6 +60,7 @@ class Post extends \yii\db\ActiveRecord
             'date' => 'Date',
             'topic' => 'Topic',
             'description' => 'Description',
+            'body' => 'Body',
             'rating' => 'Rating',
             'status' => 'Status',
             'user_id' => 'User ID',
@@ -97,22 +98,23 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public static function getPosts($category){
+    public static function getPosts($category)
+    {
         $result = Post::find()
             ->joinWith(['category', 'user'])
             ->where(['category.category_name' => $category])
-            ->orderBy(['post.rating' => SORT_DESC])
-            ->all();
+            ->orderBy(['post.rating' => SORT_DESC]);
         return $result;
     }
 
-    public static function createPost(){
+    public static function createPost()
+    {
         $post = new Post;
         $post->date = date("Y-m-d");
         $post->rating = 0;
         $post->status = 'active';
         $post->user_id = Yii::$app->user->id;
         return $post;
-    }
 
+    }
 }

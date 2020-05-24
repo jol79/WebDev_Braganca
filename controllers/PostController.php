@@ -6,7 +6,7 @@ use app\models\Category;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
-use yii\filters\AccessControl;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -28,19 +28,7 @@ class PostController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['creation', 'posts', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-
-                ],
-            ]
         ];
-
     }
 
     /**
@@ -142,23 +130,34 @@ class PostController extends Controller
     public function actionPosts($lang = null){
         $icons = Category::getIcons();
         if ($lang != null){
-            $lang = Post::getPosts($lang);
+            $query = Post::getPosts($lang);
+            $pagination = new Pagination(['totalCount' => $query->count(), 'defaultPageSize' => 5]);
+            $models = $query->offset($pagination->offset)->limit($pagination->limit)->all();
+            return $this->render('posts',
+                ['models' => $models, 'pagination' => $pagination ,'icons' => $icons]);
         }
-        return $this->render('posts', ['result' => $lang, 'icons' => $icons]);
+        return $this->render('posts', ['models' => $lang]);
     }
 
     public function actionCreation(){
         $model = Post::createPost();
         if ($model->load(Yii::$app->request->post()) && $model->validate()){
-            if ($model->save()){
-                return $this->redirect(['site/post']);
+            $action = Yii::$app->request->post('action');
+            if ($action == 'Preview'){
+                return $this->render('preview', ['model' => $model]);
             }
             else{
-                Yii::$app->session->addFlash("danger", 'Could not enroll student');
+                if ($model->save()){
+                    return $this->redirect(['site/post']);
+                }
+                else{
+                    Yii::$app->session->addFlash("danger", 'Could not enroll student');
+                }
             }
         }
         $dropDown_items = Category::getAllAsArray();
         return $this->render('creation',
             ['model' => $model, 'dropDown_items' => $dropDown_items,]);
     }
+
 }

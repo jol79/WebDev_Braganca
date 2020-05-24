@@ -23,7 +23,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description') ?>
 
-    <?= $form->field($model, 'rating') ?>
+    <?= $form->field($model, 'body') ?>
+
+    <?php // echo $form->field($model, 'rating') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

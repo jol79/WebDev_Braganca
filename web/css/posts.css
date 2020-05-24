@@ -96,6 +96,7 @@ p {
     height: 101px;
     border-radius: 6px;
     background-color: #949597;
+    margin-top: 5px;
 }
 
 
@@ -181,6 +182,34 @@ a.read:hover {
 .small-device{
     margin-top: 3rem !important;
 }
+
+#w0{
+    background-color: transparent;
+    margin: 10px auto 0px auto;
+
+}
+
+#w0 > *{
+    font-size: 16px;
+}
+
+li.prev{
+    background-color: #C3C3C3;
+    color: black;
+}
+
+.active{
+    background-color: white;
+    color: black;
+}
+
+.page-item .page-link{
+    background-color: #C3C3C3;
+    color: black;
+}
+
+
+
 
 /* // Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {

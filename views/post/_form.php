@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+
     <?= $form->field($model, 'rating')->textInput() ?>
 
     <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
