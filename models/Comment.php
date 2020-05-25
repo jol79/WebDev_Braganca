@@ -29,6 +29,30 @@ class Comment extends \yii\db\ActiveRecord
         return 'comment';
     }
 
+    public static function getPosterId($comment_id)
+    {
+        $comment = Comment::findOne($comment_id);
+        if($comment)
+            return $comment->user_id;
+        else
+            return null;
+    }
+
+    public static function deleteComment($comment_id)
+    {
+        $comment = Comment::findOne($comment_id);
+        return $comment->delete();
+    }
+
+    public static function getPostId($comment_id)
+    {
+        $comment = Comment::findOne($comment_id);
+        if($comment)
+            return $comment->post_id;
+        else
+            return null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -41,6 +65,7 @@ class Comment extends \yii\db\ActiveRecord
             [['text'], 'string', 'max' => 512],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'post_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['downvote', 'upvote'], 'default', 'value' => 0]
         ];
     }
 

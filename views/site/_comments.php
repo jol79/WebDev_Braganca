@@ -8,6 +8,7 @@ use yii\helpers\Url;
 
 ?>
 
+<hr class="divider">
 <div class="row">
     <div class="container">
         <div class="row align-items-center">
@@ -27,7 +28,17 @@ use yii\helpers\Url;
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-1 offset-10 pr-0 pr-0">
+            <div class="col-1 offset-9 pr-0">
+            <?php
+            if (Yii::$app->user->id == $model->user_id){
+                echo
+                '
+                <a href="'. Url::to(['site/delete-comment', 'comment_id' => $model->id]) .'" data-method="post"><i class="fas fa-trash"></i></a>
+                ';
+            }
+            ?>
+            </div>
+            <div class="col-1 offset-10 pr-0 pl-0 ml-0">
                 <?= Html::img('@web/img/green_box.png', ['class' => 'float-left like_image']) ?>
                 <p><?= $model->upvote ?></p>
             </div>

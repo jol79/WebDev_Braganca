@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use app\models\Comment;
+use app\models\Post;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -35,6 +37,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'delete-comment' => ['post']
                 ],
             ],
         ];
@@ -156,33 +159,45 @@ class SiteController extends Controller
         return $this->render('home');
     }
 
-    public function actionPost($post_id = 1){
-//        $commentSearchModel = new CommentSearch();
-//        $commentDataProvider = $commentSearchModel->search(Yii::$app->request->queryParams);
-        $model = new Comment();
+    public function actionPost($id = 1){
+        $commentModel = new Comment();
         if(Yii::$app->request->isPost){
-            var_dump(Yii::$app->request->post());
-            if (!$model->load(Yii::$app->request->post()))
-                return false;
-            $model->post_id = $post_id;
-            $model->user_id = Yii::$app->user->id;
-            if ($model->save())
-                return $this->redirect(['post', 'id' => $post_id]);
+            if ($commentModel->load(Yii::$app->request->post())){
+                $commentModel->post_id = $id;
+                $commentModel->user_id = Yii::$app->user->id;
+                if ($commentModel->save())
+                    return $this->redirect(['post', 'id' => $id]);
+            }
         }
 
         $commentDataProvider = new ActiveDataProvider([
-            'query' => Comment::find()->where(['post_id' => $post_id]),
+            'query' => Comment::find()->where(['post_id' => $id]),
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    'created_at' => SORT_ASC,
                 ]
             ]
         ]);
 
+        $model = Post::findOne($id);
         return $this->render('post', [
             'commentDataProvider' => $commentDataProvider,
+            'commentModel' => $commentModel,
             'model' => $model
         ]);
+    }
+
+    public function actionDeleteComment($comment_id) {
+        $comment = Comment::findOne($comment_id);
+        if(!$comment) throw new ForbiddenHttpException("No such comment");
+        if ($comment->user_id == Yii::$app->user->id)
+        {
+                $comment->delete();
+                return $this->redirect(['post', 'id' => $comment->post_id]);
+        } else {
+            throw new ForbiddenHttpException("Cannot delete comment of another user");
+        }
+
     }
 
 }

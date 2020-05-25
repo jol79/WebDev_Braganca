@@ -66,6 +66,9 @@ $config = [
             'rules' => [
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true
+        ]
 
     ],
     'modules' => [
