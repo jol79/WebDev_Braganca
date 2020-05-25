@@ -14,7 +14,7 @@ $this->title = Yii::t('user', 'Resend');
 ?>
 <div class="user-default-resend">
 
-    <div class="row centered_resend" style="margin-left: -150.5px">
+    <div class="row centered_resend" style="margin-left: -150.5px; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.10);">
         <div align="center">
         <div class="col-lg">
             <!-- Information page name -->

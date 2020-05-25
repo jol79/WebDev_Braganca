@@ -22,7 +22,7 @@ $this->title = Yii::t('user', 'Register');
 ?>
 <div class="user-default-register">
 
-    <div class="row centered_registration" style="margin-left: -150px">
+    <div class="row centered_registration" style="margin-left: -150px; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.10);">
 
         <!-- Information page name: -->
         <div class="text-center registration_text">
