@@ -183,32 +183,40 @@ a.read:hover {
     margin-top: 3rem !important;
 }
 
-#w0{
+div.col-lg-12 + #w0{
     background-color: transparent;
     margin: 10px auto 0px auto;
 
 }
 
-#w0 > *{
+div.col-lg-12 + #w0 > *{
     font-size: 16px;
 }
 
-li.prev{
+.pagination .page-link{
+    color: black;
     background-color: #C3C3C3;
-    color: black;
 }
 
-.active{
-    background-color: white;
+.pagination .page-link:hover{
     color: black;
-}
-
-.page-item .page-link{
     background-color: #C3C3C3;
-    color: black;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
+.pagination .page-item.disabled .page-link{
+    background-color: #BABABA;
+}
 
+.pagination .page-item:last-child .page-link{
+    background-color: #BABABA;
+}
+
+.pagination .page-item.active .page-link{
+    background-color: #EEEEEE;
+    color: black;
+    border-color: gainsboro;
+}
 
 
 /* // Extra small devices (portrait phones, less than 576px) */

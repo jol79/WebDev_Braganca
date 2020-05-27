@@ -22,7 +22,7 @@ $this->title = Yii::t('user', 'Register');
 ?>
 <div class="user-default-register">
 
-    <div class="row centered_registration" style="margin-left: -150px">
+    <div class="row centered_registration" style="margin-left: -150px; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.10);">
 
         <!-- Information page name: -->
         <div class="text-center registration_text">
@@ -67,7 +67,7 @@ $this->title = Yii::t('user', 'Register');
                 <?= $form->field($user, 'username')->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px', 'placeholder' => 'Username']) ?>
             <?php endif; ?>
 
-            <?= $form->field($user, 'newPassword')->passwordInput()->textInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px', 'placeholder' => 'Password']) ?>
+            <?= $form->field($user, 'newPassword')->passwordInput(['maxlength' => 64, 'class' => 'border_radius_24', 'style' => 'padding-right: 20px', 'placeholder' => 'Password']) ?>
 
             <!-- Pasting reCaptcha: -->
             <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
