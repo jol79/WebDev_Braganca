@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Search\PostSearch */
@@ -30,13 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'topic',
             'description',
-            'body:ntext',
+            //'body:ntext',
             //'rating',
-            //'status',
-            //'user_id',
+            'status',
+            'user_id',
             //'category_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn'],
         ],
     ]); ?>
 

@@ -159,45 +159,4 @@ class SiteController extends Controller
         return $this->render('home');
     }
 
-    public function actionPost($id = 1){
-        $commentModel = new Comment();
-        if(Yii::$app->request->isPost){
-            if ($commentModel->load(Yii::$app->request->post())){
-                $commentModel->post_id = $id;
-                $commentModel->user_id = Yii::$app->user->id;
-                if ($commentModel->save())
-                    return $this->redirect(['post', 'id' => $id]);
-            }
-        }
-
-        $commentDataProvider = new ActiveDataProvider([
-            'query' => Comment::find()->where(['post_id' => $id]),
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_ASC,
-                ]
-            ]
-        ]);
-
-        $model = Post::findOne($id);
-        return $this->render('post', [
-            'commentDataProvider' => $commentDataProvider,
-            'commentModel' => $commentModel,
-            'model' => $model
-        ]);
-    }
-
-    public function actionDeleteComment($comment_id) {
-        $comment = Comment::findOne($comment_id);
-        if(!$comment) throw new ForbiddenHttpException("No such comment");
-        if ($comment->user_id == Yii::$app->user->id)
-        {
-                $comment->delete();
-                return $this->redirect(['post', 'id' => $comment->post_id]);
-        } else {
-            throw new ForbiddenHttpException("Cannot delete comment of another user");
-        }
-
-    }
-
 }
