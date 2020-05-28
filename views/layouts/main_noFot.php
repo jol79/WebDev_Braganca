@@ -48,7 +48,10 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'User', 'url' => ['/user']],
-            ['label' => 'Creation', 'url' => ['/post/creation']],
+            ['label' => 'Creation', 'url' => ['/post/create']],
+            ['label' => 'Profile', 'url' => ['/profile/view']],
+
+
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/user/login']] : // or ['/user/login-email']
                 ['label' => 'Logout (' . Yii::$app->user->displayName . ')',
@@ -65,6 +68,7 @@ AppAsset::register($this);
         ]) ?>
     </div>
     <div class="container-fluid">
+        <?= Html::a("User Profile", ['profile/view', 'user_id' => 1], ['class' => 'edit-posts']); ?>
         <?= $content ?>
         <!-- Placing the Copyright Block on the web page: -->
         <div class="imgbox">

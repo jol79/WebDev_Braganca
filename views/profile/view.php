@@ -1,57 +1,109 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $user_id Integer */
-
-use app\assets\PostAsset;
+/** @var View $subview */
+use app\assets\ProfileAsset;
+use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
+use yii\bootstrap4\LinkPager;
+use yii\widgets\Pjax;
 
-PostAsset::register($this);
-$username = "user".$user_id;
+ProfileAsset::register($this);
+$logged_in = $model->user_id == Yii::$app->user->id;
 ?>
 
-<div class="container mt-4">
+<div class="profile-wrap mx-auto">
     <div class="row">
-        <?= Html::img("@web/avatars/".$username.".jpg", ["class" => "profile_avatar"])?>
-<!--        <img src="/FINAL-PROJECT/avatars/user1.jpg" class="profile_avatar"/>-->
-    </div>
-
-    <div class="row">
-        <div class="col-12 user_info">
-
-            <hr class="divider">
-
-            <p class="text-center"><?= $username ?></p>
-
-            <hr class="divider">
-
+        <div class="col-lg-12">
+            <?= $this->render('flashes') ?>
         </div>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-12">
-            <h1 class="text-center">A little about me</h1>
+    <div class="row p-3">
+        <div class="col-md-12 col-lg-3">
+            <div class="profile-picture mx-auto">
+                <?= Html::img("@web/avatars/{$model->image_name}")?>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-9">
+            <div class="bio">
+                <div class="row">
+                    <span class='fullname'><?=$model->full_name?></span>
+                    <?php $form = ActiveForm::begin(); ?>
+                    <?php
+                    if (!$logged_in){
+                        if($model->isSubscribed()){
+                            echo Html::submitButton('Unfollow', ['class' => 'follow-button text-center',
+                                'name' => 'action', 'value' => 'unfollow']);
+                        }
+                        else{
+                            echo Html::submitButton('Follow', ['class' => 'follow-button text-center',
+                                'name' => 'action', 'value' => 'follow']);
+                        }
+                    }
+                    else{
+                        echo Html::a("You", ['profile/view'], ['class' => 'follow-button text-center']);
+                    }
+                    ?>
+                    <?= Html::hiddenInput("id", $model->id) ?>
+                    <?php ActiveForm::end(); ?>
+                </div>
+                <div class="row">
+                    <span class="status">
+                        <?=$model->status?>
+                    </span>
+                </div>
+                <div class="row about">
+                    <span><?=$model->about?></span>
+                </div>
+                <div class="row">
+                    <span class='register-date'>
+                        member of CS since <?= date("F Y", strtotime($model->created_at))?>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row post_content text-justify">
-        <div class="col-12 post_content text-justify">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu mi, malesuada ut sodales eget, dapibus nec orci. Vivamus malesuada vestibulum pharetra. Fusce ac mauris tellus. Donec dapibus molestie ante in fringilla. Curabitur eu ex viverra orci pretium iaculis. Nunc efficitur, augue et aliquet aliquet, quam orci pretium leo, aliquet rutrum eros mi vel neque. Maecenas elementum sem a tellus luctus, non hendrerit ex lacinia. Nunc nec sodales sapien, id eleifend est. Nulla facilisi. Nulla venenatis nunc eget purus blandit, eu condimentum arcu sagittis.
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="settings">
+                <?php
+                if($logged_in){
 
-                Praesent pellentesque pharetra eros, eu blandit odio vestibulum lobortis. In non sem ante. Etiam lobortis blandit fermentum. Nulla auctor diam ut leo feugiat convallis. In vestibulum, justo eget congue maximus, nisl nibh semper orci, eget iaculis lacus augue ac enim. Duis sed mauris pulvinar, lacinia felis ut, efficitur elit. Proin non quam ac nunc tincidunt cursus. Maecenas semper lorem consequat, vestibulum lectus malesuada, ullamcorper nunc. Nunc eget diam in dolor euismod scelerisque. Duis tempor nec elit eget mattis. Aenean eu risus at arcu sodales gravida. Pellentesque id quam risus. In maximus lectus id mi vulputate, sed blandit leo luctus.
-
-
-                Nunc eu viverra massa, et molestie massa. Sed augue nisl, vestibulum ut laoreet sed, tempor eget nunc. Maecenas lacinia dui porttitor turpis venenatis, sodales pretium est lobortis. Aliquam accumsan pretium suscipit. Etiam suscipit efficitur ex ornare suscipit. Duis viverra ante rutrum nunc venenatis viverra. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent sollicitudin lacinia orci eget egestas. Sed sit amet purus et velit aliquam fermentum. Vivamus venenatis massa id metus accumsan porta. Curabitur rhoncus augue ipsum, id egestas ipsum fringilla a. In quis facilisis neque. Curabitur convallis risus eu pretium sodales. Aliquam fermentum congue diam, at suscipit eros mollis a.
-
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In faucibus sapien eu eleifend laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean id auctor nisl. Cras dolor magna, feugiat eu finibus id, finibus a mi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque laoreet justo suscipit, suscipit quam at, congue orci. Morbi mollis lectus nec aliquam convallis. Proin consequat mollis tempor. Phasellus et quam finibus, imperdiet nunc sed, feugiat lectus. Donec a mi posuere, tristique nunc at, tempus lorem. Vestibulum suscipit lacus tellus, in ultrices orci finibus vitae. Aenean semper diam vel diam auctor, id scelerisque nisi porta. Proin ut nisi massa. Praesent ultrices massa dolor, ut porttitor mi iaculis vitae.
-
-                Duis at nisi interdum ligula gravida fringilla at ac quam. Pellentesque accumsan odio metus, congue luctus massa aliquam id. Phasellus nec justo orci. In hac habitasse platea dictumst. Phasellus a tempus nisi. Proin sed felis metus. Nam mollis, odio sed mollis suscipit, nulla urna facilisis turpis, vitae convallis dui sem sit amet leo. Vivamus placerat ligula ac dui egestas tincidunt.
-            </p>
+                    echo Html::a("Edit Posts",
+                        ['profile/view', 'func' => 'editPosts'], ['class' => 'edit-posts']);
+                    echo Html::a("Edit Profile",
+                        ['profile/view', 'func' => 'editProfile'], ['class' => 'edit-profile']);
+                    if ($subview == '__postUpdateContainer'){
+                        echo Html::a("Back to feed",
+                            ['profile/view', 'func' => 'back-to-feed'], ['class' => 'back-to-feed']);
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <h1 class="text-center">Posts I've authored:</h1>
-            <h2 class="text-center">To be added:)</h2>
+        <div class="col-lg-12 mt-5">
+            <span class="title">
+                <?php
+                if (!$logged_in) echo "Featured";
+                else{
+                    $title = $subview == '__postContainer' ? 'Posts of followed users' : 'Your posts';
+                    echo $title;
+                }
+                ?>
+            </span>
         </div>
     </div>
 </div>
+<div class='row'>
+<?php
+    /** @var app\models\Post $dataProvider */
+    //reusability of a subview '__postContainer' from 'views/post'
+
+    echo $this->render('//post/_postListView',
+        ['dataProvider'  => $dataProvider, 'subview' => $subview]);
+
+?>
+</div>
+

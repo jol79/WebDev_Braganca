@@ -49,6 +49,10 @@ class Category extends \yii\db\ActiveRecord
         return Category::find()->select(['category_icon_class', 'category_name'])->all();
     }
 
+
+    //Getting all names of existing categories and structure them as the associative
+    //array to in order pass to a dropDown menu, assigning keys of the array to a value
+    //attribute and values a visible for a user options
     public static function getAllAsArray(){
         $query = Category::find()->asArray()->all();
         $structured_data = ArrayHelper::map($query, 'category_id', 'category_name');

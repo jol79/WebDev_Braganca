@@ -1,5 +1,6 @@
 .wrap{
     background-color: #E6E4E4;
+    font-family: 'Raleway', sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -183,36 +184,36 @@ a.read:hover {
     margin-top: 3rem !important;
 }
 
-div.col-lg-12 + #w0{
+.col-lg-12 + nav{
     background-color: transparent;
     margin: 10px auto 0px auto;
 
 }
 
-div.col-lg-12 + #w0 > *{
+.col-lg-12 + nav{
     font-size: 16px;
 }
 
-.pagination .page-link{
+.col-lg-12 + nav > .pagination .page-link{
     color: black;
     background-color: #C3C3C3;
 }
 
-.pagination .page-link:hover{
+.col-lg-12 + nav > .pagination .page-link:hover{
     color: black;
     background-color: #C3C3C3;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
-.pagination .page-item.disabled .page-link{
+.col-lg-12 + nav > .pagination .page-item.disabled .page-link{
     background-color: #BABABA;
 }
 
-.pagination .page-item:last-child .page-link{
+.col-lg-12 + nav > .pagination .page-item:last-child .page-link{
     background-color: #BABABA;
 }
 
-.pagination .page-item.active .page-link{
+.col-lg-12 + nav > .pagination .page-item.active .page-link{
     background-color: #EEEEEE;
     color: black;
     border-color: gainsboro;

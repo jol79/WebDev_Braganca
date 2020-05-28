@@ -9,8 +9,11 @@ use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
 use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use yii\filters\AccessControl;
+
+
+use yii\data\Pagination;
+
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -84,15 +87,19 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Post();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->post_id]);
+        $model = Post::createPost();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            if ($model->save()){
+                return $this->redirect(['site/post']);
+            }
+            else{
+                Yii::$app->session->addFlash("danger", 'Could not enroll student');
+            }
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        $dropDown_items = Category::getAllAsArray();
+        return $this->render('create',
+            ['model' => $model, 'dropDown_items' => $dropDown_items,]);
     }
 
     /**
@@ -105,13 +112,14 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $dropDown_items = Category::getAllAsArray();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->post_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'dropDown_items' => $dropDown_items
         ]);
     }
 
@@ -126,7 +134,7 @@ class PostController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['profile/view', 'func' => 'editPosts']);
     }
 
     /**
@@ -156,6 +164,7 @@ class PostController extends Controller
         }
         return $this->render('posts', ['dataProvider' => $lang]);
     }
+
 
     public function actionCreation(){
         $model = Post::createPost();

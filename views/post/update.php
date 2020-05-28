@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 
+/** @var Array $dropDown_items */
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
 
@@ -14,8 +15,9 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_createAndUpdate', [
         'model' => $model,
+        'dropDown_items' => $dropDown_items,
     ]) ?>
 
 </div>

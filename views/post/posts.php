@@ -4,10 +4,9 @@
 /** @var TYPE_NAME $dataProvider */
 $this->title = 'Posts';
 \app\assets\PostsAsset::register($this);
-
-use yii\bootstrap4\LinkPager;
 use yii\helpers\Html;
-use yii\widgets\ListView; ?>
+
+ ?>
 <div class="row search-field">
     <div class="input-group mx-auto mb-2">
         <input type="text" class="form-control" placeholder="Search for a related">
@@ -103,20 +102,6 @@ use yii\widgets\ListView; ?>
 </div>
 <div class="row mt-3">
 <?php
-if ($dataProvider != null) {
-    if (!$dataProvider->totalCount) echo "<div class=\"col-md-12 col-lg-12 \">Nothing was Found</div>";
-    else {
-        echo ListView::widget([
-            'dataProvider' => $dataProvider,
-            'itemView' => '_postContainer',
-            'options' => [
-                'tag' => 'div',
-                'class' => 'col-lg-12',
-            ],
-            'layout' =>
-                "{summary}\n{items}\n<nav id=\"w0\">{pager}</nav>",
-        ]);
-    }
-}
+    echo $this->render('_postListView', ['dataProvider'  => $dataProvider, 'subview' => '__postContainer'])
 ?>
 </div>

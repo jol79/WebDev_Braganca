@@ -1,6 +1,6 @@
 nav{
     font-family: 'Raleway', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #F9F9F9;
     color: black;
 }
@@ -35,6 +35,18 @@ nav{
     padding: 8px 8px 8px 8px;
 }
 /* to do how to change width and height of a collapsed dropdown menu */
+
+
+.row > #w1{
+    background-color: transparent;
+    margin: 10px auto 0px auto;
+
+}
+
+.row > #w1 > *{
+    font-size: 16px;
+}
+
 
 @media (max-width: 990px) {
     .dropdown-menu{
