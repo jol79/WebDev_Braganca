@@ -105,4 +105,34 @@ class Comment extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public function isUpvotedBy($userId){
+        $commentVote = CommentVote::findByUserCommentUp($userId, $this->id);
+
+        if($commentVote){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isDownvotedBy($userId){
+        $commentVote = CommentVote::findByUserCommentDown($userId, $this->id);
+
+        if($commentVote){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getUpvotes(){
+        return $this->hasMany(CommentVote::class, ['comment_id' => 'id'])
+            ->andWhere(['type' => CommentVote::TYPE_UPVOTE]);
+    }
+
+    public function getDownvotes(){
+        return $this->hasMany(CommentVote::class, ['comment_id' => 'id'])
+            ->andWhere(['type' => CommentVote::TYPE_DOWNVOTE]);
+    }
+
 }

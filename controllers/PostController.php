@@ -4,11 +4,13 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Comment;
+use app\models\CommentVote;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -25,11 +27,23 @@ class PostController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['upvote', 'downvote'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'deleteComment' => ['POST']
+                    'deleteComment' => ['POST'],
+                    'upvote' => ['POST'],
+                    'downvote' => ['POST']
                 ],
             ],
         ];
@@ -191,16 +205,69 @@ class PostController extends Controller
         ]);
     }
 
-    public function actionDeleteComment($comment_id)
+    public function actionDeleteComment($id)
     {
-        $comment = Comment::findOne($comment_id);
-        if (!$comment) throw new ForbiddenHttpException("No such comment");
-        if ($comment->user_id == Yii::$app->user->id) {
+        $comment = $this->findComment($id);
+        if ($comment->user_id == Yii::$app->user->id || Yii::$app->user->can('admin')) {
             $comment->delete();
-            return $this->redirect(['post', 'id' => $comment->post_id]);
+            return $this->redirect(['view', 'id' => $comment->post_id]);
         } else {
             throw new ForbiddenHttpException("Cannot delete comment of another user");
         }
 
+    }
+
+    public function actionUpvote($id){
+        $comment = $this->findComment($id);
+        $userId = Yii::$app->user->id;
+
+        $commentVote = CommentVote::find()
+            ->andWhere([
+                'comment_id' => $id,
+                'user_id' => $userId
+            ])->one();
+
+        if (!$commentVote){
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_UPVOTE);
+        } else if ($commentVote->type == CommentVote::TYPE_UPVOTE){
+            $commentVote->delete();
+        } else if ($commentVote->type == CommentVote::TYPE_DOWNVOTE){
+            $commentVote->delete();
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_UPVOTE);
+        }
+        return $this->renderAjax('_commentVotes', [
+            'model' => $comment
+        ]);
+    }
+
+    public function actionDownvote($id){
+        $comment = $this->findComment($id);
+        $userId = Yii::$app->user->id;
+
+        $commentVote = CommentVote::find()
+            ->andWhere([
+                'comment_id' => $id,
+                'user_id' => $userId
+            ])->one();
+
+        if (!$commentVote){
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_DOWNVOTE);
+        } else if ($commentVote->type == CommentVote::TYPE_UPVOTE){
+            $commentVote->delete();
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_DOWNVOTE);
+        } else if ($commentVote->type == CommentVote::TYPE_DOWNVOTE){
+            $commentVote->delete();
+        }
+        return $this->renderAjax('_commentVotes', [
+            'model' => $comment
+        ]);
+    }
+
+    protected function findComment($id){
+        $comment = Comment::findOne($id);
+        if (!$comment){
+            throw new NotFoundHttpException("No such comment");
+        }
+        return $comment;
     }
 }

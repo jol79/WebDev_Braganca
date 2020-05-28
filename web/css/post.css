@@ -14,9 +14,17 @@
 }
 
 .like_image{
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     border-radius: 50%;
+    opacity: 50%;
+}
+
+.like_image_selected{
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    opacity: 100%;
 }
 
 .comment_date_text{
@@ -52,4 +60,8 @@
 .code_snippet_row{
     margin-right: auto;
     margin-left: auto;
+}
+
+.test{
+    border: 1px solid black;
 }
