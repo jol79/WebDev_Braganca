@@ -129,8 +129,7 @@ class Feedback extends \yii\db\ActiveRecord
         }
 
         $query->andFilterWhere(['like', 'id_feedback', $this->id_feedback])
-            ->andFilterWhere(['like', 'message', $this->created_at])
-            ->andFilterWhere(['like', 'created_at', $this->created_at]);
+            ->andFilterWhere(['like', 'message', $this->created_at]);
 
         return $dataProvider;
 

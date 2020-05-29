@@ -1,14 +1,22 @@
-
 <?php
-use yii\helpers\Html;
 
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\db\ActiveRecord;
+use yii\helpers\HtmlPurifier;
+use yii\widgets\ListView;
+use yii\data\Pagination;
+use yii\widgets\LinkPager;
 
 use yii\helpers\Url;
 
+/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $model app\models\Feedback */
+
 $this->title = 'Home';
 \app\assets\HomeAsset::register($this);
-$this->params['breadcrumbs']['class'] = $this->title;
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 
@@ -31,9 +39,9 @@ $this->params['breadcrumbs']['class'] = $this->title;
                             <text class="text-center text_in_blocks text_block11" style="">Your programming</br> experience is</br> important</text>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-primary button_params" data-toggle="button" style="border-radius: 25px">
-                                Create
-                            </button>
+                            <form action="#">
+                                <input type="submit" value="Create" class="btn btn-primary button_params" style="border-radius: 25px">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -50,9 +58,9 @@ $this->params['breadcrumbs']['class'] = $this->title;
                             <text class="text-center text_in_blocks text_block11">Learn applying on</br> practice users</br> examples</text>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-primary button_params" data-toggle="button" style="border-radius: 25px">
-                                Learn
-                            </button>
+                            <form action="#">
+                                <input type="submit" value="Learn" class="btn btn-primary button_params" style="border-radius: 25px">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -69,9 +77,9 @@ $this->params['breadcrumbs']['class'] = $this->title;
                             <text class="text-center text_in_blocks text_block22">Read filtered news</br> from the most popular</br> sources</text>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-primary button_params" data-toggle="button" style="border-radius: 25px">
-                                Read
-                            </button>
+                            <form action="#">
+                                <input type="submit" value="Read" class="btn btn-primary button_params" style="border-radius: 25px">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -88,9 +96,9 @@ $this->params['breadcrumbs']['class'] = $this->title;
                             <text class="text-center text_in_blocks text_block22">Here you can leave the</br> feedback for</br> developers</text>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-primary button_params" data-toggle="button" style="border-radius: 25px">
-                                Leave
-                            </button>
+                            <form action="#">
+                                <input type="submit" value="Leave" class="btn btn-primary button_params" style="border-radius: 25px">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -109,87 +117,51 @@ $this->params['breadcrumbs']['class'] = $this->title;
     <div class="text-center">
         <p class="cos mb-5 mt-3">Leave comment</p>
     </div>
-    <!-- Comments block: -->
-    <div class="container text-center">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="card p-3 text-right" style="background-color: #F0EFEF">
-                        <blockquote class="blockquote mb-0 relaway">
-                            <p>Amazing resource made by people who are passionate about what they are doing. Knew much new ...</p>
-                            <footer class="blockquote-footer relaway">
-                                <small class="text-muted">
-                                    Alex Makowski <cite title="Source Title">15 min ago</cite>
-                                </small>
-                            </footer>
-                        </blockquote>
-                    </div>
+    <!-- leave comment: -->
+    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+        <div class="row">
+            <div class="col mt-lg-5">
+                <div class="relaway text-center">
+                    <div class="">feedback posted</div>
                 </div>
-                <div class="carousel-item">
-                    <div class="card p-3 text-right" style="background-color: #F0EFEF">
-                        <blockquote class="blockquote mb-0 relaway">
-                            <p>Amazing resource made by people who are passionate about what they are doing. Knew much new ...</p>
-                            <footer class="blockquote-footer relaway">
-                                <small class="text-muted">
-                                    Alex Makowski <cite title="Source Title">15 min ago</cite>
-                                </small>
-                            </footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card p-3 text-right" style="background-color: #F0EFEF">
-                        <blockquote class="blockquote mb-0 relaway">
-                            <p>Amazing resource made by people who are passionate about what they are doing. Knew much new ...</p>
-                            <footer class="blockquote-footer relaway">
-                                <small class="text-muted">
-                                    Alex Makowski <cite title="Source Title">15 min ago</cite>
-                                </small>
-                            </footer>
-                        </blockquote>
-                    </div>
+                <div class="alert alert-success relaway text-center ">
+                    Thank you for feedback, you can see your comment below.
                 </div>
             </div>
-            <!-- dots to slide between comments: -->
-            <a class="carousel-control-prev black-dots" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next black-dots" href="#carouselExampleCaptions" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-    </div>
-    <!-- leave comment: -->
-    <div class="card mt-lg-5" style="margin-bottom: 120px">
-        <div class="card-body" style="background-color: #F0EFEF">
-            <form>
-                <!-- Comment: -->
+    <?php else: ?>
+        <div class="card mt-lg-5">
+            <div class="card-body" style="background-color: #F0EFEF">
+                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                <!-- text form: -->
                 <div class="form-group relaway">
-                    <label for="replyFormComment">Your comment</label>
-                    <textarea class="form-control" id="send" rows="5"></textarea>
+                    <?= $form->field($model, 'message')->textArea(['class' => 'form-control','rows' => 6, 'maxlength' => 280]) ?>
                 </div>
-                <!-- nickname/name: -->
-                <div class="relaway">
-                    <label for="replyFormName">Your name/nickname</label>
-                    <input type="email" id="replyFormName" class="form-control relaway">
+                <div class="form-group text-center relaway-bold">
+                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary btn-md', 'name' => 'contact-button']) ?>
                 </div>
-                <br>
-                <!-- Email: -->
-                <div class="relaway">
-                    <label for="replyFormEmail">Paste here your Email</label>
-                    <input type="Email" id="replyFormEmail" class="form-control relaway">
-                </div>
-                <div class="text-center mt-4 relaway-bold">
-                    <button class="btn btn-info btn-md" type="submit">Post</button>
-                </div>
-            </form>
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
+
+    <!-- Comments: -->
+    <?php
+    if (is_array($result) || is_object($result))
+    foreach ($result as $comment){
+        echo "<br>
+            <div class='container'>
+                <div class='card-body' style='background-color: #F0EFEF; border-radius: 24px'>
+                <div class='form-group relaway'>
+                    <div class='' style='font-size: 30px; margin-top: -15px; color: #EDB23A'>
+                        # ";
+        echo Html::encode($comment->id_feedback), "</div>";
+        echo "<div class='relaway' style='text-align: left; padding-left: 15px; padding-right: 15px'>";
+        echo Html::encode($comment->message);
+        echo "<br>
+                <div class='' style='text-align: right; padding-top: 25px; margin-bottom: -25px; color: #A5A5A5'>";
+        echo Html::encode($comment->created_at);
+        echo "</div></div></div></div><br>";
+    }
+    ?>
 </div>
-
-
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Comment;
+use app\models\Feedback;
 use app\models\Post;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -66,12 +67,48 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'main_noFot.php';
+        $this->layout = ('main_noFot');
+
+        if ( Yii::$app->request->isAjax ) {
+            Yii::$app->request->post();
+            return 'test';
+        }
+
+        /* Initializing form for comments: */
+        $model = new Feedback();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Feedback::find(),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
+//        $dataProvider = $model->search(Yii::$app->request->queryParams);
 
 
-        /* As default in view we have index, as custom view we will use home page */
-        return $this->render('home');
+        $result = Feedback::getAllComments();
+//        $time_funcTest = Feedback::diff_time();
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            // refreshing page, so form will be submitted only one time,
+            // because if we don't use the refresh method user will have
+            // infinite loop when refreshing feedback page
+            return $this->refresh();
+
+            return $this->render('home', [
+                'model' => $model,
+                'result' => $result,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        return $this->render('home', [
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'result' => $result,
+        ]);
     }
 
     /**
@@ -141,22 +178,6 @@ class SiteController extends Controller
 
     public function actionNews(){
         return $this->render('news');
-    }
-
-    /* Creating function to get data from db: */
-//    public function search($params){
-//        $query =
-//    }
-
-    public function actionHome(){
-        $this->layout = 'main_noFot.php';
-
-        // make query to get data for comments:
-//        $comments_data = ...
-
-        //
-
-        return $this->render('home');
     }
 
 }
