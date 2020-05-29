@@ -358,26 +358,26 @@ class DefaultController extends Controller
      */
     public function actionProfile()
     {
-        /** @var \amnah\yii2\user\models\Profile $profile */
-
-        // set up profile and load post data
-        $profile = Yii::$app->user->identity->profile;
-        $loadedPost = $profile->load(Yii::$app->request->post());
-
-        // validate for ajax request
-        if ($loadedPost && Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($profile);
-        }
-
-        // validate for normal request
-        if ($loadedPost && $profile->validate()) {
-            $profile->save(false);
-            Yii::$app->session->setFlash("Profile-success", Yii::t("user", "Profile updated"));
-            return $this->refresh();
-        }
-
-        return $this->render("profile", compact("profile"));
+//        /** @var \amnah\yii2\user\models\Profile $profile */
+//
+//        // set up profile and load post data
+//        $profile = Yii::$app->user->identity->profile;
+//        $loadedPost = $profile->load(Yii::$app->request->post());
+//
+//        // validate for ajax request
+//        if ($loadedPost && Yii::$app->request->isAjax) {
+//            Yii::$app->response->format = Response::FORMAT_JSON;
+//            return ActiveForm::validate($profile);
+//        }
+//
+//        // validate for normal request
+//        if ($loadedPost && $profile->validate()) {
+//            $profile->save(false);
+//            Yii::$app->session->setFlash("Profile-success", Yii::t("user", "Profile updated"));
+//            return $this->refresh();
+//        }
+//
+//        return $this->render("profile", compact("profile"));
     }
 
     /**

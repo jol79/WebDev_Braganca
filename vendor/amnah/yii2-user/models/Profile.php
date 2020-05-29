@@ -2,6 +2,7 @@
 
 namespace amnah\yii2\user\models;
 
+
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -14,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $updated_at
  * @property string $full_name
  * @property string $timezone
+ *
  *
  * @property User $user
  */
@@ -42,6 +44,7 @@ class Profile extends ActiveRecord
         return [
             [['full_name'], 'string', 'max' => 255],
             [['timezone'], 'string', 'max' => 255],
+            [['status'], 'string', 'max' => 255],
         ];
     }
 
@@ -57,6 +60,7 @@ class Profile extends ActiveRecord
             'updated_at' => Yii::t('user', 'Updated At'),
             'full_name' => Yii::t('user', 'Full Name'),
             'timezone' => Yii::t('user', 'Time zone'),
+            'status' => Yii::t('user', 'Status'),
         ];
     }
 
@@ -94,4 +98,6 @@ class Profile extends ActiveRecord
         $this->user_id = $userId;
         return $this;
     }
+
+
 }

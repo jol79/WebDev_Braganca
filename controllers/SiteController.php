@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use app\models\Comment;
+use app\models\Post;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -35,6 +37,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'delete-comment' => ['post']
                 ],
             ],
         ];
@@ -154,35 +157,6 @@ class SiteController extends Controller
         //
 
         return $this->render('home');
-    }
-
-    public function actionPost($post_id = 1){
-//        $commentSearchModel = new CommentSearch();
-//        $commentDataProvider = $commentSearchModel->search(Yii::$app->request->queryParams);
-        $model = new Comment();
-        if(Yii::$app->request->isPost){
-            var_dump(Yii::$app->request->post());
-            if (!$model->load(Yii::$app->request->post()))
-                return false;
-            $model->post_id = $post_id;
-            $model->user_id = Yii::$app->user->id;
-            if ($model->save())
-                return $this->redirect(['post', 'id' => $post_id]);
-        }
-
-        $commentDataProvider = new ActiveDataProvider([
-            'query' => Comment::find()->where(['post_id' => $post_id]),
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                ]
-            ]
-        ]);
-
-        return $this->render('post', [
-            'commentDataProvider' => $commentDataProvider,
-            'model' => $model
-        ]);
     }
 
 }

@@ -1,0 +1,15 @@
+.post-update, .post-create{
+    font-family: "Raleway", sans-serif;
+    border-radius: 5px;
+    border: 1px solid ghostwhite;
+
+}
+
+.post-create:hover,
+.post-update:hover{
+    box-shadow: 0 0 35px -2px rgba(0,0,0,.2);
+}
+
+.wrapper-create{
+    width: 75%;
+}

@@ -3,12 +3,19 @@
 namespace app\controllers;
 
 use app\models\Category;
+use app\models\Comment;
+use app\models\CommentVote;
 use Yii;
 use app\models\Post;
 use app\models\Search\PostSearch;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
+
+
 use yii\data\Pagination;
+
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -23,10 +30,23 @@ class PostController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['update', 'create', 'upvote', 'downvote'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'deleteComment' => ['POST'],
+                    'upvote' => ['POST'],
+                    'downvote' => ['POST']
                 ],
             ],
         ];
@@ -53,9 +73,9 @@ class PostController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionInspect($id)
     {
-        return $this->render('view', [
+        return $this->render('inspect', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -67,15 +87,19 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Post();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->post_id]);
+        $model = Post::createPost();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            if ($model->save()){
+                return $this->redirect(['post/view', 'id' => $model->post_id]);
+            }
+            else{
+                Yii::$app->session->addFlash("danger", 'Could not enroll student');
+            }
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        $dropDown_items = Category::getAllAsArray();
+        return $this->render('create',
+            ['model' => $model, 'dropDown_items' => $dropDown_items,]);
     }
 
     /**
@@ -88,13 +112,14 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $dropDown_items = Category::getAllAsArray();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->post_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'dropDown_items' => $dropDown_items
         ]);
     }
 
@@ -109,7 +134,7 @@ class PostController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['profile/view', 'func' => 'editPosts']);
     }
 
     /**
@@ -140,25 +165,98 @@ class PostController extends Controller
         return $this->render('posts', ['dataProvider' => $lang]);
     }
 
-    public function actionCreation(){
-        $model = Post::createPost();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()){
-            $action = Yii::$app->request->post('action');
-            if ($action == 'Preview'){
-                return $this->render('preview', ['model' => $model]);
-            }
-            else{
-                if ($model->save()){
-                    return $this->redirect(['site/post']);
-                }
-                else{
-                    Yii::$app->session->addFlash("danger", 'Could not enroll student');
-                }
+
+    public function actionView($id = 1){
+        $commentModel = new Comment();
+        if(Yii::$app->request->isPost){
+            if ($commentModel->load(Yii::$app->request->post())){
+                $commentModel->post_id = $id;
+                $commentModel->created_at = date("Y-m-d H:i:s");
+                $commentModel->user_id = Yii::$app->user->id;
+                if ($commentModel->save())
+                    return $this->redirect(['view', 'id' => $id]);
             }
         }
-        $dropDown_items = Category::getAllAsArray();
-        return $this->render('creation',
-            ['model' => $model, 'dropDown_items' => $dropDown_items,]);
+
+        $commentDataProvider = new ActiveDataProvider([
+            'query' => Comment::find()->where(['post_id' => $id]),
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_ASC,
+                ]
+            ]
+        ]);
+
+        return $this->render('view', [
+            'commentDataProvider' => $commentDataProvider,
+            'commentModel' => $commentModel,
+            'model' => $this->findModel($id),
+        ]);
     }
 
+    public function actionDeleteComment($id)
+    {
+        $comment = $this->findComment($id);
+        if ($comment->user_id == Yii::$app->user->id || Yii::$app->user->can('admin')) {
+            $comment->delete();
+            return $this->redirect(['view', 'id' => $comment->post_id]);
+        } else {
+            throw new ForbiddenHttpException("Cannot delete comment of another user");
+        }
+
+    }
+
+    public function actionUpvote($id){
+        $comment = $this->findComment($id);
+        $userId = Yii::$app->user->id;
+
+        $commentVote = CommentVote::find()
+            ->andWhere([
+                'comment_id' => $id,
+                'user_id' => $userId
+            ])->one();
+
+        if (!$commentVote){
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_UPVOTE);
+        } else if ($commentVote->type == CommentVote::TYPE_UPVOTE){
+            $commentVote->delete();
+        } else if ($commentVote->type == CommentVote::TYPE_DOWNVOTE){
+            $commentVote->delete();
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_UPVOTE);
+        }
+        return $this->renderAjax('_commentVotes', [
+            'model' => $comment
+        ]);
+    }
+
+    public function actionDownvote($id){
+        $comment = $this->findComment($id);
+        $userId = Yii::$app->user->id;
+
+        $commentVote = CommentVote::find()
+            ->andWhere([
+                'comment_id' => $id,
+                'user_id' => $userId
+            ])->one();
+
+        if (!$commentVote){
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_DOWNVOTE);
+        } else if ($commentVote->type == CommentVote::TYPE_UPVOTE){
+            $commentVote->delete();
+            CommentVote::saveCommentVote($userId, $id, CommentVote::TYPE_DOWNVOTE);
+        } else if ($commentVote->type == CommentVote::TYPE_DOWNVOTE){
+            $commentVote->delete();
+        }
+        return $this->renderAjax('_commentVotes', [
+            'model' => $comment
+        ]);
+    }
+
+    protected function findComment($id){
+        $comment = Comment::findOne($id);
+        if (!$comment){
+            throw new NotFoundHttpException("No such comment");
+        }
+        return $comment;
+    }
 }

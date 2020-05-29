@@ -4,6 +4,7 @@
 /* @var $content string */
 
 
+use rmrevin\yii\fontawesome\component\Icon;
 use yii\bootstrap4\Alert;
 use yii\bootstrap4\Breadcrumbs;
 use yii\helpers\Html;
@@ -33,45 +34,53 @@ AppAsset::register($this);
         'brandLabel' => Html::img('@web/img/logo.png', ['alt'=>Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-light',
+            'class' => 'navbar-expand-md fixed-top my_nav',
         ],
         'innerContainerOptions' => ['class'=>'container-fluid']
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => [
-//            ['label' => 'Home', 'url' => ['/site/index'], 'options' => ['class'=>'test']],
-//            ['label' => 'Home', 'url' =>['/site/home']],
-            ['label' => 'Posts', 'url' => ['/post/posts']],
-            ['label' => 'Single Post', 'url' => ['/site/post']],
+            ['label' => 'Home', 'url' => ['/site/index'],],
+            ['label' => 'Read', 'url' => ['/post/posts']],
             ['label' => 'News', 'url' => ['/site/news']],
             ['label' => 'About', 'url' => ['site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'User', 'url' => ['/user']],
-            ['label' => 'Creation', 'url' => ['/post/creation']],
+            ['label' => 'Contact', 'url' => ['/site/contact'],
+                'visible' => !Yii::$app->user->isGuest && !Yii::$app->user->can('admin')],
+            ['label' => 'Create', 'url' => ['/post/create'],
+                'visible' => !Yii::$app->user->isGuest,],
+            ['label' => 'Profile <i class="fas fa-user"></i>', 'url' => ['/profile/view'],
+                'visible' => !Yii::$app->user->isGuest,],
+            ['label' => 'Manage entities <i class="fas fa-pencil-alt"></i>',
+                'visible' => !Yii::$app->user->isGuest && Yii::$app->user->can('admin'),
+                'items' => [
+                    ['label' => 'Manage posts <i class="far fa-newspaper"></i>', 'url' => ['/post/index'],],
+                    ['label' => 'Manage users <i class="fas fa-users"></i>', 'url' => ['/user/admin'],],
+                    ['label' => 'Manage comments <i class="far fa-comments"></i>', 'url' => ['/comment/index'],]
+                ]],
+
             Yii::$app->user->isGuest ?
-                ['label' => 'Login', 'url' => ['/user/login']] : // or ['/user/login-email']
-                ['label' => 'Logout (' . Yii::$app->user->displayName . ')',
+                ['label' => 'Login <i class="fas fa-sign-in-alt"></i>', 'url' => ['/user/login']] : // or ['/user/login-email']
+                ['label' => 'Logout <i class="fas fa-sign-out-alt"></i> (' . Yii::$app->user->displayName . ')',
                     'url' => ['/user/logout'],
-                    'linkOptions' => ['data-method' => 'post']],
+                    'linkOptions' => ['data-method' => 'post'],],
+
         ],
     ]);
     NavBar::end();
     ?>
-
-    <div class="container">
+    <?php
+        $container_class = Yii::$app->controller->action->id == 'index' ? 'container-fluid' : 'container';
+    ?>
+    <div class="container mt-4">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
     </div>
-    <div class="container-fluid">
+    <div class="<?= $container_class ?>">
         <?= $content ?>
-        <!-- Placing the Copyright Block on the web page: -->
-        <div class="imgbox">
-            <?= Html::img('@web/img/Copyright%20block.jpg', ['class' => 'center-fit', 'alt' => 'block_22']) ?>
-        </div>
     </div>
-
 </div>
 
 

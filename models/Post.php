@@ -98,33 +98,59 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public static function getPostByPostId($post_id){
+        return Post::find()->where(['post_id' => $post_id])->one();
+    }
+
+
     public static function getPostsbyCategory($category)
     {
         $result = Post::find()
-            ->joinWith(['category', 'user'])
-            ->where(['category.category_name' => $category])
+            ->joinWith(['category'])
+            ->andWhere(['category.category_name' => $category])
+            ->andWhere(['post.status' => 'unfrozen'])
             ->orderBy(['post.rating' => SORT_DESC]);
         return $result;
     }
-
-
 
     public static function getPostsbyUserId($user_id){
         $result = Post::find()
-            ->joinWith(['category', 'user'])
-            ->where(['post.user_id' => $user_id])
+            ->joinWith(['category'])
+            ->andWhere(['post.user_id' => $user_id])
             ->orderBy(['post.rating' => SORT_DESC]);
         return $result;
     }
-
+    //Getting followed posts in order to generate user's  feed with the latest
+    //published articles created by authors he is subscribed on.
+    //Using sub query ('getFollowedUsersAsArray') and using 'IN' operator
+    //retrieving all posts made by authors.
+    public static function getFollowedPosts($follower_id){
+        $followed_users = Follower::getFollowedUsersAsArray($follower_id);
+        $result = Post::find()
+            ->andWhere(['user_id' => $followed_users])
+            ->andWhere(['status' => 'unfrozen'])
+            ->orderBy(['date' => SORT_DESC]);
+        return $result;
+    }
+    //Return 'Post' object with the default values in order to insert
+    //new possible entry
     public static function createPost()
     {
         $post = new Post;
         $post->date = date("Y-m-d");
         $post->rating = 0;
-        $post->status = 'active';
+        $post->status = 'unfrozen';
         $post->user_id = Yii::$app->user->id;
         return $post;
+    }
 
+    public function frozePost(){
+        $this->status = 'frozen';
+        return $this->save();
+    }
+
+    public function unfrozePost(){
+        $this->status = 'unfrozen';
+        return $this->save();
     }
 }

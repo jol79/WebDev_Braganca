@@ -23,7 +23,6 @@ class AppAsset extends AssetBundle
         'css/navbar.css',
         '//fonts.googleapis.com/css2?family=Raleway&display=swap',
         'rmrevin\yii\fontawesome\NpmFreeAssetBundle',
-        'css/site.css'
 
     ];
     public $js = [
