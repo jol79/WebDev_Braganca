@@ -68,9 +68,9 @@ AppAsset::register($this);
         ]) ?>
     </div>
     <div class="container-fluid">
-        <?= Html::a("User Profile", ['profile/view', 'user_id' => 1], ['class' => 'edit-posts']); ?>
         <?= $content ?>
         <!-- Placing the Copyright Block on the web page: -->
+        <?= Html::a("User Profile", ['profile/view', 'user_id' => 1], ['class' => 'edit-posts']); ?>
         <div class="imgbox">
             <?= Html::img('@web/img/Copyright%20block.jpg', ['class' => 'center-fit', 'alt' => 'block_22']) ?>
         </div>

@@ -2,7 +2,7 @@
 
 namespace amnah\yii2\user\models;
 
-use app\models\Follower;
+
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -15,9 +15,6 @@ use yii\db\ActiveRecord;
  * @property string $updated_at
  * @property string $full_name
  * @property string $timezone
- * @property string $status
- * @property string $about
- * @property string $image_name
  *
  *
  * @property User $user
@@ -48,8 +45,6 @@ class Profile extends ActiveRecord
             [['full_name'], 'string', 'max' => 255],
             [['timezone'], 'string', 'max' => 255],
             [['status'], 'string', 'max' => 255],
-            [['about'], 'string', 'max' => 255],
-            [['image_name'], 'string', 'max' => 255]
         ];
     }
 
@@ -66,7 +61,6 @@ class Profile extends ActiveRecord
             'full_name' => Yii::t('user', 'Full Name'),
             'timezone' => Yii::t('user', 'Time zone'),
             'status' => Yii::t('user', 'Status'),
-            'about' => Yii::t('user', 'About')
         ];
     }
 
@@ -105,24 +99,5 @@ class Profile extends ActiveRecord
         return $this;
     }
 
-    public static function getProfileByUserId($user_id){
-        return Profile::find()->where(['user_id' => $user_id])->one();
-    }
 
-    public function subscribe($user_id){
-        $model = new Follower();
-        $model->follower_id = $user_id;
-        $model->followed_id = $this->user_id;
-        return $model->save();
-    }
-
-    public function unSubscribe($user_id){
-        return Follower::deleteAll(['follower_id' => $user_id, 'followed_id' => $this->user_id]);
-    }
-
-    public function isSubscribed(){
-        $user_id = Yii::$app->user->id;
-        return Follower::find()
-            ->where(['follower_id' => $user_id, "followed_id" => $this->user_id])->one();
-    }
 }

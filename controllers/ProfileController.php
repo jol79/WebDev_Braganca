@@ -2,9 +2,10 @@
 
 namespace app\controllers;
 
-use amnah\yii2\user\models\Profile;
+//use amnah\yii2\user\models\Profile;
 use app\models\Follower;
 use app\models\Post;
+use app\models\Profile;
 use app\models\UploadForm;
 use Yii;
 use yii\data\ActiveDataProvider;

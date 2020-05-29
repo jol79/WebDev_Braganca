@@ -192,6 +192,7 @@ class PostController extends Controller
         if(Yii::$app->request->isPost){
             if ($commentModel->load(Yii::$app->request->post())){
                 $commentModel->post_id = $id;
+                $commentModel->created_at = date("Y-m-d H:i:s");
                 $commentModel->user_id = Yii::$app->user->id;
                 if ($commentModel->save())
                     return $this->redirect(['view', 'id' => $id]);

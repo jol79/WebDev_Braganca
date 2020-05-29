@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use amnah\yii2\user\models\User;
 
 /**
  * This is the model class for table "profile".
@@ -11,16 +12,15 @@ use Yii;
  * @property int $user_id
  * @property string|null $created_at
  * @property string|null $updated_at
- * @property string|null $full_name
  * @property string|null $timezone
+ * @property string|null $full_name
+ * @property string|null $status
+ * @property string|null $about
+ * @property string|null $image_name
  *
- * @property Follower[] $followers
- * @property Follower[] $followers0
- * @property Profile[] $profiles
- * @property Profile[] $followers1
  * @property User $user
  */
-class Profile extends \yii\db\ActiveRecord
+class Profile extends \amnah\yii2\user\models\Profile
 {
     /**
      * {@inheritdoc}
@@ -39,7 +39,7 @@ class Profile extends \yii\db\ActiveRecord
             [['user_id'], 'required'],
             [['user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['full_name', 'timezone'], 'string', 'max' => 255],
+            [['timezone', 'full_name', 'status', 'about', 'image_name'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -54,49 +54,12 @@ class Profile extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'full_name' => 'Full Name',
             'timezone' => 'Timezone',
+            'full_name' => 'Full Name',
+            'status' => 'Status',
+            'about' => 'About',
+            'image_name' => 'Image Name',
         ];
-    }
-
-    /**
-     * Gets query for [[Followers]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFollowers()
-    {
-        return $this->hasMany(Follower::className(), ['follower_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Followers0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFollowers0()
-    {
-        return $this->hasMany(Follower::className(), ['profile_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Profiles]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProfiles()
-    {
-        return $this->hasMany(Profile::className(), ['id' => 'profile_id'])->viaTable('follower', ['follower_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Followers1]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFollowers1()
-    {
-        return $this->hasMany(Profile::className(), ['id' => 'follower_id'])->viaTable('follower', ['profile_id' => 'id']);
     }
 
     /**
@@ -109,5 +72,24 @@ class Profile extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public static function getProfileByUserId($user_id){
+        return Profile::find()->where(['user_id' => $user_id])->one();
+    }
 
+    public function subscribe($user_id){
+        $model = new Follower();
+        $model->follower_id = $user_id;
+        $model->followed_id = $this->user_id;
+        return $model->save();
+    }
+
+    public function unSubscribe($user_id){
+        return Follower::deleteAll(['follower_id' => $user_id, 'followed_id' => $this->user_id]);
+    }
+
+    public function isSubscribed(){
+        $user_id = Yii::$app->user->id;
+        return Follower::find()
+            ->where(['follower_id' => $user_id, "followed_id" => $this->user_id])->one();
+    }
 }

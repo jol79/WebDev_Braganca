@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
 <div class="post mx-auto">
         <div class="container">
             <div class="row">
@@ -9,15 +14,13 @@
                         <div class="col-12 col-sm-9 col-md-9 col-lg-">
                             <span class='topic'>
                                 <i class="<?=$model->category->category_icon_class?> logo-small"></i>
-                                <a href=""><?=$model->topic?></a>
+                                <?= Html::a($model->topic,
+                                    ['post/view', 'id' => $model->post_id]) ?>
                             </span>
                         </div>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3">
-                            <a href="" class='read'>
-                                <div class="button">
-                                    Read
-                                </div>
-                            </a>
+                            <?= Html::a("<div class=\"button\"> Read</div>",
+                                ['post/view', 'id' => $model->post_id], ['class' => 'read']) ?>
                         </div>
                     </div>
                     <div class="row">
