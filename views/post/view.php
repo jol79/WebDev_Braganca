@@ -21,13 +21,18 @@ PostAsset::register($this);
 
 
 <div class="container mt-4">
+
     <div class="row">
-        <img src="<?= Url::to(['/avatars/user' . $model->user_id . ".jpg"]) ?>" class="profile_avatar"/>
+        <div class="profile-picture mx-auto">
+            <?= Html::img("@web/avatars/user{$model->user_id}.png")?>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-12 user_info">
-            <p class="text-center"><?= $model->user->username ?></p>
+            <p class="text-center">
+                <?= Html::a($model->user->username, ['profile/view', 'user_id' => $model->user_id]);?>
+            </p>
 
             <hr class="divider">
 
@@ -60,6 +65,7 @@ PostAsset::register($this);
             <?= ListView::widget([
                 'dataProvider' => $commentDataProvider,
                 'itemView' => '_comments',
+                'layout' => '{items}'
             ]);?>
         </div>
 
@@ -79,8 +85,6 @@ PostAsset::register($this);
             <?php ActiveForm::end() ?>
         </div>
     </div>
-
-
 </div>
 
 

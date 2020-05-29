@@ -9,10 +9,25 @@ use app\models\Profile;
 use app\models\UploadForm;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
 class ProfileController extends \yii\web\Controller
 {
+    public function behaviors(){
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['update', 'view'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ]
+                ]
+            ],
+        ];
+    }
     //Using GET method to trigger chosen function by a user.
     //'user_id' default value points on
     //whether it is a logged in user or a foreign one

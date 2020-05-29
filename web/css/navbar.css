@@ -1,12 +1,31 @@
 nav{
     font-family: 'Raleway', sans-serif;
     font-size: 18px;
-    background-color: #F9F9F9;
     color: black;
+}
+
+.navbar > .fa, .fab, .fal, .far, .fas{
+    display: inline;
+}
+
+.navbar > .dropdown-item.active{
+    background-color: darkcyan;
+}
+
+.dropdown-item.active, .dropdown-item:active{
+    background-color: slategrey ;
 }
 
 .navbar{
     padding: 0px;
+}
+
+.my_nav{
+    background-color: white;
+}
+
+.navbar:hover{
+    box-shadow: 0 0 35px -2px rgba(0,0,0,.2);
 }
 
 .nav-item{
@@ -47,6 +66,14 @@ nav{
     font-size: 16px;
 }
 
+i{
+    padding-top: 8px;
+}
+
+
+nav[aria-label='breadcrumb']{
+    margin-top: 70px;
+}
 
 @media (max-width: 990px) {
     .dropdown-menu{

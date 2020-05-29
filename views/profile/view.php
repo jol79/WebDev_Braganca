@@ -12,7 +12,7 @@ ProfileAsset::register($this);
 $logged_in = $model->user_id == Yii::$app->user->id;
 ?>
 
-<div class="profile-wrap mx-auto">
+<div class="profile-wrap mx-auto mt-5">
     <div class="row">
         <div class="col-lg-12">
             <?= $this->render('flashes') ?>
@@ -69,12 +69,12 @@ $logged_in = $model->user_id == Yii::$app->user->id;
                 <?php
                 if($logged_in){
 
-                    echo Html::a("Edit Posts",
+                    echo Html::a("<span class = 'align-middle'>Edit Posts <i class=\"far fa-edit\"></i></span>",
                         ['profile/view', 'func' => 'editPosts'], ['class' => 'edit-posts']);
-                    echo Html::a("Edit Profile",
+                    echo Html::a("<span class = 'align-middle'>Edit Profile <i class=\"fas fa-user-circle\"></i></span>",
                         ['profile/view', 'func' => 'editProfile'], ['class' => 'edit-profile']);
                     if ($subview == '__postUpdateContainer'){
-                        echo Html::a("Back to feed",
+                        echo Html::a("<span class = 'align-middle'>Back to feed <i class=\"far fa-newspaper\"></i></span>",
                             ['profile/view', 'func' => 'back-to-feed'], ['class' => 'back-to-feed']);
                     }
                 }

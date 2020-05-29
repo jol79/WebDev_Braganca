@@ -13,6 +13,7 @@ class PostAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
+        '//fonts.googleapis.com/css2?family=Raleway&display=swap',
         'css/post.css',
 
     ];

@@ -1,6 +1,10 @@
-.nav_barColor{
-    background-color: transparent;
+body{
+    background-color: #F1F3F5 !important;
 }
+
+/*.nav_barColor{*/
+/*    background-color: transparent;*/
+/*}*/
 
 .breadcrumb_param{
     background-color: #FAFAFA;
@@ -105,16 +109,6 @@ header,
 .btn .fa {
     margin-left: 3px;
 }
-
-.top-nav-collapse {
-    background-color: transparent;
-    /*background-color: #424f95 !important;*/
-}
-
-.navbar:not(.top-nav-collapse) {
-    background: transparent !important;
-}
-
 
 .btn-white {
     color: black !important;
@@ -973,7 +967,7 @@ h6 {
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .navbar:not(.top-nav-collapse) {
         /*background: #424f95 !important;*/
-        background-color: transparent;
+        /*background-color: transparent;*/
     }
 
     /* Params for copyright info on the bottom of the home page */

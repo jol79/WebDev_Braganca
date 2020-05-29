@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 $this->title = 'Home';
 \app\assets\HomeAsset::register($this);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs']['class'] = $this->title;
 ?>
 
 

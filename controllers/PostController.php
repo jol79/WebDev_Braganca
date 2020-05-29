@@ -32,7 +32,7 @@ class PostController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['upvote', 'downvote'],
+                'only' => ['update', 'create', 'upvote', 'downvote'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -90,7 +90,7 @@ class PostController extends Controller
         $model = Post::createPost();
         if ($model->load(Yii::$app->request->post()) && $model->validate()){
             if ($model->save()){
-                return $this->redirect(['site/post']);
+                return $this->redirect(['post/view', 'id' => $model->post_id]);
             }
             else{
                 Yii::$app->session->addFlash("danger", 'Could not enroll student');
@@ -165,27 +165,6 @@ class PostController extends Controller
         return $this->render('posts', ['dataProvider' => $lang]);
     }
 
-
-    public function actionCreation(){
-        $model = Post::createPost();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()){
-            $action = Yii::$app->request->post('action');
-            if ($action == 'Preview'){
-                return $this->render('preview', ['model' => $model]);
-            }
-            else{
-                if ($model->save()){
-                    return $this->redirect(['site/post']);
-                }
-                else{
-                    Yii::$app->session->addFlash("danger", 'Could not enroll student');
-                }
-            }
-        }
-        $dropDown_items = Category::getAllAsArray();
-        return $this->render('creation',
-            ['model' => $model, 'dropDown_items' => $dropDown_items,]);
-    }
 
     public function actionView($id = 1){
         $commentModel = new Comment();
