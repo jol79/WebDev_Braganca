@@ -73,7 +73,7 @@ AppAsset::register($this);
     <?php
         $container_class = Yii::$app->controller->action->id == 'index' ? 'container-fluid' : 'container';
     ?>
-    <div class="container mt-4">
+    <div class="container container-layout">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
