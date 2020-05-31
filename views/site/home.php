@@ -35,7 +35,7 @@ $this->title = 'Home';
     <div class="row col-2-lg" style="">
         
         <!-- Info element: -->
-        <div class="col" style="margin-top: 50px">
+        <div class="col-lg-2 col-sm-10 col-md-12 col-lg-4 col-xl-4" style="margin-top: 50px">
 
             <!-- Learn part -->
             <div class="relaway">
@@ -104,7 +104,7 @@ $this->title = 'Home';
         </div>
 
         <!-- Cube element: -->
-        <div class="col">
+        <div class="col-5 col-sm-4 col-md-12 col-lg-4 col-xl-4">
             <div class="scene pos__cube">
                 <div class="cube cube__spin">
                     <!-- JS -->
