@@ -172,7 +172,7 @@ h6 {
     margin-left: 135px;
     margin-bottom: 40px;
 
-    background: #2D8BBD;
+    background: #616de1;
     border-radius: 25px;
 }
 
@@ -383,11 +383,177 @@ h6 {
     color: #FEFEFE;
 }
 
+/* Adding divider: */
+.divider{
+    margin-top: -60px;
+    margin-bottom:10px;
+    height:1px;
+    width:100%;
+    border-top:1px solid #d0d0d0;
+}
+
+/**
+    cube effect
+ */
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+/* params for scene behind the cube */
+.scene {
+    width: 200px;
+    height: 200px;
+    /*border: 1px solid #CCC;*/
+    margin: 80px;
+    perspective: 800px;
+}
+
+/* params for cube */
+.cube {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(150px);
+    transition: transform 1s;
+}
+
+.pos__cube{
+    margin-left: 200px;
+}
+
+/* params for cube sides */
+.cube.show-front  { transform: translateZ(-100px) rotateY(   0deg); }
+.cube.show-right  { transform: translateZ(-100px) rotateY( -90deg); }
+.cube.show-back   { transform: translateZ(-100px) rotateY(-180deg); }
+.cube.show-left   { transform: translateZ(-100px) rotateY(  90deg); }
+.cube.show-top    { transform: translateZ(-100px) rotateX( -90deg); }
+.cube.show-bottom { transform: translateZ(-100px) rotateX(  90deg); }
+
+/* params for cube side (include all sides) */
+.cube__face {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    opacity: .75;
+    border: 1px solid #2c2d34;
+    line-height: 30px;
+    font-size: 22px;
+    font-family: 'Raleway', cursive;
+    font-weight: bold;
+    color: #dcdcdc;
+    text-align: center;
+
+    box-shadow: #091f36, inset 0 100px 100px;
+}
+
+.cube__text{
+    padding-top: 0px;
+}
+
+/* params for spinning effect of the cube */
+.cube__spin{
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 45s;
+
+    animation-name: spinner;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 45s;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.cube::hover{
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+/* WebKit and Opera browsers */
+@-webkit-keyframes spinner {
+    from { -webkit-transform: rotateY(0deg);    }
+    to   { -webkit-transform: rotateY(-360deg); }
+}
+/* all other browsers */
+@keyframes spinner {
+    from {
+        -moz-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    to {
+        -moz-transform: rotateY(-360deg);
+        -ms-transform: rotateY(-360deg);
+        transform: rotateY(-360deg);
+    }
+}
+
+.cube__face--front  { background: hsl(209, 40%, 24%); }
+.cube__face--right  { background: hsl(209, 40%, 24%); }
+.cube__face--back   { background: hsl(209, 40%, 24%); }
+.cube__face--left   { background: hsl(209, 40%, 24%); }
+.cube__face--top    { background: hsl(209, 40%, 24%); }
+.cube__face--bottom { background: hsl(209, 40%, 24%); }
+
+.cube__face--front  { transform: rotateY(  0deg) translateZ(150px); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(150px); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(150px); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(150px); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(150px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+label { margin-right: 10px; }
+
 
 
 /* Making responsive points: */
  /* XXS-size devices */
 @media (max-width: 575.99px) {
+    /* params for cube */
+    .cube {
+        width: 300px;
+        height: 200px;
+        position: relative;
+        transform-style: preserve-3d;
+        transform: translateZ(150px);
+        transition: transform 1s;
+    }
+    /* params for cube side (include all sides) */
+    .cube__face {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        opacity: .75;
+        border: 1px solid #999999;
+        line-height: 30px;
+        font-size: 22px;
+        font-family: 'Raleway', cursive;
+        font-weight: bold;
+        color: #dcdcdc;
+        text-align: center;
+
+        box-shadow: inset 0 0 100px #091f36;
+    }
+    .pos__cube{
+        margin-left: 60px;
+    }
+    .button_params{
+        position: relative;
+        width: 80px;
+        height: 30px;
+
+        margin-left: 70px;
+        margin-bottom: 80px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+
+
     .text_in_blocks{
         /* Placing params: */
         margin-bottom: 10px;
@@ -406,17 +572,7 @@ h6 {
     .text_block22{
         margin-left: 30px;
     }
-    .button_params{
-        position: relative;
-        width: 120px;
-        height: 34px;
 
-        margin-left: 70px;
-        margin-bottom: 80px;
-
-        background: #2D8BBD;
-        border-radius: 25px;
-    }
     .no_border{
         border: none;
         width: 300px;
