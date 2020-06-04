@@ -63,6 +63,8 @@ AppAsset::register($this);
                 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'Bookmarks <i class="far fa-bookmark"></i>', 'url' => ['/post/bookmark'],
                 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Test <i class="fas fa-rss"></i>', 'url' => ['/post/like'],
+                'visible' => !Yii::$app->user->isGuest],
 
             Yii::$app->user->isGuest ?
                 ['label' => 'Login <i class="fas fa-sign-in-alt"></i>', 'url' => ['/user/login']] : // or ['/user/login-email']

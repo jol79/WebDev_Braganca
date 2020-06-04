@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'body:ntext',
             'rating',
             'status',
-            'user_id',
+            'profile_id',
             'category_id',
 
             ['class' => 'kartik\grid\ActionColumn'],

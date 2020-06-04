@@ -26,7 +26,7 @@ class CommentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'view', 'index'],
+                        'actions' => ['create', 'update', 'view', 'index', 'delete'],
                         'roles' => ['admin'],
                     ],
 

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Bookmark;
 use app\models\Category;
 use app\models\Comment;
 use app\models\CommentVote;
@@ -64,8 +65,8 @@ class PostController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchQuery(Post::find());
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -167,7 +168,7 @@ class PostController extends Controller
         if(Yii::$app->request->isPost){
             if($searchModel->load(Yii::$app->request->post())){
                 $postDataProvider = $searchModel->search(Yii::$app->request->queryParams);
-//                $postDataProvider->pagination->setPageSize(5);
+                $postDataProvider->pagination->setPageSize(5);
                 $lang = null;
             }
         }
@@ -274,12 +275,24 @@ class PostController extends Controller
     }
 
     public function actionBookmark(){
-        Post::_addBookmarkDelete();
         $profile_id = Yii::$app->user->identity->profile->id;
         $searchModel = new PostSearch();
         $query = Post::getBookmarkedPosts($profile_id);
         $dataProvider = $searchModel->searchQuery($query);
         return $this->render('bookmark', ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionBookmark_add_del($post_id){
+        $profile_id = Yii::$app->user->identity->profile->id;
+        $model =  $this->findModel($post_id);
+        $bookmark = Bookmark::getBookmark($post_id);
+        if ($bookmark){
+            $bookmark->removeBookmak($profile_id);
+        }
+        else{
+            Bookmark::addBookmark($profile_id, $post_id);
+        }
+        return $this->renderAjax('_postContainer', ['model' => $model]);
     }
 
     protected function findComment($id){
@@ -290,6 +303,21 @@ class PostController extends Controller
         return $comment;
     }
 
+    public function actionLike($param = 'like'){
+        return $this->render('like', ['time' => date('m/d/Y', time()), 'param' => $param]);
+    }
+
+    public function actionTest($param){
+        if ($param == 'like'){
+            $var = time();
+            $param = 'unlike';
+        }
+        else{
+            $var = date('m/d/Y', time());
+            $param = 'like';
+        }
+        return $this->renderAjax('like', ['time' => $var, 'param' => $param]);
+    }
 
 
 }

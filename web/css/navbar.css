@@ -122,6 +122,17 @@ nav[aria-label='breadcrumb']{
         border: none;
     }
 
+    .navbar-nav > .nav-item:last-child{
+        margin-right: auto;
+        margin-left: 10px;
+    }
+
+    .navbar-nav > .nav-item{
+        margin-left: 10px;
+    }
+
+
+
     #navbarDropdown.langs{
         padding: 8px 8px 8px 8px;
     }

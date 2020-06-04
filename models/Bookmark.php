@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use SebastianBergmann\Comparator\Book;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -64,6 +65,17 @@ class Bookmark extends \yii\db\ActiveRecord
             ->andWhere(['profile_id' => $profile_id])
             ->andWhere(['post_id' => $post_id])
             ->one();
+    }
+
+    public function removeBookmak($profile_id){
+        return Bookmark::deleteAll(['profile_id' => $profile_id, 'post_id' => $this->post_id]);
+    }
+
+    public static function addBookmark($profile_id, $post_id){
+        $bookmark = new Bookmark();
+        $bookmark->profile_id = $profile_id;
+        $bookmark->post_id = $post_id;
+        return $bookmark->save();
     }
 
     public static function getBookmarksAsArray($profile_id){

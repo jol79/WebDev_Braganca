@@ -19,12 +19,6 @@ FeedAsset::register($this);
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <?= $this->render('//profile/flashes') ?>
-    </div>
-</div>
-
 <?php
 
     foreach ($blocks as $time => $models) {
@@ -32,6 +26,7 @@ FeedAsset::register($this);
     echo "<div class='row'>";
     echo "<div class='col-lg-12 time'>$time</div>";
     echo "</div>";
+
     echo ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_postContainer',
@@ -47,6 +42,7 @@ FeedAsset::register($this);
         'layout' =>
             "{items}",
     ]);
+
     }
 
     ?>

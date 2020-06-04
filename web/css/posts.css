@@ -50,7 +50,9 @@ body{
     color: #212529;
 }
 
-
+div[data-pjax-container]{
+    width: 100%;
+}
 
 .settings .update a, .settings button[type='submit'], .settings button[type='button']{
     color: #BBBBBB;
