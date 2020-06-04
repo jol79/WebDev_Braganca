@@ -1,0 +1,160 @@
+.button__hover:hover{
+    box-shadow: inset 18px 4px 25px rgba(0, 0, 0, 0.25);
+}
+
+.button__params{
+    position: relative;
+    width: 120px;
+    height: 34px;
+
+    margin-left: 950px;
+    margin-top: -30.5px;
+
+    background: #2D8BBD;
+    border-radius: 25px;
+}
+
+.card__params{
+    background-color: #F0EFEF;
+    border-radius: 24px;
+    /*margin-top: 20px;*/
+    max-height: 50px;
+}
+
+.text__card{
+    margin-top: -8px;
+}
+
+.__divider{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height:4px;
+    width:100%;
+    border-top:1px solid #3B3B3B;
+}
+
+.large{
+    text-align: center;
+}
+
+/* resizing option for sites icons */
+/*.__sites{*/
+/*    width: 100%;*/
+/*}*/
+
+.brow__position{
+    margin-top: 20px;
+}
+.trow__position{
+    margin-top: 40px;
+}
+
+
+/* Making responsive points: */
+/* XXS-size devices */
+@media (max-width: 575.99px) {
+    .button__params{
+        position: relative;
+        width: 80px;
+        height: 34px;
+
+        margin-left: 150px;
+        margin-top: 5px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+    .card__params{
+        background-color: #F0EFEF;
+        border-radius: 24px;
+        /*margin-top: 20px;*/
+        max-height: 120px;
+    }
+
+    .text__card{
+        margin-top: -8px;
+    }
+}
+
+/* S-size devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px){
+    .button__params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 190px;
+        margin-top: 5px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+    .card__params{
+        background-color: #F0EFEF;
+        border-radius: 24px;
+        /*margin-top: 20px;*/
+        max-height: 120px;
+    }
+
+    .text__card{
+        margin-top: -8px;
+    }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .button__params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 280px;
+        margin-top: 5px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+    .card__params{
+        background-color: #F0EFEF;
+        border-radius: 24px;
+        /*margin-top: 20px;*/
+        max-height: 100px;
+    }
+
+    .text__card{
+        margin-top: -8px;
+    }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .button__params{
+        position: relative;
+        width: 120px;
+        height: 34px;
+
+        margin-left: 800px;
+        margin-top: -30.5px;
+
+        background: #2D8BBD;
+        border-radius: 25px;
+    }
+
+    .card__params{
+        background-color: #F0EFEF;
+        border-radius: 24px;
+        /*margin-top: 20px;*/
+        max-height: 50px;
+    }
+
+    .text__card{
+        margin-top: -8px;
+    }
+}
+
+@media (min-width: 1200px){
+
+}

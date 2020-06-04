@@ -177,6 +177,8 @@ class SiteController extends Controller
     }
 
     public function actionNews(){
+        $this->layout = ('main_noFot');
+
         return $this->render('news');
     }
 
