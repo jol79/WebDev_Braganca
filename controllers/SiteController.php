@@ -69,7 +69,7 @@ class SiteController extends Controller
     {
         $this->layout = ('main_noFot');
 
-        if ( Yii::$app->request->isAjax ) {
+        if (Yii::$app->request->isAjax) {
             Yii::$app->request->post();
             return 'test';
         }
@@ -93,10 +93,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
-            // refreshing page, so form will be submitted only one time,
-            // because if we don't use the refresh method user will have
-            // infinite loop when refreshing feedback page
-            return $this->refresh();
+//            return $this->refresh();
 
             return $this->render('home', [
                 'model' => $model,
@@ -104,6 +101,8 @@ class SiteController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
         }
+
+
         return $this->render('home', [
             'model' => $model,
             'dataProvider' => $dataProvider,
@@ -111,7 +110,8 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
+
+/**
      * Login action.
      *
      * @return Response|string
@@ -180,6 +180,22 @@ class SiteController extends Controller
         $this->layout = ('main_noFot');
 
         return $this->render('news');
+    }
+
+    /* Creating function to get data from db: */
+//    public function search($params){
+//        $query =
+//    }
+
+    public function actionHome(){
+        $this->layout = 'main_noFot.php';
+
+        // make query to get data for comments:
+//        $comments_data = ...
+
+        //
+
+        return $this->render('home');
     }
 
 }

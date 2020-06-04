@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use amnah\yii2\user\models\User;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -13,10 +12,9 @@ use yii\helpers\ArrayHelper;
  * @property int $follower_id
  * @property int $followed_id
  *
- * @property User $follower
- * @property User $followed
+ * @property Profile $follower
+ * @property Profile $followed
  */
-
 class Follower extends \yii\db\ActiveRecord
 {
     /**
@@ -35,8 +33,8 @@ class Follower extends \yii\db\ActiveRecord
         return [
             [['follower_id', 'followed_id'], 'required'],
             [['follower_id', 'followed_id'], 'integer'],
-            [['follower_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['follower_id' => 'id']],
-            [['followed_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['followed_id' => 'id']],
+            [['follower_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['follower_id' => 'id']],
+            [['followed_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['followed_id' => 'id']],
         ];
     }
 
@@ -59,7 +57,7 @@ class Follower extends \yii\db\ActiveRecord
      */
     public function getFollower()
     {
-        return $this->hasOne(User::className(), ['id' => 'follower_id']);
+        return $this->hasOne(Profile::className(), ['id' => 'follower_id']);
     }
 
     /**
@@ -69,7 +67,7 @@ class Follower extends \yii\db\ActiveRecord
      */
     public function getFollowed()
     {
-        return $this->hasOne(User::className(), ['id' => 'followed_id']);
+        return $this->hasOne(Profile::className(), ['id' => 'followed_id']);
     }
 
     public static function getFollowedUsersAsArray($follower_id){
@@ -79,6 +77,4 @@ class Follower extends \yii\db\ActiveRecord
             ->all();
         return ArrayHelper::getColumn($result, 'followed_id');
     }
-
-
 }

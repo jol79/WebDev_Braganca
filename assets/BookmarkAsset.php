@@ -6,15 +6,17 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class ProfileAsset extends AssetBundle
+class BookmarkAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-//    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
+
     public $baseUrl = '@web';
 
     public $css = [
+        '//fonts.googleapis.com/css2?family=Raleway&display=swap',
         'css/posts.css',
-        'css/profile.css',
+        'css/bookmark.css'
+
     ];
 
     public $js = [

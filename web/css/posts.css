@@ -2,189 +2,176 @@ body{
     background-color: #F1F3F5 !important;
 }
 
-.wrap{
+.post-wrap{
+    width: 90%;
     font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    border: 1px solid ghostwhite;
+    background-color: white;
 }
 
-::-webkit-scrollbar {
-    width: 6px;
-    height: 10px;
+
+.post-wrap:hover{
+    box-shadow: 0 0 35px -2px rgba(0,0,0,.2);
 }
 
-::-webkit-scrollbar-track {
+.blue{
+    background-color: #d1ecf1;
+}
+
+.post-picture {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #A49696;
+    display: block;
+}
+
+.post-picture{
+    width: 50px;
+    height: 50px;
+}
+
+.post-picture img {
+    width: auto;
+    height: 100%;
+    margin-left: 0px;
+}
+
+.bio{
+    line-height: 18px;
+}
+
+.topic{
+    font-size: 22px;
+    text-decoration: none;
+    color: #212529;
+}
+
+
+
+.settings .update a, .settings button[type='submit'], .settings button[type='button']{
+    color: #BBBBBB;
+}
+
+.settings .update a:hover, .settings button[type='submit']:hover, .settings button[type='button']:hover{
+    color: slategrey;
+}
+
+.description,
+.topic:hover,
+.description:hover{
+    text-decoration: none;
+    color: #212529;
+}
+
+.lang-logo{
+    float: right;
+}
+
+.lang-logo i {
+    text-align: right;
+    font-size: 40px;
+    color: slategrey;
+}
+
+.comments{
+    float: right;
+}
+
+.bookmark-wrap{
+    display: inline-block;
+}
+
+.bookmark, .froze, button[data-target="#delete"]{
     background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: rgb(191, 192, 193);
-    width: 10px;
-}
-
-.search-field .input-group {
-    width: 350px;
-
-}
-
-.search-field input[type=text] {
-    border: 2px solid #6C757D;
-    outline: none;
-    background-color: #A3A3A3;
-}
-
-
-.search-field .form-control:focus {
-    border-color: #6C757D;
-    background-color: #A3A3A3;
-    box-shadow: none;
-    color: white;
-}
-
-.search-field .form-control:active {
     border: none;
 }
 
-a.lang {
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-    border-radius: 4px;
-    background-color: #5F5E5E;
-    color: white;
+
+.bookmark.add i{
+    color: black;
+}
+
+.bookmark.del i{
+    color: #4fb2f6;
+}
+
+.bookmark.add i:hover {
+    color: #4fb2f6;
+}
+
+.bookmark.del i:hover{
+    color: black;
+}
+
+div[data-pjax-container]{
+    display: inline-block;
+
+}
+
+.settings{
+    display: inline-block;
+    font-size: 20px;
+}
+
+#bookmark{
+    display: inline-block;
+}
+
+.settings span{
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.settings span a:hover{
     text-decoration: none;
 }
 
-a.lang:hover {
-    background-color: #3B3C3E;
-    text-decoration: none;
-}
-
-a.lang:focus{
-    background-color: #3B3C3E;
-}
-a.lang:active{
-    background-color: #3B3C3E;
-}
-
-a.lang i {
-    display: block;
-    text-align: center;
-    color: white;
-    font-size: 40px;
-    margin-top: 3px;
-
-}
-
-a.lang:hover i,
-a.lang:hover p{
-    color: #6795DE;
-}
-
-.row-2,
-.row-3 {
-    margin-top: 12px;
-}
-
-p {
-    margin-top: 3px;
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
-    font-size: 14px;
-}
-
-/*End of languages block */
-
-/*Posts properties*/
-.post {
-    width: 70%;
-    height: 101px;
-    border-radius: 6px;
-    background-color: #949597;
-    margin-top: 5px;
-}
-
-
-.icon {
-    font-size: 35px;
-    color: white;
-}
-
-.logo-small {
-    display: none;
-    color: white;
-}
-
-.topic {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
+#delete-label{
     font-size: 18px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
-.topic a{
-    text-decoration: none;
-    color: #3F3F42;
+.modal-body{
+    font-size: 16px;
 }
 
-.topic a:hover{
-    text-decoration: none;
-    color: white;
-}
-
-a.read:hover {
-    text-decoration: none;
-    color: white;
-}
-
-.read {
-    display: block;
-    margin: 3px 13px 0px 0px;
-    text-align: center;
-    text-decoration: none;
-    color: #424242;
-    font-family: 'Raleway', sans-serif;
+.modal-body .froze{
+    font-size: 20px;
 
 }
 
-.read .button {
-    border-radius: 4px;
-    background-color: #7CA4E3;
+
+@media (max-width: 767.98px) {
+    .post-wrap{
+        width: 90%;
+    }
+
+    .sm-margin{
+        margin-top: 10px;
+    }
+
+
 }
 
-.description {
-    display: block;
-    font-size: 14px;
-    font-family: 'Raleway', sans-serif;
-    width: 100%;
-    height: 72px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    overflow-y: auto;
-    color: white;
-}
+@media (max-width: 991.98px) {
+    .post-wrap{
+        width: 80%;
+    }
 
-.details {
-    margin-right: 13px;
-    float: right;
-    font-weight: bold;
-    font-family: 'Raleway', sans-serif;
-    color: white;
-}
+    .topic{
+        font-size: 20px;
+    }
 
-.fa-star {
-    color: #FFC107;
-}
+    .description{
+        font-size: 14px;
+    }
 
-.fa-comment {
-    color: #FFF626;
-}
-
-.small-device{
-    margin-top: 3rem !important;
+    .lang-logo i{
+        font-size: 34px;
+    }
 }
 
 .col-lg-12 + nav{
@@ -223,82 +210,4 @@ a.read:hover {
 }
 
 
-/* // Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
-    .icon {
-        display: none;
-    }
 
-    .read {
-        display: none;
-    }
-
-    .logo-small {
-        display: inline;
-        font-size: 22px;
-    }
-
-    .post {
-        height: 400px;
-    }
-
-    .topic {
-
-        font-size: 12px;
-    }
-
-    .description {
-        font-size: 10px;
-    }
-
-    .small-device {
-        display: block;
-        font-size: 14px;
-        font-family: 'Raleway', sans-serif;
-        margin-top: 0rem !important;
-    }
-
-
-}
-
-/* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) {
-    .icon {
-        font-size: 30px;
-    }
-
-    .post {
-        width: 100%;
-        height: 300px;
-    }
-
-    .small-device {
-        margin-top: 0rem !important;
-    }
-}
-
-/* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) {
-    .post {
-        height: 130px;
-    }
-
-    .description {
-        font-size: 13px;
-    }
-
-    .topic {
-        font-size: 16px;
-    }
-
-    .small-device {
-        margin-top: 0rem !important;
-    }
-}
-
-/* // Large devices (desktops, less than 1200px) */
-@media (max-width: 1199.98px) {
-    .details {
-        font-size: 13px;
-    }
-}

@@ -12,15 +12,16 @@ use amnah\yii2\user\models\User;
  * @property string $date
  * @property string $topic
  * @property string $description
- * @property string $body
+ * @property string|null $body
  * @property int|null $rating
  * @property string|null $status
- * @property int $user_id
  * @property int $category_id
+ * @property int $profile_id
  *
+ * @property Bookmark[] $bookmarks
  * @property Comment[] $comments
  * @property Category $category
- * @property User $user
+ * @property Profile $profile
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -38,15 +39,15 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'topic', 'description', 'body', 'user_id', 'category_id'], 'required'],
+            [['date', 'topic', 'description', 'category_id', 'profile_id'], 'required'],
             [['date'], 'safe'],
             [['body'], 'string'],
-            [['rating', 'user_id', 'category_id'], 'integer'],
+            [['rating', 'category_id', 'profile_id'], 'integer'],
             [['topic'], 'string', 'max' => 50],
             [['description'], 'string', 'max' => 300],
             [['status'], 'string', 'max' => 45],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'category_id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['profile_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['profile_id' => 'id']],
         ];
     }
 
@@ -63,9 +64,19 @@ class Post extends \yii\db\ActiveRecord
             'body' => 'Body',
             'rating' => 'Rating',
             'status' => 'Status',
-            'user_id' => 'User ID',
             'category_id' => 'Category ID',
+            'profile_id' => 'Profile ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Bookmarks]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBookmarks()
+    {
+        return $this->hasMany(Bookmark::className(), ['post_id' => 'post_id']);
     }
 
     /**
@@ -89,13 +100,13 @@ class Post extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[User]].
+     * Gets query for [[Profile]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getProfile()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(Profile::className(), ['id' => 'profile_id']);
     }
 
     public static function getPostByPostId($post_id){
@@ -113,12 +124,16 @@ class Post extends \yii\db\ActiveRecord
         return $result;
     }
 
-    public static function getPostsbyUserId($user_id){
+    public static function getPostsbyProfileId($profile_id){
         $result = Post::find()
             ->joinWith(['category'])
-            ->andWhere(['post.user_id' => $user_id])
+            ->andWhere(['post.profile_id' => $profile_id])
             ->orderBy(['post.rating' => SORT_DESC]);
         return $result;
+    }
+
+    public static function test(){
+        return Post::find()->joinWith(['profile'])->one();
     }
     //Getting followed posts in order to generate user's  feed with the latest
     //published articles created by authors he is subscribed on.
@@ -127,11 +142,54 @@ class Post extends \yii\db\ActiveRecord
     public static function getFollowedPosts($follower_id){
         $followed_users = Follower::getFollowedUsersAsArray($follower_id);
         $result = Post::find()
-            ->andWhere(['user_id' => $followed_users])
+            ->andWhere(['profile_id' => $followed_users])
             ->andWhere(['status' => 'unfrozen'])
             ->orderBy(['date' => SORT_DESC]);
         return $result;
     }
+
+    public static function getBookmarkedPosts($profile_id){
+        $bookmarked_posts = Bookmark::getBookmarksAsArray($profile_id);
+        $result = Post::find()
+            ->where(['post_id' => $bookmarked_posts])
+            ->orderBy(['date' => SORT_DESC]);
+        return $result;
+    }
+
+    //posts of the current month
+    public static function getPostsOfMonth($follower_id){
+        $followed_posts = Post::getFollowedPosts($follower_id);
+        return $followed_posts->andWhere(["MONTH(date)" => date('m')])->orderBy(['date' => SORT_DESC]);
+    }
+
+
+    //filters posts in order to make up a feed
+    public static function getPostsOfInterval($follower_id, $condition){
+        return Post::getPostsOfMonth($follower_id)->andWhere($condition);
+    }
+
+    //return associative array consisting of four parts (today's posts, yesterday's  , 'week's, 'month's)
+    public static function getSortedPostsOfMonth($follower_id){
+        $models = Post::getPostsOfMonth($follower_id)->all();
+        $conds = [
+            'Today' => "DATEDIFF(sysdate(), date) = 0",
+            'Yesterday' => "DATEDIFF(sysdate(), date) = 1",
+            'Week' => "DATEDIFF(sysdate(), date) <= 7",
+            'Month' => "DATEDIFF(sysdate(), date) <= DAY(LAST_DAY(sysdate()))"
+        ];
+        $blocks = [];
+        $start = 0;
+        foreach ($conds as $key => $condition){
+            $interval = Post::getPostsOfInterval($follower_id, $condition)->count();
+            if ($interval != 0 && $start != count($models)){
+                $blocks[$key] = array_slice($models, $start, $interval);
+                $start += $interval;
+            }
+        }
+        return $blocks;
+    }
+
+//    public static function getPostsByMonth
     //Return 'Post' object with the default values in order to insert
     //new possible entry
     public static function createPost()
@@ -140,7 +198,7 @@ class Post extends \yii\db\ActiveRecord
         $post->date = date("Y-m-d");
         $post->rating = 0;
         $post->status = 'unfrozen';
-        $post->user_id = Yii::$app->user->id;
+        $post->profile_id = Yii::$app->user->identity->profile->id;
         return $post;
     }
 
@@ -152,5 +210,53 @@ class Post extends \yii\db\ActiveRecord
     public function unfrozePost(){
         $this->status = 'unfrozen';
         return $this->save();
+    }
+
+    public function isBookmarked(){
+        if (Bookmark::getBookmark($this->post_id)){
+            return true;
+        }
+        return false;
+    }
+
+    public function add_bookmark($profile_id){
+        $bookmark = new Bookmark();
+        $bookmark->profile_id = $profile_id;
+        $bookmark->post_id = $this->post_id;
+        return $bookmark->save();
+    }
+
+    public function delete_bookmark($profile_id){
+        return Bookmark::deleteAll(['profile_id' => $profile_id, 'post_id' => $this->post_id]);
+    }
+
+    public static function _addBookmarkDelete(){
+        if (Yii::$app->request->isPost){
+            $post_id = Yii::$app->request->post('post_id');
+            $post = Post::getPostByPostId($post_id);
+            if ($post){
+                $profile_id = Yii::$app->user->identity->profile->id;
+                $action = Yii::$app->request->post('action');
+                if ($action == 'add_bookmark'){
+                    if ($post->add_bookmark($profile_id)){
+                        Yii::$app->session->addFlash("success", "Bookmarked");
+                    }
+                    else{
+                        Yii::$app->session->addFlash("danger", "Can't add a new bookmark");
+                    }
+                }
+                else{
+                    if ($post->delete_bookmark($profile_id)){
+                        Yii::$app->session->addFlash("success", "Bookmark was removed successfully");
+                    }
+                    else{
+                        Yii::$app->session->addFlash("danger", "Can't remove bookmark");
+                    }
+                }
+            }
+            else{
+                Yii::$app->session->addFlash("danger", "Post Doesn't exist");
+            }
+        }
     }
 }

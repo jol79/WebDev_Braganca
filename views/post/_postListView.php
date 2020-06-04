@@ -8,10 +8,12 @@ use yii\widgets\ListView;
 if ($dataProvider != null) {
     if (!$dataProvider->totalCount) echo "<div class=\"col-md-12 col-lg-12 text-center pt-3\">No results</div>";
     else {
-        /** @var String $subview */
+
+        /** @var boolean $logged_in */
         echo ListView::widget([
             'dataProvider' => $dataProvider,
-            'itemView' => $subview,
+            'itemView' => '__postContainer',
+            'viewParams' => ['logged_in' => $logged_in],
             'options' => [
                 'tag' => 'div',
                 'class' => 'col-lg-12',

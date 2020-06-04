@@ -31,21 +31,21 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/img/logo.png', ['alt'=>Yii::$app->name]),
+        'brandLabel' => Html::img('@web/img/logo.svg', ['alt'=>Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-expand-md fixed-top my_nav',
+            'class' => 'navbar-expand-md navbar-light bg-light fixed-top',
         ],
         'innerContainerOptions' => ['class'=>'container-fluid']
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav'],
         'encodeLabels' => false,
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index'],],
+//            ['label' => 'Home', 'url' => ['/site/index'],],
             ['label' => 'Read', 'url' => ['/post/posts']],
             ['label' => 'News', 'url' => ['/site/news']],
-            ['label' => 'About', 'url' => ['site/about']],
+//            ['label' => 'About', 'url' => ['site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact'],
                 'visible' => !Yii::$app->user->isGuest && !Yii::$app->user->can('admin')],
             ['label' => 'Create', 'url' => ['/post/create'],
@@ -59,6 +59,10 @@ AppAsset::register($this);
                     ['label' => 'Manage users <i class="fas fa-users"></i>', 'url' => ['/user/admin'],],
                     ['label' => 'Manage comments <i class="far fa-comments"></i>', 'url' => ['/comment/index'],]
                 ]],
+            ['label' => 'Feed <i class="fas fa-rss"></i>', 'url' => ['/post/feed'],
+                'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Bookmarks <i class="far fa-bookmark"></i>', 'url' => ['/post/bookmark'],
+                'visible' => !Yii::$app->user->isGuest],
 
             Yii::$app->user->isGuest ?
                 ['label' => 'Login <i class="fas fa-sign-in-alt"></i>', 'url' => ['/user/login']] : // or ['/user/login-email']
@@ -73,12 +77,12 @@ AppAsset::register($this);
     <?php
         $container_class = Yii::$app->controller->action->id == 'index' ? 'container-fluid' : 'container';
     ?>
-    <div class="container container-layout">
+    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
     </div>
-    <div class="<?= $container_class ?>">
+    <div class="<?= $container_class ?> container-layout">
         <?= $content ?>
     </div>
 </div>

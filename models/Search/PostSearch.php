@@ -5,20 +5,22 @@ namespace app\models\Search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Post;
+use yii\data\Pagination;
 
 /**
  * PostSearch represents the model behind the search form of `app\models\Post`.
  */
 class PostSearch extends Post
 {
+    public $searchString;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['post_id', 'rating', 'user_id', 'category_id'], 'integer'],
-            [['date', 'topic', 'description', 'body', 'status'], 'safe'],
+            [['post_id', 'rating', 'category_id', 'profile_id'], 'integer'],
+            [['date', 'topic', 'description', 'body', 'status', 'searchString'], 'safe'],
         ];
     }
 
@@ -61,8 +63,8 @@ class PostSearch extends Post
             'post_id' => $this->post_id,
             'date' => $this->date,
             'rating' => $this->rating,
-            'user_id' => $this->user_id,
             'category_id' => $this->category_id,
+            'profile_id' => $this->profile_id,
         ]);
 
         $query->andFilterWhere(['like', 'topic', $this->topic])
@@ -70,6 +72,29 @@ class PostSearch extends Post
             ->andFilterWhere(['like', 'body', $this->body])
             ->andFilterWhere(['like', 'status', $this->status]);
 
+        $words_array = explode(" ", $this->searchString);
+
+        foreach ($words_array as $word){
+            $query->orFilterWhere(['like', 'topic', $word])
+                ->orFilterWhere(['like', 'description', $word])
+                ->orFilterWhere(['like', 'body', $word]);
+        }
+
+        return $this->_getPaginatedDataProvider($query, $dataProvider);
+    }
+    public function searchQuery($query){
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        return $this->_getPaginatedDataProvider($query, $dataProvider);
+
+    }
+
+    private function _getPaginatedDataProvider($query, $dataProvider){
+        $count = $query->count();
+        $pagination = new Pagination(['totalCount' => $count]);
+        $dataProvider->pagination = $pagination;
         return $dataProvider;
     }
 }
+

@@ -6,6 +6,7 @@ namespace app\controllers;
 use app\models\Follower;
 use app\models\Post;
 use app\models\Profile;
+use app\models\Search\PostSearch;
 use app\models\UploadForm;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -31,70 +32,69 @@ class ProfileController extends \yii\web\Controller
     //Using GET method to trigger chosen function by a user.
     //'user_id' default value points on
     //whether it is a logged in user or a foreign one
-    public function actionView($user_id = 0, $func = 'default')
+    public function actionView($profile_id = 0, $func = 'default')
     {
-        $this->_frozePost();
-
-        if (!$user_id){
-            $user_id = Yii::$app->user->id;
+        $searchModel = new PostSearch();
+        $logged_in = false;
+        $current_profile_id = Yii::$app->user->identity->profile->id;
+        if (!$profile_id || $profile_id == $current_profile_id){
+            $this->_frozePost();
+            $profile_id = $current_profile_id;
             if ($func == 'default'){
-                return $this->_default($user_id);
-            }
-            else if ($func == 'editPosts'){
-                return $this->_editPosts($user_id);
+                $logged_in = true;
             }
             else if ($func == 'editProfile'){
                 $this->redirect(['profile/update']);
             }
-            else if ($func == 'back-to-feed'){
-                $this->redirect(['profile/view']);
-            }
         }
         else{
+            Post::_addBookmarkDelete();
             $this->_subscribeUnsubscribe();
-            return $this->_asGuest($user_id);
         }
-        return true;
-    }
 
-    private function _asGuest($user_id){
-        $userPostsDataProvider = new ActiveDataProvider([
-            'query' => Post::getPostsbyUserId($user_id),
-            'pagination' => ['pageSize' => 5]
-        ]);
-        return $this->render('view',
-            ['dataProvider' => $userPostsDataProvider,
-                'subview' => '__postContainer',
-                'model' => Profile::getProfileByUserId($user_id)]);
-    }
-
-    private function _default($user_id){
-        $userPostsDataProvider = new ActiveDataProvider([
-            'query' => Post::getFollowedPosts($user_id),
-            'pagination' => ['pageSize' => 5]
-        ]);
-        return $this->render('view',
-            ['dataProvider' => $userPostsDataProvider,
-                'subview' => '__postContainer',
-                'model' => Profile::getProfileByUserId($user_id)]);
-    }
-
-    private function _editPosts($user_id){
-        $userPostsDataProvider = new ActiveDataProvider([
-            'query' => Post::getPostsbyUserId($user_id),
-            'pagination' => ['pageSize' => 5]
-        ]);
+        $query = Post::getPostsbyProfileId($profile_id);
+        $userPostsDataProvider = $searchModel->searchQuery($query);
+        $userPostsDataProvider->pagination->setPageSize(5);
 
         return $this->render('view',
             ['dataProvider' => $userPostsDataProvider,
-                'subview' => '__postUpdateContainer',
-                'model' => Profile::getProfileByUserId($user_id)]);
-
+                'model' => Profile::getProfileByProfileId($profile_id), 'logged_in' => $logged_in]);
     }
+
+    private function _addBookmarkDelete(){
+        if (Yii::$app->request->isPost){
+            $post_id = Yii::$app->request->post('post_id');
+            $post = Post::getPostByPostId($post_id);
+            if ($post){
+                $profile_id = Yii::$app->user->identity->profile->id;
+                $action = Yii::$app->request->post('action');
+                if ($action == 'add_bookmark'){
+                    if ($post->add_bookmark($profile_id)){
+                        Yii::$app->session->addFlash("success", "Bookmarked");
+                    }
+                    else{
+                        Yii::$app->session->addFlash("danger", "Can't add a new bookmark");
+                    }
+                }
+                else{
+                    if ($post->delete_bookmark($profile_id)){
+                        Yii::$app->session->addFlash("success", "Bookmark was removed successfully");
+                    }
+                    else{
+                        Yii::$app->session->addFlash("danger", "Can't remove bookmark");
+                    }
+                }
+            }
+            else{
+                Yii::$app->session->addFlash("danger", "Post Doesn't exist");
+            }
+        }
+    }
+
 
     public function actionUpdate(){
-        $user_id = Yii::$app->user->id;
-        $model = Profile::getProfileByUserId($user_id);
+        $profile_id =Yii::$app->user->identity->profile->id;
+        $model = Profile::getProfileByProfileId($profile_id);
         $img_model = new UploadForm();
         if (Yii::$app->request->isPost){
             if ($model->load(Yii::$app->request->post()) && $model->validate()){
@@ -108,7 +108,7 @@ class ProfileController extends \yii\web\Controller
             }
             $img_model->imageFile = UploadedFile::getInstance($img_model, 'imageFile');
             //'empty()' to check whether any image was uploaded since it is optional
-            if (!empty($img_model->imageFile) && $img_model->upload($user_id, $model)) {
+            if (!empty($img_model->imageFile) && $img_model->upload($profile_id, $model)) {
                 // file is uploaded successfully
                 Yii::$app->session->addFlash("success", "You successfully changed Profile Image");
                 $this->redirect(['profile/view']);
@@ -146,13 +146,13 @@ class ProfileController extends \yii\web\Controller
 
     private function _subscribeUnsubscribe(){
         if (Yii::$app->request->isPost){
-            $profile_id = Yii::$app->request->post('id');
-            $author = Profile::findOne($profile_id);
+            $profile_id_author = Yii::$app->request->post('id');
+            $author = Profile::findOne($profile_id_author);
             if ($author){
-                $user_id = Yii::$app->user->id;
+                $profile_id_user = Yii::$app->user->identity->profile->id;
                 $action = Yii::$app->request->post('action');
                 if ($action == 'follow'){
-                    if ($author->subscribe($user_id)){
+                    if ($author->subscribe($profile_id_user)){
                         Yii::$app->session->addFlash("success", "Subscribed");
                     }
                     else{
@@ -160,7 +160,7 @@ class ProfileController extends \yii\web\Controller
                     }
                 }
                 else if ($action == 'unfollow'){
-                    if ($author->unSubscribe($user_id)){
+                    if ($author->unSubscribe($profile_id_user)){
                         Yii::$app->session->addFlash("success", "Unsubscribed");
                     }
                     else{
@@ -171,10 +171,6 @@ class ProfileController extends \yii\web\Controller
                     Yii::$app->session->addFlash("danger", "Unreachable Error");
                 }
             }
-            else{
-                Yii::$app->session->addFlash("danger", "Author doesn't exist");
-            }
         }
     }
-
 }
