@@ -328,32 +328,34 @@ h6 {
 /* Creating parallax effect for second photo: */
 .parallax_second {
     /* The image used */
-    background: url(../img/second_photo.png) center center;
+    background: url(../img/parallax_PNGs/parallax_img2.png) center center;
 
     /* Set a specific height */
     min-height: 400px;
+    height: 100%;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 
 /* Creating parallax effect for the first photo: */
 .parallax_first {
     /* The image used */
-    background: url(../img/first_photo.png) center center;
+    background: url(../img/parallax_PNGs/parallax_img1.png) center center;
 
     /* Set a specific height */
     min-height: 400px;
+    height: 100%;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .pos_firsttextinPhoto{
@@ -433,8 +435,8 @@ body { font-family: sans-serif; }
 /* params for cube side (include all sides) */
 .cube__face {
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     opacity: .75;
     border: 1px solid #2c2d34;
     line-height: 30px;
@@ -447,8 +449,18 @@ body { font-family: sans-serif; }
     box-shadow: #091f36, inset 0 100px 100px;
 }
 
-.cube__text{
-    padding-top: 0px;
+.pythonlogo{
+    width: 100%;
+}
+.gologo{
+    width: 100%;
+}
+.jslogo{
+    width: 100%;
+}
+.cpplogo{
+    width: 90%;
+    height: 90%;
 }
 
 /* params for spinning effect of the cube */
@@ -498,15 +510,18 @@ body { font-family: sans-serif; }
 .cube__face--top    { background: hsl(209, 40%, 24%); }
 .cube__face--bottom { background: hsl(209, 40%, 24%); }
 
-.cube__face--front  { transform: rotateY(  0deg) translateZ(150px); }
-.cube__face--right  { transform: rotateY( 90deg) translateZ(150px); }
-.cube__face--back   { transform: rotateY(180deg) translateZ(150px); }
-.cube__face--left   { transform: rotateY(-90deg) translateZ(150px); }
-.cube__face--top    { transform: rotateX( 90deg) translateZ(150px); }
-.cube__face--bottom { transform: rotateX(-90deg) translateZ(150px); }
+.cube__face--front  { transform: rotateY(  0deg) translateZ(125px); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(125px); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(125px); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(125px); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(125px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(125px); }
 
 label { margin-right: 10px; }
 
+.hov_ef:hover{
+    box-shadow: 0 0 35px -2px rgba(0,0,0,.2);
+}
 
 
 /* Making responsive points: */
@@ -518,14 +533,14 @@ label { margin-right: 10px; }
         height: 200px;
         position: relative;
         transform-style: preserve-3d;
-        transform: translateZ(150px);
+        transform: translateZ(80px);
         transition: transform 1s;
     }
     /* params for cube side (include all sides) */
     .cube__face {
         position: absolute;
-        width: 300px;
-        height: 300px;
+        width: 150px;
+        height: 150px;
         opacity: .75;
         border: 1px solid #999999;
         line-height: 30px;
@@ -540,17 +555,12 @@ label { margin-right: 10px; }
     .pos__cube{
         margin-left: 60px;
     }
-    .button_params{
-        position: relative;
-        width: 80px;
-        height: 30px;
-
-        margin-left: 70px;
-        margin-bottom: 80px;
-
-        background: #2D8BBD;
-        border-radius: 25px;
-    }
+    .cube__face--front  { transform: rotateY(  0deg) translateZ(75px); }
+    .cube__face--right  { transform: rotateY( 90deg) translateZ(75px); }
+    .cube__face--back   { transform: rotateY(180deg) translateZ(75px); }
+    .cube__face--left   { transform: rotateY(-90deg) translateZ(75px); }
+    .cube__face--top    { transform: rotateX( 90deg) translateZ(75px); }
+    .cube__face--bottom { transform: rotateX(-90deg) translateZ(75px); }
 
 
 
@@ -678,11 +688,12 @@ label { margin-right: 10px; }
 
     /* Creating parallax effect for the first photo: */
     .parallax_first {
-        background: url(../img/parallax_PNGs/XXS_first_parallex.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img1.png) center center;
         /* The image used */
 
         /* Set a specific height */
         min-height: 100px;
+
 
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -693,7 +704,7 @@ label { margin-right: 10px; }
     /* Creating parallax effect for second photo: */
     .parallax_second {
         /* The image used */
-        background: url(../img/parallax_PNGs/XXS_second_parallex.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img2.png) center center;
 
         /* Set a specific height */
         min-height: 100px;
@@ -874,7 +885,7 @@ label { margin-right: 10px; }
     /* Creating parallax effect for the first photo: */
     .parallax_first {
         /* The image used */
-        background: url(../img/parallax_PNGs/S_first_parallex.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img1.png) center center;
 
         /* Set a specific height */
         min-height: 120px;
@@ -883,12 +894,12 @@ label { margin-right: 10px; }
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100%;
     }
     /* Creating parallax effect for second photo: */
     .parallax_second {
         /* The image used */
-        background: url(../img/parallax_PNGs/S_second_parallex.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img2.png) center center;
 
         /* Set a specific height */
         min-height: 120px;
@@ -897,7 +908,7 @@ label { margin-right: 10px; }
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100%;
     }
     .pos_firsttextinPhoto{
         position: absolute;
@@ -924,6 +935,10 @@ label { margin-right: 10px; }
         font-size: 24px;
         line-height: 49px;
         color: #FEFEFE;
+    }
+
+    .pos__cube{
+        margin-left: 135px;
     }
 }
 
@@ -1065,7 +1080,7 @@ label { margin-right: 10px; }
     /* Creating parallax effect for the first photo: */
     .parallax_first {
         /* The image used */
-        background: url(../img/parallax_PNGs/MandL_first_parallax.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img1.png) center center;
 
         /* Set a specific height */
         min-height: 150px;
@@ -1074,11 +1089,11 @@ label { margin-right: 10px; }
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100%;
     }
     .parallax_second {
         /* The image used */
-        background: url(../img/parallax_PNGs/S_second_parallex.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img2.png) center center;
 
         /* Set a specific height */
         min-height: 150px;
@@ -1087,7 +1102,7 @@ label { margin-right: 10px; }
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100%;
     }
     .pos_firsttextinPhoto{
         position: absolute;
@@ -1258,7 +1273,7 @@ label { margin-right: 10px; }
     /* Creating parallax effect for the first photo: */
     .parallax_first {
         /* The image used */
-        background: url(../img/first_photo.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img1.png) center center;
 
         /* Set a specific height */
         min-height: 250px;
@@ -1267,11 +1282,11 @@ label { margin-right: 10px; }
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100%;
     }
     .parallax_second {
         /* The image used */
-        background: url(../img/parallax_PNGs/S_second_parallex.png) center center;
+        background: url(../img/parallax_PNGs/parallax_img2.png) center center;
 
         /* Set a specific height */
         min-height: 250px;
@@ -1280,7 +1295,7 @@ label { margin-right: 10px; }
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100%;
     }
     /* Text position over the first parallax effect */
     .pos_firsttextinPhoto{
@@ -1335,6 +1350,7 @@ label { margin-right: 10px; }
         border-radius: 25px;
     }
 }
+
 
 
 
