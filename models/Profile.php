@@ -18,6 +18,8 @@ use amnah\yii2\user\models\User;
  * @property string|null $about
  * @property string|null $image_name
  *
+ * @property Bookmark[] $bookmarks
+ * @property Post[] $posts
  * @property User $user
  */
 class Profile extends \amnah\yii2\user\models\Profile
@@ -63,6 +65,26 @@ class Profile extends \amnah\yii2\user\models\Profile
     }
 
     /**
+     * Gets query for [[Bookmarks]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBookmarks()
+    {
+        return $this->hasMany(Bookmark::className(), ['profile_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Posts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosts()
+    {
+        return $this->hasMany(Post::className(), ['profile_id' => 'id']);
+    }
+
+    /**
      * Gets query for [[User]].
      *
      * @return \yii\db\ActiveQuery
@@ -72,24 +94,26 @@ class Profile extends \amnah\yii2\user\models\Profile
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public static function getProfileByUserId($user_id){
-        return Profile::find()->where(['user_id' => $user_id])->one();
+
+    public static function getProfileByProfileId($profile_id){
+        return Profile::find()->where(['id' => $profile_id])->one();
     }
 
-    public function subscribe($user_id){
+    public function subscribe($profile_id){
         $model = new Follower();
-        $model->follower_id = $user_id;
-        $model->followed_id = $this->user_id;
+        $model->follower_id = $profile_id;
+        $model->followed_id = $this->id;
         return $model->save();
     }
 
-    public function unSubscribe($user_id){
-        return Follower::deleteAll(['follower_id' => $user_id, 'followed_id' => $this->user_id]);
+    public function unSubscribe($profile_id){
+        return Follower::deleteAll(['follower_id' => $profile_id, 'followed_id' => $this->id]);
     }
 
     public function isSubscribed(){
-        $user_id = Yii::$app->user->id;
+        $profile_id = Yii::$app->user->identity->profile->id;
         return Follower::find()
-            ->where(['follower_id' => $user_id, "followed_id" => $this->user_id])->one();
+            ->where(['follower_id' => $profile_id, "followed_id" => $this->id])->one();
     }
+
 }

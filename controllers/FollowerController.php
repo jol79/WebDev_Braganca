@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Follower;
 use app\models\Search\FollowerSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,10 +21,20 @@ class FollowerController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'view', 'index'],
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'view', 'index', 'post'],
+                        'roles' => ['@'],
+                    ],
+
                 ],
             ],
         ];
@@ -123,5 +134,9 @@ class FollowerController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionPost(){
+        return $this->render('post');
     }
 }

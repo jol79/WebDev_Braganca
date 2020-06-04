@@ -1,37 +1,30 @@
 <?php
 /* @var $models */ //From sitecontroller (change it)
 /** @var $pagination */
-/** @var TYPE_NAME $dataProvider */
+/** @var app\models\Post $dataProvider */
+/** @var app\models\Search\PostSearch $searchModel */
 $this->title = 'Posts';
 \app\assets\PostsAsset::register($this);
-use yii\helpers\Html;
 
- ?>
-<div class="row search-field">
-    <div class="input-group mx-auto mb-2">
-        <input type="text" class="form-control" placeholder="Search for a related">
-        <div class="input-group-append">
-            <button class="btn btn-secondary" type="button">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>
+use yii\bootstrap4\ActiveForm;
+use yii\bootstrap4\LinkPager;
+use yii\helpers\Html;
+use yii\widgets\ListView;
+use yii\widgets\Pjax;
+
+?>
+
+<div class="row search-field mt-5">
+    <div class="search-field mx-auto">
+        <?php $form = ActiveForm::begin(['id' => 'searchBar']);?>
+        <?= $form->field($searchModel, 'searchString')->textInput(['maxlength' => 50]) ?>
+        <?= Html::submitButton('<i class="fas fa-search fa-sm"></i>', ['class' => 'search-button']); ?>
+        <?php ActiveForm::end();?>
     </div>
+
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <?php
-        //Dynamic generation start of the implementation
-//            for ($k = 0; $k < count($icons); $k++){
-//
-//                if (($k + 1) % 4 == 1){
-//                    echo '<div class="row justify-content-center">';
-//                }
-//                echo Html::a("<i class=\"{$icons[$k]->category_icon_class}\"></i>
-//                    <p>{$icons[$k]->category_name}</p>",
-//                    ['/post/posts', 'lang' => strval($icons[$k]->category_name)],
-//                    ['class' => ['lang']]);
-//            }
-        ?>
         <div class="row">
             <?= Html::a(
                 "<i class=\"devicon-python-plain\"></i>
@@ -102,6 +95,33 @@ use yii\helpers\Html;
 </div>
 <div class="row mt-3">
 <?php
-    echo $this->render('_postListView', ['dataProvider'  => $dataProvider, 'subview' => '__postContainer'])
+Pjax::begin(['linkSelector' => '.lang', 'formSelector' => '#searchBar']);
+Pjax::begin(['linkSelector' => '.page-link']);
+if ($dataProvider != null) {
+    if (!$dataProvider->totalCount) echo "<div class=\"col-md-12 col-lg-12 text-center pt-3\">No results</div>";
+    else {
+
+        /** @var boolean $logged_in */
+        echo ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_postContainer',
+            'options' => [
+                'tag' => 'div',
+                'class' => 'row',
+            ],
+            'itemOptions' => [
+                'tag' => 'div',
+                'class' => 'col-lg-6',
+            ],
+            'layout' =>
+                "{items}",
+        ]);
+        echo LinkPager::widget([
+            'pagination' => $dataProvider->pagination,
+        ]);
+    }
+}
+Pjax::end();
+Pjax::end();
 ?>
 </div>

@@ -19,12 +19,12 @@ class UploadForm extends Model
         ];
     }
 
-    public function upload($user_id, $model)
+    public function upload($profile_id, $model)
     {
 //        $this->imageFile->extension;
         if ($this->validate()) {
             $uploadDir = Yii::getAlias('@webroot/avatars/');
-            $image_name = "user$user_id." . 'png';
+            $image_name = "user$profile_id." . 'png';
             $this->imageFile->saveAs($uploadDir . $image_name);
             $model->image_name = $image_name;
             if ($model->save()){

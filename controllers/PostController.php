@@ -5,15 +5,14 @@ namespace app\controllers;
 use app\models\Category;
 use app\models\Comment;
 use app\models\CommentVote;
+use app\models\Search\PostSearch;
 use Yii;
 use app\models\Post;
-use app\models\Search\PostSearch;
 use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
 
-
 use yii\data\Pagination;
-
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -32,12 +31,18 @@ class PostController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['update', 'create', 'upvote', 'downvote'],
+                'only' => ['update', 'create', 'view', 'posts', 'index', 'delete'],
                 'rules' => [
                     [
                         'allow' => true,
+                        'actions' => ['update', 'create', 'view', 'posts', 'delete', 'feed'],
                         'roles' => ['@']
-                    ]
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'delete', 'create', 'view', 'posts', 'feed'],
+                        'roles' => ['admin'],
+                    ],
                 ]
             ],
             'verbs' => [
@@ -134,7 +139,7 @@ class PostController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['profile/view', 'func' => 'editPosts']);
+        return $this->redirect(['profile/view']);
     }
 
     /**
@@ -154,15 +159,25 @@ class PostController extends Controller
     }
 
     public function actionPosts($lang = null){
-        $icons = Category::getIcons();
-        if ($lang != null){
-            $postDataProvider = new ActiveDataProvider([
-                'query' => Post::getPostsbyCategory($lang),
-                'pagination' => ['pageSize' => 5,]
-            ]);
-            return $this->render('posts', ['dataProvider'  => $postDataProvider, 'icons' => $icons]);
+        $postDataProvider = null;
+        $searchModel = new PostSearch();
+
+        Post::_addBookmarkDelete();
+
+        if(Yii::$app->request->isPost){
+            if($searchModel->load(Yii::$app->request->post())){
+                $postDataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//                $postDataProvider->pagination->setPageSize(5);
+                $lang = null;
+            }
         }
-        return $this->render('posts', ['dataProvider' => $lang]);
+
+        if ($lang != null){
+            $query = Post::getPostsbyCategory($lang);
+            $postDataProvider = $searchModel->searchQuery($query);
+            $postDataProvider->pagination->setPageSize(5);
+        }
+        return $this->render('posts', ['dataProvider' => $postDataProvider, 'searchModel' => $searchModel]);
     }
 
 
@@ -252,6 +267,21 @@ class PostController extends Controller
         ]);
     }
 
+    public function actionFeed(){
+        $blocks = Post::getSortedPostsOfMonth(Yii::$app->user->identity->profile->id);
+        Post::_addBookmarkDelete();
+        return $this->render('feed', ['blocks' => $blocks]);
+    }
+
+    public function actionBookmark(){
+        Post::_addBookmarkDelete();
+        $profile_id = Yii::$app->user->identity->profile->id;
+        $searchModel = new PostSearch();
+        $query = Post::getBookmarkedPosts($profile_id);
+        $dataProvider = $searchModel->searchQuery($query);
+        return $this->render('bookmark', ['dataProvider' => $dataProvider]);
+    }
+
     protected function findComment($id){
         $comment = Comment::findOne($id);
         if (!$comment){
@@ -259,4 +289,7 @@ class PostController extends Controller
         }
         return $comment;
     }
+
+
+
 }

@@ -135,4 +135,9 @@ class Comment extends \yii\db\ActiveRecord
             ->andWhere(['type' => CommentVote::TYPE_DOWNVOTE]);
     }
 
+    //returns number of comments
+    public static function getCommentsbyPostId($post_id){
+        return Comment::find()->where(['post_id' => $post_id])->count();
+    }
+
 }

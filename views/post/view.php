@@ -24,14 +24,14 @@ PostAsset::register($this);
 
     <div class="row">
         <div class="profile-picture mx-auto">
-            <?= Html::img("@web/avatars/user{$model->user_id}.png")?>
+            <?= Html::img("@web/avatars/user{$model->profile_id}.png")?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 user_info">
             <p class="text-center">
-                <?= Html::a($model->user->username, ['profile/view', 'user_id' => $model->user_id]);?>
+                <?= Html::a($model->profile->full_name, ['profile/view', 'profile_id' => $model->profile_id]);?>
             </p>
 
             <hr class="divider">
