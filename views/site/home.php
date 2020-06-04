@@ -241,3 +241,24 @@ filter: blur(34px);"></div>
     radioGroup.addEventListener( 'change', changeSide );
 </script>
 
+<!-- Options for buttons: -->
+<?php
+    $options = [
+            //<a href="#" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1">Learn</a>
+            'a_posts' => [
+                    'btn',
+                    'theme' => 'btn-primary button_params cube__button hov_ef',
+                    'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1',
+                    'href' => '/post/posts',
+            ],
+            //<a href="#" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; ; background: #616DE1">Create</a>
+            'a_create' => [
+                    'btn',
+                    'theme' => 'btn btn-primary button_params cube__button hov_ef',
+                    'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; ; background: #616DE1',
+                    'href' => '/post/create'
+            ],
+            //<a href="../../views/site/news.php" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1">Read</a>
+
+    ]
+?>
