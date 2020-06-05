@@ -7,6 +7,7 @@ use app\models\Comment;
 use app\models\Search\CommentSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -26,9 +27,14 @@ class CommentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'view', 'index', 'delete'],
+                        'actions' => ['create', 'view', 'index', 'delete'],
                         'roles' => ['admin'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['@']
+                    ]
 
                 ],
             ],
@@ -92,8 +98,11 @@ class CommentController extends Controller
     {
         $model = $this->findModel($id);
 
+        if (!Yii::$app->user->can('admin') && Yii::$app->user->id != $model->user_id)
+            throw new ForbiddenHttpException("No permission");
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['post/view', 'id' => $model->post_id]);
         }
 
         return $this->render('update', [

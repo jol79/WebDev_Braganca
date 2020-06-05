@@ -36,6 +36,7 @@ use yii\widgets\Pjax;
             if (Yii::$app->user->id == $model->user_id || Yii::$app->user->can('admin')){
                 echo
                 '
+                <a href="'. Url::to(['comment/update', 'id' => $model->id]) .'" data-method="post"><i class="fas fa-pencil-alt"></i></a>
                 <a href="'. Url::to(['post/delete-comment', 'id' => $model->id]) .'" data-method="post"><i class="fas fa-trash"></i></a>
                 ';
             }
