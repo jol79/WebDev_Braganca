@@ -259,4 +259,14 @@ class Post extends \yii\db\ActiveRecord
             }
         }
     }
+
+    public function getPostHeart(){
+        return PostHeart::find()
+            ->andWhere(['user_id' => Yii::$app->user->id])
+            ->andWhere(['post_id' => $this->post_id])->one();
+    }
+
+    public function getHearts(){
+        return $this->hasMany(PostHeart::class, ['post_id' => 'post_id']);
+    }
 }

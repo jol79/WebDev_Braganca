@@ -6,9 +6,11 @@ use app\models\Bookmark;
 use app\models\Category;
 use app\models\Comment;
 use app\models\CommentVote;
+use app\models\PostHeart;
 use app\models\Search\PostSearch;
 use Yii;
 use app\models\Post;
+use yii\bootstrap4\Html;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
@@ -317,6 +319,27 @@ class PostController extends Controller
             $param = 'like';
         }
         return $this->renderAjax('like', ['time' => $var, 'param' => $param]);
+    }
+
+    public function actionHeart($id){
+        $post = Post::findOne($id);
+        $user_id = Yii::$app->user->id;
+        $postHeart = $post->getPostHeart();
+        if (!$postHeart){
+            $postHeart = new PostHeart();
+            $postHeart->post_id = $id;
+            $postHeart->user_id = $user_id;
+            $postHeart->save();
+            $button_text = '<i class="fas fa-heart fa-2x"></i>';
+        }else{
+            $post->getPostHeart()->delete();
+            $button_text = '<i class="far fa-heart fa-2x"></i>';
+        }
+        return Html::a($button_text, ['post/heart', 'id' => $id], [
+            'data-method' => 'post',
+            'class' => 'btn',
+            'data-pjax' => 3
+        ]);
     }
 
 
