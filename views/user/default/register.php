@@ -24,8 +24,6 @@ $this->title = Yii::t('user', 'Register');
 
     <div class="row centered_registration" style="margin-left: -150px; box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.10);">
 
-        its working
-
         <!-- Information page name: -->
         <div class="text-center registration_text">
             <label class = "mt-4 Arial_font"><?= Html::encode($this->title) ?></label>

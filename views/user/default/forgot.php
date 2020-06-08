@@ -18,8 +18,6 @@ $this->title = Yii::t('user', 'Forgot password');
         <div align="center">
             <div class="col-lg" style="margin-left: -10px">
 
-                its working
-
                 <!-- Information page name -->
                 <div class="text-center login_text" style="margin-left: 20px">
                     <label class = "mt-4 Arial_font"><?= Html::encode($this->title) ?></label>
