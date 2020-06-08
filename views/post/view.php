@@ -10,13 +10,9 @@ use yii\bootstrap4\Html;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\widgets\ListView;
+use yii\widgets\Pjax;
 
 PostAsset::register($this);
-
-//$green_box_img  = Html::img('@web/img/green_box.png', ['class' => 'float-left like_image']);
-//$red_box_img  = Html::img('@web/img/red_box.png', ['class' => 'float-left like_image']);
-//$user_avatar = Html::img('@web/avatars/user1.jpg', ['class' => 'comment_avatar mx-auto d-block']);
-//$profile_link = Url::toRoute(["profile/view", "id" => 1]);
 ?>
 
 
@@ -33,6 +29,23 @@ PostAsset::register($this);
             <p class="text-center">
                 <?= Html::a($model->profile->full_name, ['profile/view', 'profile_id' => $model->profile_id]);?>
             </p>
+
+            <?php
+            Pjax::begin();
+            $button_text = '<i class="far fa-heart fa-2x"></i>';
+            if ($model->getPostHeart())
+            {
+                $button_text = '<i class="fas fa-heart fa-2x"></i>';
+            }
+            echo Html::a($button_text, ['post/heart', 'id' => $model->post_id], [
+                'data-method' => 'post',
+                'class' => 'btn',
+                'data-pjax' => 3
+            ]);
+            Pjax::end();
+            ?>
+
+
 
             <hr class="divider">
 

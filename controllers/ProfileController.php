@@ -48,7 +48,6 @@ class ProfileController extends \yii\web\Controller
             }
         }
         else{
-            Post::_addBookmarkDelete();
             $this->_subscribeUnsubscribe();
         }
 

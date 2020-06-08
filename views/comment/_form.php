@@ -14,14 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text')->textarea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
-    <?= $form->field($model, 'post_id')->textInput() ?>
-
-    <?= $form->field($model, 'upvote')->textInput() ?>
-
-    <?= $form->field($model, 'downvote')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

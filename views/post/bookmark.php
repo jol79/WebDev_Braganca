@@ -17,17 +17,18 @@ use yii\widgets\Pjax;
 
 
 <div class="row">
-    <?php Pjax::begin(['formSelector' => '#bookmark']); ?>
     <?php
+
     if ($dataProvider != null) {
         if (!$dataProvider->totalCount) {
-            $create_link = Html::a('Create your fist post <i class="fas fa-pencil-alt"></i>',
-                ['post/create'], ['class' => 'first-post text-center mx-auto p-3']);
+            $create_link = Html::a('Search for posts that will be interesting for you <i class="fas fa-book-open"></i>',
+                ['//post/posts'], ['class' => 'no-bookmarks text-center mx-auto p-3']);
             echo "<div class=\"col-md-12 col-lg-12 pt-3\">
                     $create_link    
               </div>";
         }
         else {
+            Pjax::begin();
             /** @var boolean $logged_in */
             echo ListView::widget([
                 'dataProvider' => $dataProvider,
@@ -46,8 +47,9 @@ use yii\widgets\Pjax;
             echo LinkPager::widget([
                 'pagination' => $dataProvider->pagination,
             ]);
+            Pjax::end();
         }
     }
-    Pjax::end();
+
     ?>
 </div>

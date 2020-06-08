@@ -1,5 +1,5 @@
 <?php
-
+use app\assets\FeedAsset;
 use app\models\Comment;
 use app\assets\ProfileAsset;
 use yii\bootstrap4\ActiveForm;
@@ -8,8 +8,16 @@ use yii\bootstrap4\LinkPager;
 use yii\web\View;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
+FeedAsset::register($this);
 ?>
 
+    <?php Pjax::begin(['enablePushState' => false]) ?>
+    <?php
+    if (!$model->isBookmarked()){
+        $link_class = 'unbookmarked';
+    }
+    else $link_class = 'bookmarked';
+    ?>
     <div class="post-wrap mx-auto mt-3 mb-3 p-2">
         <div class="row">
             <div class="col-sm-2 col-md-2 col-lg-2">
@@ -37,34 +45,21 @@ use yii\widgets\Pjax;
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="desc-wrap">
-                    <span class="description">
-                        <?=$model->description?>
-                    </span>
+                       <?=Html::a($model->description, ['/post/view', 'id' => $model->post_id], ['class' => ['description']]);?>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <span class="like">
-                    34
+                    <?= $model->getHearts()->count(); ?>
                     <i class="far fa-heart"></i>
                 </span>
                 <?php $form = ActiveForm::begin(['id' => 'bookmark']); ?>
                 <?php
                     if (!($model->profile_id == Yii::$app->user->identity->profile->id)){
-                        echo "<span class='bookmark-wrap'>";
-
-                        if (!$model->isBookmarked()){
-                            echo Html::submitButton('<i class="far fa-bookmark"></i>',
-                                ['class' => 'bookmark add ml-2', 'name' => 'action', 'value' => 'add_bookmark']);
-                        }
-                        else{
-                            echo Html::submitButton('<i class="far fa-bookmark"></i>',
-                                ['class' => 'bookmark del ml-2', 'name' => 'action', 'value' => 'del_bookmark']);
-                        }
-
-                        echo Html::hiddenInput('post_id', $model->post_id);
-                        echo "</span>";
+                        echo Html::a('<i class="far fa-bookmark"></i>',
+                            ['post/bookmark_add_del', 'post_id' => $model->post_id], ['class' => $link_class]);
                     }
                     ?>
                 <?php ActiveForm::end(); ?>
@@ -75,5 +70,6 @@ use yii\widgets\Pjax;
             </div>
         </div>
     </div>
+    <?php Pjax::end() ?>
 
 

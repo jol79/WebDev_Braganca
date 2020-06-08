@@ -50,7 +50,9 @@ body{
     color: #212529;
 }
 
-
+div[data-pjax-container]{
+    width: 100%;
+}
 
 .settings .update a, .settings button[type='submit'], .settings button[type='button']{
     color: #BBBBBB;
@@ -90,21 +92,22 @@ body{
     border: none;
 }
 
+.bookmarked{
 
-.bookmark.add i{
+    color: green;
+}
+
+.unbookmarked{
     color: black;
 }
 
-.bookmark.del i{
-    color: #4fb2f6;
-}
+.bookmarked:hover{
 
-.bookmark.add i:hover {
-    color: #4fb2f6;
-}
-
-.bookmark.del i:hover{
     color: black;
+}
+
+.unbookmarked:hover{
+    color: green;
 }
 
 div[data-pjax-container]{

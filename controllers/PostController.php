@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Bookmark;
 use app\models\Category;
 use app\models\Comment;
 use app\models\CommentVote;
@@ -11,7 +12,8 @@ use app\models\Post;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
-
+use app\models\PostHeart;
+use yii\bootstrap4\Html;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
@@ -64,8 +66,8 @@ class PostController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchQuery(Post::find());
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -167,7 +169,7 @@ class PostController extends Controller
         if(Yii::$app->request->isPost){
             if($searchModel->load(Yii::$app->request->post())){
                 $postDataProvider = $searchModel->search(Yii::$app->request->queryParams);
-//                $postDataProvider->pagination->setPageSize(5);
+                $postDataProvider->pagination->setPageSize(5);
                 $lang = null;
             }
         }
@@ -274,12 +276,24 @@ class PostController extends Controller
     }
 
     public function actionBookmark(){
-        Post::_addBookmarkDelete();
         $profile_id = Yii::$app->user->identity->profile->id;
         $searchModel = new PostSearch();
         $query = Post::getBookmarkedPosts($profile_id);
         $dataProvider = $searchModel->searchQuery($query);
         return $this->render('bookmark', ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionBookmark_add_del($post_id){
+        $profile_id = Yii::$app->user->identity->profile->id;
+        $model =  $this->findModel($post_id);
+        $bookmark = Bookmark::getBookmark($post_id);
+        if ($bookmark){
+            $bookmark->removeBookmak($profile_id);
+        }
+        else{
+            Bookmark::addBookmark($profile_id, $post_id);
+        }
+        return $this->renderAjax('_postContainer', ['model' => $model]);
     }
 
     protected function findComment($id){
@@ -290,6 +304,25 @@ class PostController extends Controller
         return $comment;
     }
 
-
+    public function actionHeart($id){
+        $post = Post::findOne($id);
+        $user_id = Yii::$app->user->id;
+        $postHeart = $post->getPostHeart();
+        if (!$postHeart){
+            $postHeart = new PostHeart();
+            $postHeart->post_id = $id;
+            $postHeart->user_id = $user_id;
+            $postHeart->save();
+            $button_text = '<i class="fas fa-heart fa-2x"></i>';
+        }else{
+            $post->getPostHeart()->delete();
+            $button_text = '<i class="far fa-heart fa-2x"></i>';
+        }
+        return Html::a($button_text, ['post/heart', 'id' => $id], [
+            'data-method' => 'post',
+            'class' => 'btn',
+            'data-pjax' => 3
+        ]);
+    }
 
 }
