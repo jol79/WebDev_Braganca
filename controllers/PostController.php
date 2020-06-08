@@ -6,11 +6,9 @@ use app\models\Bookmark;
 use app\models\Category;
 use app\models\Comment;
 use app\models\CommentVote;
-use app\models\PostHeart;
 use app\models\Search\PostSearch;
 use Yii;
 use app\models\Post;
-use yii\bootstrap4\Html;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
@@ -305,22 +303,6 @@ class PostController extends Controller
         return $comment;
     }
 
-    public function actionLike($param = 'like'){
-        return $this->render('like', ['time' => date('m/d/Y', time()), 'param' => $param]);
-    }
-
-    public function actionTest($param){
-        if ($param == 'like'){
-            $var = time();
-            $param = 'unlike';
-        }
-        else{
-            $var = date('m/d/Y', time());
-            $param = 'like';
-        }
-        return $this->renderAjax('like', ['time' => $var, 'param' => $param]);
-    }
-
     public function actionHeart($id){
         $post = Post::findOne($id);
         $user_id = Yii::$app->user->id;
@@ -341,6 +323,7 @@ class PostController extends Controller
             'data-pjax' => 3
         ]);
     }
+
 
 
 }

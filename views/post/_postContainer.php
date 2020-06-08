@@ -10,7 +10,14 @@ use yii\widgets\ListView;
 use yii\widgets\Pjax;
 FeedAsset::register($this);
 ?>
-    <?php Pjax::begin() ?>
+
+    <?php Pjax::begin(['enablePushState' => false]) ?>
+    <?php
+    if (!$model->isBookmarked()){
+        $link_class = 'unbookmarked';
+    }
+    else $link_class = 'bookmarked';
+    ?>
     <div class="post-wrap mx-auto mt-3 mb-3 p-2">
         <div class="row">
             <div class="col-sm-2 col-md-2 col-lg-2">
@@ -38,9 +45,7 @@ FeedAsset::register($this);
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="desc-wrap">
-                    <span class="description">
-                        <?=$model->description?>
-                    </span>
+                       <?=Html::a($model->description, ['/post/view', 'id' => $model->post_id], ['class' => ['description']]);?>
                 </div>
             </div>
         </div>
@@ -54,7 +59,7 @@ FeedAsset::register($this);
                 <?php
                     if (!($model->profile_id == Yii::$app->user->identity->profile->id)){
                         echo Html::a('<i class="far fa-bookmark"></i>',
-                            ['post/bookmark_add_del', 'post_id' => $model->post_id]);
+                            ['post/bookmark_add_del', 'post_id' => $model->post_id], ['class' => $link_class]);
                     }
                     ?>
                 <?php ActiveForm::end(); ?>

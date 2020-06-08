@@ -28,7 +28,7 @@ use yii\widgets\Pjax;
               </div>";
         }
         else {
-//            Pjax::begin();
+            Pjax::begin();
             /** @var boolean $logged_in */
             echo ListView::widget([
                 'dataProvider' => $dataProvider,
@@ -47,7 +47,7 @@ use yii\widgets\Pjax;
             echo LinkPager::widget([
                 'pagination' => $dataProvider->pagination,
             ]);
-//            Pjax::end();
+            Pjax::end();
         }
     }
 
