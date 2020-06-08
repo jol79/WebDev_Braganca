@@ -8,6 +8,7 @@ use yii\widgets\ListView;
 use yii\data\Pagination;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
+use yii\captcha\Captcha;
 
 use yii\helpers\Url;
 
@@ -42,7 +43,7 @@ $this->title = 'Home';
                 <h2 style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);">Learn from others</h2>
                 <div style="margin-top: 30px">
                     <medium>
-                        In our innovation period, it's very
+                        In our innovation <per></per>iod, it's very
                         important to search for new knowledges
                         We propose to learn when reading from others,
                         you have the opportunity to search using sorting the programming
@@ -50,7 +51,7 @@ $this->title = 'Home';
                     </medium>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1">Learn</a>
+            <?= Html::a('Learn', ['post/posts'], ['class'=>'btn btn-primary button_params cube__button hov_ef', 'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1']) ?>
 
             <!-- divider -->
             <div class="divider"></div>
@@ -66,7 +67,7 @@ $this->title = 'Home';
                     </medium>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; ; background: #616DE1">Create</a>
+            <?= Html::a('Create', ['post/create'], ['class'=>'btn btn-primary button_params cube__button hov_ef', 'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1']) ?>
 
             <!-- divider -->
             <div class="divider"></div>
@@ -82,13 +83,14 @@ $this->title = 'Home';
                     </medium>
                 </div>
             </div>
-            <a href="../../views/site/news.php" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1">Read</a>
+            <?= Html::a('Read', ['site/news'], ['class'=>'btn btn-primary button_params cube__button hov_ef', 'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1']) ?>
+
 
             <!-- divider -->
             <div class="divider"></div>
 
             <!-- Feedback part -->
-            <div class="relaway  style="margin-top: 50px; ">
+            <div class="relaway" style="margin-top: 50px;">
                 <h2 style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);">We growth, and we are open for all of you</h2>
                 <div style="margin-top: 30px">
                     <medium>
@@ -99,7 +101,8 @@ $this->title = 'Home';
                     </medium>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary button_params cube__button hov_ef" style="border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1">Feedback</a>
+            <!-- Paste here link for feedback form -->
+            <?= Html::a('Feedback', [''], ['class'=>'btn btn-primary button_params cube__button hov_ef', 'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1']) ?>
 
 
     </div>
@@ -191,6 +194,18 @@ filter: blur(34px);"></div>
                 <div class="form-group relaway">
                     <?= $form->field($model, 'message')->textArea(['class' => 'form-control','rows' => 6, 'maxlength' => 280]) ?>
                 </div>
+
+                <!-- Email form: -->
+                <div class="form-group relaway">
+                    <?= $form->field($model, 'email')->textarea(['class' => 'form-control', 'maxlength' => 65, 'style' => 'height: 40px']) ?>
+                </div>
+
+                <!-- ReCAPTCHA -->
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                ]) ?>
+
+                <!-- Submit form button -->
                 <div class="form-group text-center relaway-bold">
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary btn-md', 'name' => 'contact-button']) ?>
                 </div>

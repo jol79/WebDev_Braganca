@@ -14,6 +14,7 @@ class m200529_211107_create_feedback_table extends Migration
     {
         $this->createTable('{{%feedback}}', [
             'id_feedback' => $this->primaryKey()->unique(),
+            'email' => $this->string(65)->notNull(),
             'created_at' => $this->dateTime(),
             'message' => $this->string(280)->notNull(),
             'local_time' => $this->dateTime()

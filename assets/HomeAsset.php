@@ -16,7 +16,6 @@ class HomeAsset extends AssetBundle
 
     ];
     public $js = [
-        'web/js/cube.js',
 
     ];
     public $depends = [

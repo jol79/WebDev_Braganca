@@ -31,7 +31,9 @@ $config = [
                     // path to custom DefaultController.php:
                     '@vendor/amnah/yii2-user/controllers/DefaultController.php' => '@app/views/user/controllers/DefaultController.php',
                     // path to custom layouts:
-                    '@vendor/amnah/yii2-user/layouts' => '@app/views/user/layouts'
+                    '@vendor/amnah/yii2-user/layouts' => '@app/views/user/layouts',
+                    // path to custom forms;
+                    '@vendor/amnah/yii2-user/models/forms' => '@app/views/user/models/forms',
                 ]
             ]
         ],

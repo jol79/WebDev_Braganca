@@ -15,10 +15,12 @@ use yii\data\ActiveDataProvider;
  * @property string $created_at
  * @property string $current_time
  * @property string $local_time
+ *
  */
 
 class Feedback extends \yii\db\ActiveRecord
 {
+    public $verifyCode;
 
     /**
      * function to print all from table
@@ -63,7 +65,10 @@ class Feedback extends \yii\db\ActiveRecord
 
         return [
             ['message', 'required'],
+            ['email', 'required'],
+            ['email', 'filter', 'filter' => 'trim'],
             ['created_at', 'string'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -134,4 +139,15 @@ class Feedback extends \yii\db\ActiveRecord
         return $dataProvider;
 
     }
+
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'verifyCode' => 'Verification Code',
+        ];
+    }
+
 }
