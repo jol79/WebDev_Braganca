@@ -12,7 +12,8 @@ use app\models\Post;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
-
+use app\models\PostHeart;
+use yii\bootstrap4\Html;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
@@ -323,7 +324,5 @@ class PostController extends Controller
             'data-pjax' => 3
         ]);
     }
-
-
 
 }

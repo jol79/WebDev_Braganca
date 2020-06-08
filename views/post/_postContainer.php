@@ -52,7 +52,7 @@ FeedAsset::register($this);
         <div class="row">
             <div class="col-lg-12">
                 <span class="like">
-                    34
+                    <?= $model->getHearts()->count(); ?>
                     <i class="far fa-heart"></i>
                 </span>
                 <?php $form = ActiveForm::begin(['id' => 'bookmark']); ?>
