@@ -23,7 +23,18 @@ $config = [
         'user' => [
             'class' => 'amnah\yii2\user\components\User',
         ],
-
+        'view' =>[
+            'theme' => [
+                'pathMap' => [
+                    // path to custom view files:
+                    '@vendor/amnah/yii2-user/views' => '@app/views/user',
+                    // path to custom DefaultController.php:
+                    '@vendor/amnah/yii2-user/controllers/DefaultController.php' => '@app/views/user/controllers/DefaultController.php',
+                    // path to custom layouts:
+                    '@vendor/amnah/yii2-user/layouts' => '@app/views/user/layouts'
+                ]
+            ]
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
