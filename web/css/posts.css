@@ -93,7 +93,6 @@ div[data-pjax-container]{
 }
 
 .bookmarked{
-
     color: green;
 }
 
@@ -111,7 +110,7 @@ div[data-pjax-container]{
 }
 
 div[data-pjax-container]{
-    display: inline-block;
+    display: inline;
 
 }
 

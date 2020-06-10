@@ -13,6 +13,7 @@ class PostsAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
+        'css/searchBar.css',
         'css/languages.css',
         'css/posts.css',
     ];

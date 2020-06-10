@@ -1,0 +1,13 @@
+#searchBar{
+    width: 350px;
+    margin: 0px auto;
+}
+
+label[for = 'postsearch-searchstring']{
+    display: none;
+}
+
+#searchButton{
+    display: block;
+    margin-bottom: 10px;
+}

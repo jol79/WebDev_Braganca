@@ -293,7 +293,7 @@ class PostController extends Controller
         else{
             Bookmark::addBookmark($profile_id, $post_id);
         }
-        return $this->renderAjax('_postContainer', ['model' => $model]);
+        return $this->renderAjax('_bookmark', ['model' => $model]);
     }
 
     protected function findComment($id){

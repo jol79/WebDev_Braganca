@@ -15,11 +15,16 @@ use yii\widgets\Pjax;
 ?>
 
 <div class="row search-field mt-5">
-    <div class="search-field mx-auto">
-        <?php $form = ActiveForm::begin(['id' => 'searchBar', 'action' => ['post/posts', 'search' => true]]);?>
-        <?= $form->field($searchModel, 'searchString')->textInput(['maxlength' => 50]) ?>
-        <?= Html::submitButton('<i class="fas fa-search fa-sm"></i>', ['class' => 'search-button']); ?>
-        <?php ActiveForm::end();?>
+
+    <div class="input-group">
+        <?php $form = ActiveForm::begin(
+                ['id' => 'searchBar', 'action' => ['post/posts', 'search' => true]]);?>
+        <?= $form->field($searchModel, 'searchString')->textInput(['maxlength' => 50, 'class' => 'form-control',
+            'placeholder' => 'Search for something...']) ?>
+
+        <?= Html::submitButton('<i class="fas fa-search fa-sm"></i>', ['id' => 'searchButton', 'class' => 'btn btn-secondary mx-auto']); ?>
+
+        <?php ActiveForm::end() ?>
     </div>
 
 </div>

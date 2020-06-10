@@ -28,7 +28,7 @@ use yii\widgets\Pjax;
               </div>";
         }
         else {
-            Pjax::begin();
+            Pjax::begin(['linkSelector' => '.bookmarked']);
             /** @var boolean $logged_in */
             echo ListView::widget([
                 'dataProvider' => $dataProvider,
