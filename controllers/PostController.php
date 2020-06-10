@@ -164,8 +164,6 @@ class PostController extends Controller
         $postDataProvider = null;
         $searchModel = new PostSearch();
 
-        Post::_addBookmarkDelete();
-
         if(Yii::$app->request->isPost){
             if($searchModel->load(Yii::$app->request->post())){
                 $postDataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -173,7 +171,6 @@ class PostController extends Controller
                 $lang = null;
             }
         }
-
         if ($lang != null){
             $query = Post::getPostsbyCategory($lang);
             $postDataProvider = $searchModel->searchQuery($query);
@@ -271,7 +268,6 @@ class PostController extends Controller
 
     public function actionFeed(){
         $blocks = Post::getSortedPostsOfMonth(Yii::$app->user->identity->profile->id);
-        Post::_addBookmarkDelete();
         return $this->render('feed', ['blocks' => $blocks]);
     }
 

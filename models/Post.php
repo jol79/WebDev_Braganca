@@ -230,35 +230,6 @@ class Post extends \yii\db\ActiveRecord
         return Bookmark::deleteAll(['profile_id' => $profile_id, 'post_id' => $this->post_id]);
     }
 
-    public static function _addBookmarkDelete(){
-        if (Yii::$app->request->isPost){
-            $post_id = Yii::$app->request->post('post_id');
-            $post = Post::getPostByPostId($post_id);
-            if ($post){
-                $profile_id = Yii::$app->user->identity->profile->id;
-                $action = Yii::$app->request->post('action');
-                if ($action == 'add_bookmark'){
-                    if ($post->add_bookmark($profile_id)){
-                        Yii::$app->session->addFlash("success", "Bookmarked");
-                    }
-                    else{
-                        Yii::$app->session->addFlash("danger", "Can't add a new bookmark");
-                    }
-                }
-                else{
-                    if ($post->delete_bookmark($profile_id)){
-                        Yii::$app->session->addFlash("success", "Bookmark was removed successfully");
-                    }
-                    else{
-                        Yii::$app->session->addFlash("danger", "Can't remove bookmark");
-                    }
-                }
-            }
-            else{
-                Yii::$app->session->addFlash("danger", "Post Doesn't exist");
-            }
-        }
-    }
 
     public function getPostHeart(){
         return PostHeart::find()
@@ -269,4 +240,5 @@ class Post extends \yii\db\ActiveRecord
     public function getHearts(){
         return $this->hasMany(PostHeart::class, ['post_id' => 'post_id']);
     }
+
 }

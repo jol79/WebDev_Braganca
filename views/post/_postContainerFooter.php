@@ -17,7 +17,7 @@ use yii\widgets\Pjax;
         }
         ?>
         <span class="comments">
-            <?=Comment::getCommentsbyPostId($model->post_id)?>
+            <?=$model->getComments()->count()?>
             <i class="far fa-comments"></i>
         </span>
     </div>

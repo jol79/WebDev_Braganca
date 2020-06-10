@@ -15,4 +15,4 @@ use yii\widgets\Pjax;
     </div>
         <?= $this->render('//post/_postContainerContent', ['model' => $model]) ?>
         <?= $this->render('//post/_postContainerFooter', ['model' => $model]) ?>
-    </div>
+</div>
