@@ -34,6 +34,7 @@ $config = [
                     '@vendor/amnah/yii2-user/layouts' => '@app/views/user/layouts',
                     // path to custom forms;
                     '@vendor/amnah/yii2-user/models/forms' => '@app/views/user/models/forms',
+                    '@vendor/amnah/yii2-user/views/admin/' => '@app/views/user/admin'
                 ]
             ]
         ],
