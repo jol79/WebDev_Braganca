@@ -102,7 +102,7 @@ $this->title = 'Home';
                 </div>
             </div>
             <!-- Paste here link for feedback form -->
-            <?= Html::a('Feedback', [''], ['class'=>'btn btn-primary button_params cube__button hov_ef', 'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1']) ?>
+            <?= Html::a('Feedback', ['#feedback'], ['class'=>'btn btn-primary button_params cube__button hov_ef', 'style' => 'border-radius: 24px; margin-top: 20px; margin-left: 0px; padding-bottom: 30px; background: #616DE1']) ?>
 
 
     </div>
@@ -172,7 +172,7 @@ filter: blur(34px);"></div>
 <!-- comments block divider: -->
 <div class="container">
     <div class="text-center">
-        <p class="cos mb-5 mt-3">Leave comment</p>
+        <p id = 'feedback' class="cos mb-5 mt-3">Leave comment</p>
     </div>
     <!-- leave comment: -->
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
