@@ -4,7 +4,7 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=final_project',
     'username' => 'root',
-    'password' => 'yourpassword',
+    'password' => '6XmvsSbD',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
